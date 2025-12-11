@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Root" style="flex-grow: 1;">
+        <ui:VisualElement name="Container_Menu" style="flex-grow: 1;">
+            <ui:Label text="How X Are You?" name="Lbl_Title" />
+            <ui:Button text="Start Game" name="Btn_Start" />
+            <ui:Button text="EN / X" name="Btn_LangToggle" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Container_Quiz" style="flex-grow: 1; display: none;">
+            <ui:VisualElement name="Img_QuestionVisual" style="flex-grow: 1;" />
+            <ui:Label text="Question goes here..." name="Lbl_QuestionText" />
+            <ui:VisualElement name="Grid_Answers" style="flex-grow: 1;">
+                <ui:Button text="Button 0" name="Btn_Ans0" />
+                <ui:Button text="Button 1" name="Btn_Ans1" />
+                <ui:Button text="Button 2" name="Btn_Ans2" />
+                <ui:Button text="Button 3" name="Btn_Ans3" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Container_Result" style="flex-grow: 1; display: none;">
+            <ui:Label text="Result Title" name="Lbl_ResultTitle" />
+            <ui:Label text="Result Description" name="Lbl_ResultDesc" />
+            <ui:Button text="Try Again" name="Btn_Restart" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
