@@ -12,17 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
   m_Name: PolandQuestion1
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
-  text_EN: Capital?
-  text_Native: 
+  text_EN: Currnecy?
+  text_Native: Currnecy??
   visual: {fileID: 0}
   useImageAnswers: 0
   answers:
-  - text_EN: Warsaw
-    text_Native: 
+  - text_EN: Euro
+    text_Native: Euro1
     image: {fileID: 0}
     isCorrect: 0
-  - text_EN: Berlin
-    text_Native: 
+  - text_EN: Zloty
+    text_Native: "Z\u0142oty"
+    image: {fileID: 0}
+    isCorrect: 1
+  - text_EN: Pound
+    text_Native: Pound1
+    image: {fileID: 0}
+    isCorrect: 0
+  - text_EN: Pound
+    text_Native: Pound1
     image: {fileID: 0}
     isCorrect: 0
   explanation_EN: 

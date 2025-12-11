@@ -52,21 +52,30 @@ namespace HowX.Core
             }
             root = uiDocument.rootVisualElement;
 
-            // 1. Find Containers
+            // 1. Load the "Profile" specific theme (e.g., Poland.uss)
+            if (currentProfile != null && currentProfile.themeSheet != null)
+            {
+                if (!root.styleSheets.Contains(currentProfile.themeSheet))
+                {
+                    root.styleSheets.Add(currentProfile.themeSheet);
+                }
+            }
+
+            // 2. Find Containers
             menuContainer = root.Q<VisualElement>("Container_Menu");
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             resultContainer = root.Q<VisualElement>("Container_Result");
 
-            // 2. Find Menu Elements
+            // 3. Find Menu Elements
             titleLabel = root.Q<Label>("Lbl_Title");
             startButton = root.Q<Button>("Btn_Start");
             langButton = root.Q<Button>("Btn_LangToggle");
 
-            // 3. Find Quiz Elements
+            // 4. Find Quiz Elements
             questionLabel = root.Q<Label>("Lbl_QuestionText");
             questionImage = root.Q<Image>("Img_QuestionVisual");
 
-            // 4. Find Answer Buttons (Btn_Ans0 to Btn_Ans3)
+            // 5. Find Answer Buttons (Btn_Ans0 to Btn_Ans3)
             answerButtons = new Button[4];
             for (int i = 0; i < 4; i++)
             {
@@ -78,13 +87,13 @@ namespace HowX.Core
                 answerButtons[i].clicked += () => OnAnswerClicked(x);
             }
 
-            // 5. Find Result Elements
+            // 6. Find Result Elements
             resultTitle = root.Q<Label>("Lbl_ResultTitle");
             resultDesc = root.Q<Label>("Lbl_ResultDesc");
             resultScore = root.Q<Label>("Lbl_Score");
             restartButton = root.Q<Button>("Btn_Restart");
 
-            // 6. Hook up General Buttons
+            // 7. Hook up General Buttons
             startButton.clicked -= StartGame;
             startButton.clicked += StartGame;
 
