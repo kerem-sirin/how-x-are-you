@@ -5,12 +5,11 @@ namespace HowX.Data
     [System.Serializable]
     public class TierData
     {
-        public string title;          // "Russian Spy"
+        public LocalizedText title;
         [Range(0, 100)]
-        public float maxPercentage;   // 12
-        public string subtitle;       // "O kurwa..."
+        public float maxPercentage;
 
-        [TextArea(3, 10)]
-        public string description;    // "You put ketchup on pierogi..."
+        public LocalizedText subtitle;
+        public LocalizedText description;
     }
 }

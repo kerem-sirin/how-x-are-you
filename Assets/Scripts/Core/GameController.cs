@@ -150,7 +150,7 @@ namespace HowX.Core
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
             // Set Text
-            questionLabel.text = isNativeLanguage ? q.text_Native : q.text_EN;
+            questionLabel.text = q.text.Get(isNativeLanguage);
 
             // Set Image
             if (q.visual != null)
@@ -191,7 +191,7 @@ namespace HowX.Core
                         if (txtChild != null)
                         {
                             txtChild.style.display = DisplayStyle.Flex;
-                            txtChild.text = isNativeLanguage ? q.answers[i].text_Native : q.answers[i].text_EN;
+                            txtChild.text = q.answers[i].text.Get(isNativeLanguage);
                         }
                     }
                 }
@@ -254,8 +254,8 @@ namespace HowX.Core
 
             if (earnedTier != null)
             {
-                resultTitle.text = earnedTier.title;
-                resultDesc.text = $"<b>{earnedTier.subtitle}</b>\n\n{earnedTier.description}";
+                resultTitle.text = earnedTier.title.Get(isNativeLanguage);
+                resultDesc.text = $"<b>{earnedTier.subtitle.Get(isNativeLanguage)}</b>\n\n{earnedTier.description.Get(isNativeLanguage)}";
             }
         }
     }
