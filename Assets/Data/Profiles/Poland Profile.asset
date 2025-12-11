@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1876d1f63a248ff4e94560d628feca92, type: 3}
   m_Name: Poland Profile
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuizProfile
-  countryName: 
-  nativeLanguageName: 
+  countryName: Poland
+  countryAdjective: Polish
+  nativeLanguageName: Polski
   themeSheet: {fileID: 0}
   backgroundImage: {fileID: 0}
   questions: []
