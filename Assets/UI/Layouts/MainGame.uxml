@@ -6,13 +6,25 @@
             <ui:Button text="EN / X" name="Btn_LangToggle" />
         </ui:VisualElement>
         <ui:VisualElement name="Container_Quiz" style="flex-grow: 1; display: none;">
-            <ui:VisualElement name="Img_QuestionVisual" style="flex-grow: 1;" />
+            <ui:Image name="Img_QuestionVisual" style="height: 200px; width: 100%;" />
             <ui:Label text="Question goes here..." name="Lbl_QuestionText" />
             <ui:VisualElement name="Grid_Answers" style="flex-grow: 1;">
-                <ui:Button text="Button 0" name="Btn_Ans0" />
-                <ui:Button text="Button 1" name="Btn_Ans1" />
-                <ui:Button text="Button 2" name="Btn_Ans2" />
-                <ui:Button text="Button 3" name="Btn_Ans3" />
+                <ui:Button name="Btn_Ans0">
+                    <ui:Label text="Button 0" name="Lbl_Ans" style="display: flex;" />
+                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                </ui:Button>
+                <ui:Button name="Btn_Ans1">
+                    <ui:Label text="Button 1" name="Lbl_Ans" style="display: flex;" />
+                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                </ui:Button>
+                <ui:Button name="Btn_Ans2">
+                    <ui:Label text="Button 2" name="Lbl_Ans" style="display: flex;" />
+                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                </ui:Button>
+                <ui:Button name="Btn_Ans3">
+                    <ui:Label text="Button 3" name="Lbl_Ans" style="display: flex;" />
+                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Container_Result" style="flex-grow: 1; display: none;">
