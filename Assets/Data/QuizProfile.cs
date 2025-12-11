@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UIElements; // For StyleSheet
+using UnityEngine.UIElements;
 
 namespace HowX.Data
 {
@@ -9,10 +9,11 @@ namespace HowX.Data
     {
         [Header("Identity")]
         public string countryName;        // "Poland"
+        public string countryAdjective;   // "Polish"
         public string nativeLanguageName; // "Polski"
 
         [Header("Visual Theme")]
-        public StyleSheet themeSheet;     // The .uss file
+        public StyleSheet themeSheet;
         public Sprite backgroundImage;
 
         [Header("Data")]
