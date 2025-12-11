@@ -13,16 +13,24 @@ MonoBehaviour:
   m_Name: PolandQuestion0
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
   text_EN: Capital?
-  text_Native: 
+  text_Native: Capital??
   visual: {fileID: 0}
   useImageAnswers: 0
   answers:
   - text_EN: Warsaw
-    text_Native: 
+    text_Native: Warszawa
+    image: {fileID: 0}
+    isCorrect: 1
+  - text_EN: Berlin
+    text_Native: Berline
     image: {fileID: 0}
     isCorrect: 0
   - text_EN: Berlin
-    text_Native: 
+    text_Native: Berline
+    image: {fileID: 0}
+    isCorrect: 0
+  - text_EN: Berlin
+    text_Native: Berline
     image: {fileID: 0}
     isCorrect: 0
   explanation_EN: 

@@ -1,0 +1,53 @@
+/* GLOBAL SETTINGS */
+Label {
+    font-size: 32px;
+    color: rgb(50, 50, 50); /* Dark Grey Text */
+    -unity-font-style: bold;
+}
+
+/* BUTTONS (Generic Shape & Animation) */
+Button {
+    height: 120px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border-width: 4px;
+    font-size: 40px;
+    -unity-font-style: bold;
+    background-color: rgb(230, 230, 230);
+    border-color: rgb(180, 180, 180);
+    
+    /* ANIMATION SETTINGS */
+    scale: 1; /* Default size */
+    transition-duration: 0.1s; /* Takes 0.1 seconds to resize (smooth) */
+    transition-property: scale; /* Only animate the scale */
+}
+
+/* GROW ON HOVER */
+Button:hover {
+    scale: 1.05; /* Grow by 5% */
+}
+
+/* SHRINK ON CLICK */
+Button:active {
+    scale: 0.95; /* Shrink to 95% size */
+}
+
+/* SPECIFIC OVERRIDES */
+#Lbl_Title {
+    font-size: 60px;
+    margin-bottom: 50px;
+    -unity-text-align: middle-center;
+}
+
+#Lbl_QuestionText {
+    font-size: 45px;
+    margin-bottom: 30px;
+    white-space: normal; /* Allow text wrapping */
+    -unity-text-align: middle-center;
+}
+
+#Img_QuestionVisual {
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}

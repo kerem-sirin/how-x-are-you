@@ -17,5 +17,15 @@ MonoBehaviour:
   nativeLanguageName: Polski
   themeSheet: {fileID: 0}
   backgroundImage: {fileID: 0}
-  questions: []
-  tiers: []
+  questions:
+  - {fileID: 11400000, guid: da8f7923ebf6fa14e8eb23b934e5b854, type: 2}
+  - {fileID: 11400000, guid: 14a5c361d6bd85a4f9d2b74045da419b, type: 2}
+  tiers:
+  - title: Spy
+    maxPercentage: 50
+    subtitle: 1
+    description: 2
+  - title: True Pole
+    maxPercentage: 100
+    subtitle: 3
+    description: 4
