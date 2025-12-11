@@ -22,8 +22,13 @@ namespace HowX.Core
         // Quiz UI
         private Label questionLabel;
         private Image questionImage;
-        private VisualElement gridAnswers; // Parent of buttons (optional, good for hiding)
         private Button[] answerButtons; // Array to hold our 4 buttons
+
+        // Result UI
+        private Label resultTitle;
+        private Label resultDesc;
+        private Label resultScore;
+        private Button restartButton;
 
         // --- Game State ---
         private int currentQuestionIndex = 0;
@@ -55,7 +60,7 @@ namespace HowX.Core
             // 2. Find Menu Elements
             titleLabel = root.Q<Label>("Lbl_Title");
             startButton = root.Q<Button>("Btn_Start");
-            langButton = root.Q<Button>("Btn_LangToggle"); // Make sure this ID exists in UXML!
+            langButton = root.Q<Button>("Btn_LangToggle");
 
             // 3. Find Quiz Elements
             questionLabel = root.Q<Label>("Lbl_QuestionText");
@@ -68,18 +73,26 @@ namespace HowX.Core
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
 
                 // CRITICAL: Assign click event ONCE. 
-                // We capture the index 'x' to avoid closure issues.
                 int x = i;
-                answerButtons[i].clicked -= () => OnAnswerClicked(x); // Safety clean
+                answerButtons[i].clicked -= () => OnAnswerClicked(x);
                 answerButtons[i].clicked += () => OnAnswerClicked(x);
             }
 
-            // 5. Hook up General Buttons
+            // 5. Find Result Elements
+            resultTitle = root.Q<Label>("Lbl_ResultTitle");
+            resultDesc = root.Q<Label>("Lbl_ResultDesc");
+            resultScore = root.Q<Label>("Lbl_Score");
+            restartButton = root.Q<Button>("Btn_Restart");
+
+            // 6. Hook up General Buttons
             startButton.clicked -= StartGame;
             startButton.clicked += StartGame;
 
             langButton.clicked -= ToggleLanguage;
             langButton.clicked += ToggleLanguage;
+
+            restartButton.clicked -= RestartGame; // <--- Hooking up restart
+            restartButton.clicked += RestartGame;
 
             ShowMenu();
         }
@@ -107,12 +120,18 @@ namespace HowX.Core
             LoadQuestion();
         }
 
+        private void RestartGame()
+        {
+            // Reset state and go back to menu
+            currentQuestionIndex = 0;
+            currentScore = 0;
+
+            resultContainer.style.display = DisplayStyle.None;
+            ShowMenu();
+        }
+
         private void LoadQuestion()
         {
-            // Debug Check 1: Is the Profile or Question list valid?
-            if (currentProfile == null) { Debug.LogError("Profile is NULL"); return; }
-            if (currentProfile.questions == null) { Debug.LogError("Questions List is NULL"); return; }
-
             if (currentQuestionIndex >= currentProfile.questions.Count)
             {
                 EndGame();
@@ -121,65 +140,36 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Debug Check 2: Is the specific Question Asset missing?
-            if (q == null)
-            {
-                Debug.LogError($"Question at index {currentQuestionIndex} is NULL! Check the Profile list.");
-                return;
-            }
-
-            // Debug Check 3: Did we fail to find the Label?
-            if (questionLabel == null)
-            {
-                Debug.LogError("UI Error: Could not find 'Lbl_QuestionText'. Check UXML Names.");
-                return;
-            }
-
+            // Set Text
             questionLabel.text = isNativeLanguage ? q.text_Native : q.text_EN;
 
-            // Debug Check 4: Did we fail to find the Image?
-            if (questionImage == null)
+            // Set Image
+            if (q.visual != null)
             {
-                // Warning only, we might not crash if we don't use it, but good to know
-                Debug.LogWarning("UI Warning: Could not find 'Img_QuestionVisual'.");
+                questionImage.style.display = DisplayStyle.Flex;
+                questionImage.sprite = q.visual;
             }
             else
             {
-                // Only try to use it if it exists
-                if (q.visual != null)
-                {
-                    questionImage.style.display = DisplayStyle.Flex;
-                    questionImage.sprite = q.visual;
-                }
-                else
-                {
-                    questionImage.style.display = DisplayStyle.None;
-                }
+                questionImage.style.display = DisplayStyle.None;
             }
 
-            // Debug Check 5: Buttons
+            // Set Buttons
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
-
-                // Safety: Does the button exist?
                 if (btn == null) continue;
 
-                // 1. Should we show this answer?
                 if (i < q.answers.Length)
                 {
                     btn.style.display = DisplayStyle.Flex;
 
-                    // Find the children inside THIS specific button
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
                     Image imgChild = btn.Q<Image>("Img_Ans");
 
-                    // 2. Image Mode vs Text Mode
                     if (q.useImageAnswers)
                     {
-                        // IMAGE MODE
                         if (txtChild != null) txtChild.style.display = DisplayStyle.None;
-
                         if (imgChild != null)
                         {
                             imgChild.style.display = DisplayStyle.Flex;
@@ -188,20 +178,16 @@ namespace HowX.Core
                     }
                     else
                     {
-                        // TEXT MODE
                         if (imgChild != null) imgChild.style.display = DisplayStyle.None;
-
                         if (txtChild != null)
                         {
                             txtChild.style.display = DisplayStyle.Flex;
-                            // Localization check
                             txtChild.text = isNativeLanguage ? q.answers[i].text_Native : q.answers[i].text_EN;
                         }
                     }
                 }
                 else
                 {
-                    // No answer for this slot, hide the whole button
                     btn.style.display = DisplayStyle.None;
                 }
             }
@@ -209,23 +195,11 @@ namespace HowX.Core
 
         private void OnAnswerClicked(int index)
         {
-            // Safety Check
             if (currentQuestionIndex >= currentProfile.questions.Count) return;
 
-            // Check correctness
             bool correct = currentProfile.questions[currentQuestionIndex].answers[index].isCorrect;
+            if (correct) currentScore++;
 
-            if (correct)
-            {
-                currentScore++;
-                Debug.Log("Correct!");
-            }
-            else
-            {
-                Debug.Log("Wrong!");
-            }
-
-            // Move to next
             currentQuestionIndex++;
             LoadQuestion();
         }
@@ -233,11 +207,8 @@ namespace HowX.Core
         private void ToggleLanguage()
         {
             isNativeLanguage = !isNativeLanguage;
-
-            // Update button text
             langButton.text = isNativeLanguage ? "Native" : "English";
 
-            // If we are mid-game, refresh the current question immediately
             if (quizContainer.style.display == DisplayStyle.Flex)
             {
                 LoadQuestion();
@@ -246,9 +217,37 @@ namespace HowX.Core
 
         private void EndGame()
         {
-            Debug.Log($"Game Over! Score: {currentScore}");
             quizContainer.style.display = DisplayStyle.None;
             resultContainer.style.display = DisplayStyle.Flex;
+
+            float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
+
+            // 1. UPDATE THE SCORE LABEL
+            if (resultScore != null)
+            {
+                resultScore.text = $"{percentage:F0}%";
+            }
+
+            TierData earnedTier = null;
+            foreach (var tier in currentProfile.tiers)
+            {
+                if (percentage <= tier.maxPercentage)
+                {
+                    earnedTier = tier;
+                    break;
+                }
+            }
+
+            if (earnedTier == null && currentProfile.tiers.Count > 0)
+            {
+                earnedTier = currentProfile.tiers[currentProfile.tiers.Count - 1];
+            }
+
+            if (earnedTier != null)
+            {
+                resultTitle.text = earnedTier.title;
+                resultDesc.text = $"<b>{earnedTier.subtitle}</b>\n\n{earnedTier.description}";
+            }
         }
     }
 }
