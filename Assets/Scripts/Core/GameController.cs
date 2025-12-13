@@ -149,10 +149,10 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Set Text
+            // Set Main Question Text
             questionLabel.text = q.text.Get(isNativeLanguage);
 
-            // Set Image
+            // Set Main Question Image
             if (q.visual != null)
             {
                 questionImage.style.display = DisplayStyle.Flex;
@@ -163,7 +163,7 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // Set Buttons
+            // Set Answer Buttons
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -173,12 +173,16 @@ namespace HowX.Core
                 {
                     btn.style.display = DisplayStyle.Flex;
 
+                    // Look for the children inside the button
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
                     Image imgChild = btn.Q<Image>("Img_Ans");
 
                     if (q.useImageAnswers)
                     {
+                        // 1. Hide Text
                         if (txtChild != null) txtChild.style.display = DisplayStyle.None;
+
+                        // 2. Show Image
                         if (imgChild != null)
                         {
                             imgChild.style.display = DisplayStyle.Flex;
@@ -187,6 +191,7 @@ namespace HowX.Core
                     }
                     else
                     {
+                        // Text Mode
                         if (imgChild != null) imgChild.style.display = DisplayStyle.None;
                         if (txtChild != null)
                         {

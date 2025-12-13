@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion3
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: When a Polish person says "No", what do they mean?
+    native: "Co oznacza, gdy Polak m\xF3wi \"No\"?"
+  visual: {fileID: 0}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: No (Disagree)
+      native: Nie
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Yes (Agree)
+      native: Tak
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Maybe
+      native: "Mo\u017Ce"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: I don't know
+      native: Nie wiem
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: The ultimate trap for foreigners. In Polish slang, 'No' actually means 'Yeah'
+      or 'Sure'. If you ask 'Hungry?' and we say 'No', feed us.
+    native: "Najwi\u0119ksza pu\u0142apka na obcokrajowc\xF3w. Polskie 'No' to potoczne
+      'Tak'. 'No pewnie', 'No jasne'. Logika? Jaka logika?"

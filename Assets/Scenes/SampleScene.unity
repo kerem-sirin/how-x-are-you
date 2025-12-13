@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7379137ef7d780439cf727a98d51478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.GameController
-  uiDocument: {fileID: 54952404}
   currentProfile: {fileID: 11400000, guid: c5b9f914ad7383642a01ffed682603ed, type: 2}
 --- !u!1 &519420028
 GameObject:

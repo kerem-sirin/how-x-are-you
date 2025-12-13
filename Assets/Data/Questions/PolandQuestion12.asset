@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion12
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: At a Polish wedding, what happens at midnight?
+    native: "Co dzieje si\u0119 o p\xF3\u0142nocy na polskim weselu?"
+  visual: {fileID: 21300000, guid: 7ad3628e845803b488ccc0e4135b6897, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: The bride throws the bouquet
+      native: "Panna m\u0142oda rzuca bukietem"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Party game time
+      native: Oczepiny
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Everyone goes home
+      native: "Wszyscy id\u0105 do domu"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: The DJ plays Techno
+      native: DJ gra techno
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: Oczepiny involves humiliating games, often involving eating sausages without
+      hands or strange dancing.
+    native: "Oczepiny to upokarzaj\u0105ce zabawy, cz\u0119sto z jedzeniem par\xF3wek
+      bez u\u017Cycia r\u0105k lub dziwnym ta\u0144cem"

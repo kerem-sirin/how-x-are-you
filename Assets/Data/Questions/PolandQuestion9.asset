@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion9
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: What happens at 21:37?
+    native: "Co dzieje si\u0119 o 21:37?"
+  visual: {fileID: 21300000, guid: 7f155cb1d66cb2a4d9df45417c4aec04, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: Time to sleep
+      native: "Czas spa\u0107"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: We sing 'Barka'
+      native: "\u015Apiewamy 'Bark\u0119'"
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Dinner time
+      native: "Czas na kolacj\u0119"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Nothing special
+      native: Nic specjalnego
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: 21:37 is the exact time Pope John Paul II died. It is now the biggest meme
+      number in Poland.
+    native: "21:37 to dok\u0142adna godzina \u015Bmierci Papie\u017Ca Jana Paw\u0142a
+      II. To teraz najwi\u0119kszy memiczny numer w Polsce."

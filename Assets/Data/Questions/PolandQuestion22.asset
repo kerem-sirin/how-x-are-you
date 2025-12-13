@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion22
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: 'Complete the lyrics: "Through your green eyes..."'
+    native: "Doko\u0144cz tekst: \"Przez twe oczy zielone...\""
+  visual: {fileID: 21300000, guid: a9077023ceb4f9f459abca562b9f975b, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: ...I went crazy
+      native: "...oszala\u0142em"
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: ...I see nothing
+      native: "...nic nie widz\u0119"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: ...I am in heaven
+      native: ...jestem w niebie
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: ...My head hurts
+      native: "...boli mnie g\u0142owa"
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: Zenek Martyniuk's hit song. Even if you hate Disco Polo, you know the lyrics.
+      It is unavoidable.
+    native: Hit Zenka Martyniuka. Nawet jak nienawidzisz Disco Polo, znasz tekst.
+      To nieuniknione.

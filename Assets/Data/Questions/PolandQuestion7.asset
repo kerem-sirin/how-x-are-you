@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion7
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: Identify this tactical fortification.
+    native: "Zidentyfikuj t\u0119 fortyfikacj\u0119 taktyczn\u0105."
+  visual: {fileID: 21300000, guid: c0eb593542d19eb419c40205ce466e14, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: NATO Defensive Line
+      native: Linia obronna NATO
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Parawaning
+      native: Parawaning
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Music Festival Campsite
+      native: Pole namiotowe festiwalu
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Premium Sunbathing Zone
+      native: Strefa Premium
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: Poles use windbreaks (parawans) to claim territory on the beach at 6:00 AM.
+    native: "Polacy u\u017Cywaj\u0105 parawan\xF3w, by zaj\u0105\u0107 terytorium
+      na pla\u017Cy ju\u017C o 6:00 rano."

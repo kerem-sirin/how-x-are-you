@@ -1,30 +1,30 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Themes/BaseTheme.uss?fileID=7433441132597879392&amp;guid=c11e255e12cd109418957c9490eb7df5&amp;type=3#BaseTheme" />
     <ui:VisualElement name="Root" style="flex-grow: 1;">
-        <ui:VisualElement name="Container_Menu" style="flex-grow: 1;">
+        <ui:VisualElement name="Container_Menu" style="flex-grow: 1; display: flex;">
             <ui:Label text="How X Are You?" name="Lbl_Title" />
             <ui:Button text="Start Game" name="Btn_Start" />
             <ui:Button text="EN / X" name="Btn_LangToggle" />
         </ui:VisualElement>
         <ui:VisualElement name="Container_Quiz" style="flex-grow: 1; display: none;">
-            <ui:Image name="Img_QuestionVisual" style="height: 200px; width: 100%;" />
             <ui:Label text="Question goes here..." name="Lbl_QuestionText" />
+            <ui:Image name="Img_QuestionVisual" style="height: 200px; width: 100%;" />
             <ui:VisualElement name="Grid_Answers" style="flex-grow: 1;">
                 <ui:Button name="Btn_Ans0">
                     <ui:Label text="Button 0" name="Lbl_Ans" style="display: flex;" />
-                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                    <ui:Image name="Img_Ans" style="flex-grow: 1; display: none; -unity-background-scale-mode: scale-to-fit;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans1">
                     <ui:Label text="Button 1" name="Lbl_Ans" style="display: flex;" />
-                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                    <ui:Image name="Img_Ans" style="flex-grow: 1; display: none; -unity-background-scale-mode: scale-to-fit;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans2">
                     <ui:Label text="Button 2" name="Lbl_Ans" style="display: flex;" />
-                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                    <ui:Image name="Img_Ans" style="flex-grow: 1; display: none; -unity-background-scale-mode: scale-to-fit;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans3">
                     <ui:Label text="Button 3" name="Lbl_Ans" style="display: flex;" />
-                    <ui:VisualElement name="Img_Ans" style="flex-grow: 1; display: none;" />
+                    <ui:Image name="Img_Ans" style="flex-grow: 1; display: none; -unity-background-scale-mode: scale-to-fit;" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

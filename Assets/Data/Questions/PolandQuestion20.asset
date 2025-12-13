@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion20
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: Who is this national hero?
+    native: Kim jest ten bohater narodowy?
+  visual: {fileID: 21300000, guid: 88df6522c2a0ec94db9e5bac6681abfc, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: Robert Kubica
+      native: Robert Kubica
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Adam Malysz
+      native: "Adam Ma\u0142ysz"
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Lech Walesa
+      native: "Lech Wa\u0142\u0119sa"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Super Mario
+      native: Super Mario
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: "The King of Ski Jumping. For years, the entire country stopped breathing
+      when he was in the air. 'Le\u0107 Adam, le\u0107!'"
+    native: "Kr\xF3l skok\xF3w narciarskich. Przez lata ca\u0142y kraj wstrzymywa\u0142
+      oddech, gdy by\u0142 w powietrzu. 'Le\u0107 Adam, le\u0107!'"
