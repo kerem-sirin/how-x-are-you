@@ -39,7 +39,7 @@ MonoBehaviour:
     image: {fileID: 0}
     isCorrect: 0
   explanation:
-    en: In Italy, they use olive oil. In Poland, we drown the pizza in thick, white
-      garlic sauce. It is the law.
-    native: "We W\u0142oszech u\u017Cywaj\u0105 oliwy. W Polsce topimy pizz\u0119
-      w g\u0119stym, bia\u0142ym sosie czosnkowym. Takie jest prawo."
+    en: "In Poland, we drown pizza in thick white garlic sauce. It\u2019s basically
+      law."
+    native: "W Polsce topimy pizz\u0119 w g\u0119stym, bia\u0142ym sosie czosnkowym.
+      To praktycznie prawo."

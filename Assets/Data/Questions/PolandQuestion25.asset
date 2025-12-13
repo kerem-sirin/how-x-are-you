@@ -13,33 +13,33 @@ MonoBehaviour:
   m_Name: PolandQuestion25
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
   text:
-    en: What is the official national animal of Poland?
-    native: Jaki jest oficjalny narodowy zwierzak Polski?
+    en: 'What is the greatest enemy of every Polish mother? '
+    native: "Jaki jest najwi\u0119kszy wr\xF3g ka\u017Cdej polskiej matki? "
   visual: {fileID: 0}
-  useImageAnswers: 1
+  useImageAnswers: 0
   answers:
   - text:
-      en: White Eagle
-      native: "Orze\u0142 Bia\u0142y"
-    image: {fileID: 21300000, guid: 4e66b258d552b8640b4501b678784f8d, type: 3}
+      en: The Mafia
+      native: 'Mafia '
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Global Warming
+      native: 'Globalne ocieplenie '
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Wind in house
+      native: "Przeci\u0105g "
+    image: {fileID: 0}
     isCorrect: 1
   - text:
-      en: Stork
-      native: Bocian
-    image: {fileID: 21300000, guid: 03331d786cdfc9948b0633236023efc9, type: 3}
-    isCorrect: 0
-  - text:
-      en: Proboscis Monkey
-      native: Nosacz Sundajski
-    image: {fileID: 21300000, guid: 1f5d05097a9901f45bd2b6503c9aca93, type: 3}
-    isCorrect: 0
-  - text:
-      en: Bear
-      native: "Nied\u017Awied\u017A"
-    image: {fileID: 21300000, guid: d080d756048db034381b103230f66886, type: 3}
+      en: 'Inflation '
+      native: 'Inflacja '
+    image: {fileID: 0}
     isCorrect: 0
   explanation:
-    en: The White Eagle is the official symbol of Poland, appearing on the coat of
-      arms.
-    native: "Orze\u0142 bia\u0142y to oficjalny symbol Polski, widniej\u0105cy w
-      herbie."
+    en: The cross-breeze is the ultimate silent killer in every Polish home. Close
+      the window!
+    native: "Przeci\u0105g to najwi\u0119kszy cichy zab\xF3jca w ka\u017Cdym polskim
+      domu. Zamknij okno!"
