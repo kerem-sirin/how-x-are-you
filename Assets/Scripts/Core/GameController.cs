@@ -149,10 +149,9 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Set Main Question Text
+            // 1. Setup Question Text & Visuals
             questionLabel.text = q.text.Get(isNativeLanguage);
 
-            // Set Main Question Image
             if (q.visual != null)
             {
                 questionImage.style.display = DisplayStyle.Flex;
@@ -163,7 +162,16 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // Set Answer Buttons
+            // 2. LAYOUT SWITCHING (New Logic)
+            // We get the Answer Container
+            VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
+
+            // If using images -> Enable "layout-grid", Disable "layout-list"
+            // If using text  -> Enable "layout-list", Disable "layout-grid"
+            gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
+            gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
+
+            // 3. Setup Buttons
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -173,25 +181,22 @@ namespace HowX.Core
                 {
                     btn.style.display = DisplayStyle.Flex;
 
-                    // Look for the children inside the button
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
                     Image imgChild = btn.Q<Image>("Img_Ans");
 
                     if (q.useImageAnswers)
                     {
-                        // 1. Hide Text
                         if (txtChild != null) txtChild.style.display = DisplayStyle.None;
-
-                        // 2. Show Image
                         if (imgChild != null)
                         {
                             imgChild.style.display = DisplayStyle.Flex;
                             imgChild.sprite = q.answers[i].image;
+                            // Ensure scaling is correct in C# too just in case
+                            imgChild.scaleMode = ScaleMode.ScaleToFit;
                         }
                     }
                     else
                     {
-                        // Text Mode
                         if (imgChild != null) imgChild.style.display = DisplayStyle.None;
                         if (txtChild != null)
                         {
