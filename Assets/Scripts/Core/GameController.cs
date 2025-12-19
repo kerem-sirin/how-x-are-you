@@ -22,7 +22,7 @@ namespace HowX.Core
         // Quiz UI
         private Label questionLabel;
         private Image questionImage;
-        private Button[] answerButtons; // Array to hold our 4 buttons
+        private Button[] answerButtons;
 
         // Result UI
         private Label resultTitle;
@@ -33,7 +33,7 @@ namespace HowX.Core
         // --- Game State ---
         private int currentQuestionIndex = 0;
         private int currentScore = 0;
-        private bool isNativeLanguage = false; // false = English, true = Native
+        private bool isNativeLanguage = false;
 
         private void Awake()
         {
@@ -45,14 +45,10 @@ namespace HowX.Core
 
         private void OnEnable()
         {
-            if (uiDocument == null)
-            {
-                Debug.LogError("UIDocument is null!");
-                return;
-            }
+            if (uiDocument == null) return;
             root = uiDocument.rootVisualElement;
 
-            // 1. Load the "Profile" specific theme (e.g., Poland.uss)
+            // 1. Load Theme
             if (currentProfile != null && currentProfile.themeSheet != null)
             {
                 if (!root.styleSheets.Contains(currentProfile.themeSheet))
@@ -66,44 +62,52 @@ namespace HowX.Core
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             resultContainer = root.Q<VisualElement>("Container_Result");
 
-            // 3. Find Menu Elements
+            // 3. Find Elements
             titleLabel = root.Q<Label>("Lbl_Title");
             startButton = root.Q<Button>("Btn_Start");
             langButton = root.Q<Button>("Btn_LangToggle");
-
-            // 4. Find Quiz Elements
             questionLabel = root.Q<Label>("Lbl_QuestionText");
             questionImage = root.Q<Image>("Img_QuestionVisual");
-
-            // 5. Find Answer Buttons (Btn_Ans0 to Btn_Ans3)
-            answerButtons = new Button[4];
-            for (int i = 0; i < 4; i++)
-            {
-                answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
-
-                // CRITICAL: Assign click event ONCE. 
-                int x = i;
-                answerButtons[i].clicked -= () => OnAnswerClicked(x);
-                answerButtons[i].clicked += () => OnAnswerClicked(x);
-            }
-
-            // 6. Find Result Elements
             resultTitle = root.Q<Label>("Lbl_ResultTitle");
             resultDesc = root.Q<Label>("Lbl_ResultDesc");
             resultScore = root.Q<Label>("Lbl_Score");
             restartButton = root.Q<Button>("Btn_Restart");
 
-            // 7. Hook up General Buttons
+            // 4. Setup Answer Buttons
+            answerButtons = new Button[4];
+            for (int i = 0; i < 4; i++)
+            {
+                answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
+                int x = i;
+                // Only game logic subscription here
+                answerButtons[i].clicked -= () => OnAnswerClicked(x);
+                answerButtons[i].clicked += () => OnAnswerClicked(x);
+            }
+
+            // 5. Hook up General Logic
             startButton.clicked -= StartGame;
             startButton.clicked += StartGame;
-
             langButton.clicked -= ToggleLanguage;
             langButton.clicked += ToggleLanguage;
-
-            restartButton.clicked -= RestartGame; // <--- Hooking up restart
+            restartButton.clicked -= RestartGame;
             restartButton.clicked += RestartGame;
 
+            // 6. --- GLOBAL AUDIO BINDING ---
+            // Find EVERY button in the hierarchy (Menu, Quiz, Results)
+            root.Query<Button>().ForEach(RegisterButtonAudio);
+
             ShowMenu();
+        }
+
+        // Helper to bind audio events to any button found
+        private void RegisterButtonAudio(Button btn)
+        {
+            // Fire Click Event
+            btn.clicked -= () => GameEvents.OnSubmit?.Invoke();
+            btn.clicked += () => GameEvents.OnSubmit?.Invoke();
+
+            // Fire Hover Event
+            btn.RegisterCallback<PointerEnterEvent>(evt => GameEvents.OnHover?.Invoke());
         }
 
         // --- LOGIC ---
@@ -116,6 +120,9 @@ namespace HowX.Core
 
             if (currentProfile != null)
                 titleLabel.text = $"How {currentProfile.countryAdjective} Are You?";
+
+            // Notify System: Back to Menu
+            GameEvents.OnGameRestart?.Invoke();
         }
 
         private void StartGame()
@@ -126,17 +133,20 @@ namespace HowX.Core
             menuContainer.style.display = DisplayStyle.None;
             quizContainer.style.display = DisplayStyle.Flex;
 
+            // Notify System: Game Started
+            GameEvents.OnGameStart?.Invoke();
+
             LoadQuestion();
         }
 
         private void RestartGame()
         {
-            // Reset state and go back to menu
             currentQuestionIndex = 0;
             currentScore = 0;
 
             resultContainer.style.display = DisplayStyle.None;
             ShowMenu();
+            // Note: ShowMenu() invokes OnGameRestart, so we don't need to do it here
         }
 
         private void LoadQuestion()
@@ -149,7 +159,7 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // 1. Setup Question Text & Visuals
+            // Set Text/Visual
             questionLabel.text = q.text.Get(isNativeLanguage);
 
             if (q.visual != null)
@@ -162,16 +172,12 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // 2. LAYOUT SWITCHING (New Logic)
-            // We get the Answer Container
+            // Layout Switching
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
-
-            // If using images -> Enable "layout-grid", Disable "layout-list"
-            // If using text  -> Enable "layout-list", Disable "layout-grid"
             gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
             gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
 
-            // 3. Setup Buttons
+            // Button Setup
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -180,7 +186,6 @@ namespace HowX.Core
                 if (i < q.answers.Length)
                 {
                     btn.style.display = DisplayStyle.Flex;
-
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
                     Image imgChild = btn.Q<Image>("Img_Ans");
 
@@ -191,7 +196,6 @@ namespace HowX.Core
                         {
                             imgChild.style.display = DisplayStyle.Flex;
                             imgChild.sprite = q.answers[i].image;
-                            // Ensure scaling is correct in C# too just in case
                             imgChild.scaleMode = ScaleMode.ScaleToFit;
                         }
                     }
@@ -236,12 +240,14 @@ namespace HowX.Core
 
         private void EndGame()
         {
+            // Notify System: Game Over
+            GameEvents.OnGameEnd?.Invoke();
+
             quizContainer.style.display = DisplayStyle.None;
             resultContainer.style.display = DisplayStyle.Flex;
 
             float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
 
-            // 1. UPDATE THE SCORE LABEL
             if (resultScore != null)
             {
                 resultScore.text = $"{percentage:F0}%";
