@@ -8,18 +8,22 @@ namespace HowX.Core
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource sfxSource;
 
-        [Header("Clips")]
+        [Header("Music Clips")]
         [SerializeField] private AudioClip menuMusic;
         [SerializeField] private AudioClip quizMusic;
+
+        [Header("SFX Clips")]
         [SerializeField] private AudioClip clickSound;
         [SerializeField] private AudioClip hoverSound;
         [SerializeField] private AudioClip resultSound;
+        [SerializeField] private AudioClip whooshSound;
 
         private void OnEnable()
         {
             // Subscribe to events
             GameEvents.OnSubmit += PlayClick;
             GameEvents.OnHover += PlayHover;
+            GameEvents.OnNextQuestion += PlayWhoosh;
 
             GameEvents.OnGameStart += PlayQuizMusic;
             GameEvents.OnGameRestart += PlayMenuMusic;
@@ -31,6 +35,7 @@ namespace HowX.Core
             // Unsubscribe to prevent errors when scene changes
             GameEvents.OnSubmit -= PlayClick;
             GameEvents.OnHover -= PlayHover;
+            GameEvents.OnNextQuestion -= PlayWhoosh;
 
             GameEvents.OnGameStart -= PlayQuizMusic;
             GameEvents.OnGameRestart -= PlayMenuMusic;
@@ -53,6 +58,7 @@ namespace HowX.Core
         }
         private void PlayClick() => PlayRandomizedSFX(clickSound);
         private void PlayHover() => PlayRandomizedSFX(hoverSound);
+        private void PlayWhoosh() => PlaySFX(whooshSound);
 
         // --- Internal Helpers ---
         private void PlaySFX(AudioClip clip)

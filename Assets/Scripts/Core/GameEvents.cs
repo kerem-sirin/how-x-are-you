@@ -7,6 +7,7 @@ namespace HowX.Core
         // UI Interaction Events
         public static Action OnSubmit;       // Button Click
         public static Action OnHover;        // Button Hover
+        public static Action OnNextQuestion; // Next Question Requested
 
         // Game Flow Events
         public static Action OnGameStart;    // Start Button Clicked
