@@ -27,17 +27,22 @@ Button {
     scale: 1;
     transition-duration: 0.1s;
     transition-property: scale;
+    transition-timing-function: ease-out-back;
     margin: 10px;
     justify-content: center;
     align-items: center;
 }
 
+/* HOVER STATE */
 Button:hover {
     scale: 1.05;
+    transition-duration: 0.2s; 
 }
 
+/* CLICK STATE (The Press) */
 Button:active {
     scale: 0.95;
+    transition-duration: 0.1s; 
 }
 
 #Lbl_Ans {
@@ -156,4 +161,53 @@ Button:active {
 #Btn_Restart:hover {
     background-color: rgb(80, 80, 80);
     scale: 1.05;
+}
+
+/* ================= CURTAIN TRANSITION ================= */
+/* 1. The Container (Layout & Animation Settings ONLY) */
+#Panel_Transition {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: black;
+    
+    /* Ensure it's always in the visual tree */
+    display: flex; 
+    
+    /* Define the animation */
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+/* 2. The "Hidden" State */
+.curtain-hidden {
+    opacity: 0;
+}
+
+/* ================= QUIZ PANEL TRANSITIONS ================= */
+
+/* THE CONFIGURATOR (ID) */
+/* Only defines physics. Does NOT define position/opacity. */
+#Container_Quiz {
+    transition-property: opacity, translate;
+    transition-duration: 0.225s;
+    transition-timing-function: ease-in-out;
+}
+
+/* STATE 1: CENTER (Default/Visible) */
+.quiz-center {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* STATE 2: RIGHT (Exit) */
+.quiz-right {
+    opacity: 0;
+    translate: 100% 0;
+}
+
+/* STATE 3: LEFT (Entry) */
+.quiz-left {
+    opacity: 0;
+    translate: -100% 0;
 }
