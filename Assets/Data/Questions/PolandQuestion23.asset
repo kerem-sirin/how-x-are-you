@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion23
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: You are making a "Kanapka" for supper. How many slices of bread do you use?
+    native: "Robisz kanapk\u0119 na kolacj\u0119. Ilu kromek chleba u\u017Cywasz?"
+  visual: {fileID: 0}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: Two (Top and Bottom)
+      native: "Dwie (G\xF3ra i d\xF3\u0142)"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: One (Open Faced)
+      native: Jedna (Otwarta)
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Three (BigMac style)
+      native: Trzy (jak Big Mac)
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Bread is not used for Kanapka
+      native: "Chleb nie jest u\u017Cywany do kanapki"
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: Kanapka usually has no top slice. It's just bread, butter, cheese, ham, tomato,
+      cucumber, onion, and pepper.
+    native: "Kanapka zazwyczaj nie ma g\xF3rnej kromki. To po prostu chleb, mas\u0142o,
+      ser, szynka, pomidor, og\xF3rek, cebula i pieprz."

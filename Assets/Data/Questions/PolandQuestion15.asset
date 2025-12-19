@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion15
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: Christmas in Poland is officially canceled if TV does not broadcast this
+      movie.
+    native: "\u015Awi\u0119ta w Polsce s\u0105 odwo\u0142ane, je\u015Bli w telewizji
+      nie ma tego filmu."
+  visual: {fileID: 21300000, guid: f4cdc3d2d6eeb9041b056befd272836a, type: 3}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: Die Hard
+      native: "Szklana Pu\u0142apka"
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Home Alone
+      native: Kevin Sam w Domu
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Ranczo
+      native: Ranczo
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Kiler
+      native: Kiler
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: Home Alone is a religion. One year Polsat tried to cancel it, and there were
+      protests.
+    native: "Kevin Sam w Domu to religia. Raz Polsat pr\xF3bowa\u0142 go nie pu\u015Bci\u0107
+      i wybuch\u0142y protesty."

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
+  m_Name: PolandQuestion2
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
+  text:
+    en: What is the currency of Poland?
+    native: Jaka jest waluta Polski?
+  visual: {fileID: 0}
+  useImageAnswers: 0
+  answers:
+  - text:
+      en: Euro
+      native: Euro
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Zloty
+      native: "Z\u0142oty"
+    image: {fileID: 0}
+    isCorrect: 1
+  - text:
+      en: Rubles
+      native: Rubla
+    image: {fileID: 0}
+    isCorrect: 0
+  - text:
+      en: Onions
+      native: Cebula
+    image: {fileID: 0}
+    isCorrect: 0
+  explanation:
+    en: "We are in the EU, but we kept our own money. 'Z\u0142oty' literally means
+      'Golden', even if the inflation sometimes suggests otherwise."
+    native: "Jeste\u015Bmy w Unii, ale zachowali\u015Bmy w\u0142asny pieni\u0105dz.
+      'Z\u0142oty' to dumna nazwa, nawet je\u015Bli inflacja czasem sugeruje co innego."

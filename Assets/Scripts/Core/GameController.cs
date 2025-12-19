@@ -149,10 +149,9 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Set Text
-            questionLabel.text = isNativeLanguage ? q.text_Native : q.text_EN;
+            // 1. Setup Question Text & Visuals
+            questionLabel.text = q.text.Get(isNativeLanguage);
 
-            // Set Image
             if (q.visual != null)
             {
                 questionImage.style.display = DisplayStyle.Flex;
@@ -163,7 +162,16 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // Set Buttons
+            // 2. LAYOUT SWITCHING (New Logic)
+            // We get the Answer Container
+            VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
+
+            // If using images -> Enable "layout-grid", Disable "layout-list"
+            // If using text  -> Enable "layout-list", Disable "layout-grid"
+            gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
+            gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
+
+            // 3. Setup Buttons
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -183,6 +191,8 @@ namespace HowX.Core
                         {
                             imgChild.style.display = DisplayStyle.Flex;
                             imgChild.sprite = q.answers[i].image;
+                            // Ensure scaling is correct in C# too just in case
+                            imgChild.scaleMode = ScaleMode.ScaleToFit;
                         }
                     }
                     else
@@ -191,7 +201,7 @@ namespace HowX.Core
                         if (txtChild != null)
                         {
                             txtChild.style.display = DisplayStyle.Flex;
-                            txtChild.text = isNativeLanguage ? q.answers[i].text_Native : q.answers[i].text_EN;
+                            txtChild.text = q.answers[i].text.Get(isNativeLanguage);
                         }
                     }
                 }
@@ -254,8 +264,8 @@ namespace HowX.Core
 
             if (earnedTier != null)
             {
-                resultTitle.text = earnedTier.title;
-                resultDesc.text = $"<b>{earnedTier.subtitle}</b>\n\n{earnedTier.description}";
+                resultTitle.text = earnedTier.title.Get(isNativeLanguage);
+                resultDesc.text = $"<b>{earnedTier.subtitle.Get(isNativeLanguage)}</b>\n\n{earnedTier.description.Get(isNativeLanguage)}";
             }
         }
     }

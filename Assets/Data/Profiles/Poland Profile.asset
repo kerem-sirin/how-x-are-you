@@ -20,12 +20,48 @@ MonoBehaviour:
   questions:
   - {fileID: 11400000, guid: da8f7923ebf6fa14e8eb23b934e5b854, type: 2}
   - {fileID: 11400000, guid: 14a5c361d6bd85a4f9d2b74045da419b, type: 2}
+  - {fileID: 11400000, guid: 94c6cad566b96e640b9bec4d28dbaa36, type: 2}
+  - {fileID: 11400000, guid: 51249acba38ed994d829bcf2541e0001, type: 2}
+  - {fileID: 11400000, guid: 43d781931dfcce74c9c8c8a7a4410337, type: 2}
+  - {fileID: 11400000, guid: 9a1876e774d1879438cf1a7d7a0e1817, type: 2}
+  - {fileID: 11400000, guid: 6589a588b1f311c429c1dd3d4970e4a4, type: 2}
+  - {fileID: 11400000, guid: 7f712fed5bbf6ee428146a217a1b5bc0, type: 2}
+  - {fileID: 11400000, guid: 8614346eceda3954da05d6edf5139010, type: 2}
+  - {fileID: 11400000, guid: b0f66324e0ccda44494ae2d2e37be810, type: 2}
+  - {fileID: 11400000, guid: 47452477dd9b29141969099582d58493, type: 2}
+  - {fileID: 11400000, guid: cb1fa44512ab59d4583f5afd7f80e567, type: 2}
+  - {fileID: 11400000, guid: d42b521430310eb44931891b26cdef25, type: 2}
+  - {fileID: 11400000, guid: 7f48ef0c17f2a4c4a90dc8fb354c977b, type: 2}
+  - {fileID: 11400000, guid: 24d8846cbb8227e479449d25ea30b656, type: 2}
+  - {fileID: 11400000, guid: 4ea3639f7e326b24ba9c2715d93dd645, type: 2}
+  - {fileID: 11400000, guid: 144e841ca9f6eb94f85c1b8ed0f107eb, type: 2}
+  - {fileID: 11400000, guid: 480360446ecd378499d008f97c4125a4, type: 2}
+  - {fileID: 11400000, guid: 2ae85ffe0ebd4a84bbd25686417e6311, type: 2}
+  - {fileID: 11400000, guid: ccdc1e5983e8b0d4989398f3022dd0bf, type: 2}
+  - {fileID: 11400000, guid: 9f238d664d93cb845be57d2f9986d434, type: 2}
+  - {fileID: 11400000, guid: 9c42d907a9eea6546b1563169640f4f9, type: 2}
+  - {fileID: 11400000, guid: aa19c3e4148a4f94cb4d8076def84e28, type: 2}
+  - {fileID: 11400000, guid: 78f541286d62a7c4684dac955bf51255, type: 2}
+  - {fileID: 11400000, guid: a3f5ff4d61295124e9ba251e3c2f0ee9, type: 2}
+  - {fileID: 11400000, guid: 555b883a675c6e142bb155448400b29f, type: 2}
   tiers:
-  - title: Spy
+  - title:
+      en: q
+      native: w
     maxPercentage: 50
-    subtitle: 1
-    description: 2
-  - title: True Pole
+    subtitle:
+      en: 
+      native: 
+    description:
+      en: 
+      native: 
+  - title:
+      en: a
+      native: s
     maxPercentage: 100
-    subtitle: 3
-    description: 4
+    subtitle:
+      en: 
+      native: 
+    description:
+      en: 
+      native: 

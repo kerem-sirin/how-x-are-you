@@ -12,26 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35019a955b4c3c49b8eea6f9e439ec9, type: 3}
   m_Name: PolandQuestion0
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuestionData
-  text_EN: Capital?
-  text_Native: Capital??
-  visual: {fileID: 0}
+  text:
+    en: Where is Poland located?
+    native: "Gdzie le\u017Cy Polska?"
+  visual: {fileID: 21300000, guid: d0c9ec36f05c1b84780017f12534d6f6, type: 3}
   useImageAnswers: 0
   answers:
-  - text_EN: Warsaw
-    text_Native: Warszawa
+  - text:
+      en: Next to Russia, unfortunately
+      native: Niestety, obok Rosji
     image: {fileID: 0}
     isCorrect: 1
-  - text_EN: Berlin
-    text_Native: Berline
+  - text:
+      en: In the Middle East
+      native: Na Bliskim Wschodzie
     image: {fileID: 0}
     isCorrect: 0
-  - text_EN: Berlin
-    text_Native: Berline
+  - text:
+      en: It's a city in Germany
+      native: To miasto w Niemczech
     image: {fileID: 0}
     isCorrect: 0
-  - text_EN: Berlin
-    text_Native: Berline
+  - text:
+      en: On the Moon
+      native: "Na Ksi\u0119\u017Cycu"
     image: {fileID: 0}
     isCorrect: 0
-  explanation_EN: 
-  explanation_Native: 
+  explanation:
+    en: "Poland is in Europe\u2026 mostly. We share borders with several countries,
+      and yes, Russia is one of them. Surviving geopolitics here is basically a national
+      sport."
+    native: "Polska le\u017Cy w Europie\u2026 przewa\u017Cnie. Graniczymy z kilkoma
+      pa\u0144stwami, i tak, Rosja te\u017C jest na li\u015Bcie. Przetrwanie geopolityki
+      to niemal narodowy sport."
