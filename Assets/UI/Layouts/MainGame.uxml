@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Themes/BaseTheme.uss?fileID=7433441132597879392&amp;guid=c11e255e12cd109418957c9490eb7df5&amp;type=3" />
+    <Style src="project://database/Assets/UI/Themes/BaseTheme.uss?fileID=7433441132597879392&amp;guid=c11e255e12cd109418957c9490eb7df5&amp;type=3#BaseTheme" />
     <ui:VisualElement name="Root" style="flex-grow: 1;">
         <ui:VisualElement name="Container_Menu" style="flex-grow: 1; display: flex;">
             <ui:Label text="How X Are You?" name="Lbl_Title" />
@@ -31,10 +31,12 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Container_Result" style="flex-grow: 1; display: none;">
-            <ui:Label text="Result Title" name="Lbl_ResultTitle" />
-            <ui:Label text="Result Description" name="Lbl_ResultDesc" />
-            <ui:Label text="Score" name="Lbl_Score" />
-            <ui:Button text="Try Again" name="Btn_Restart" />
+            <ui:VisualElement name="Box_Result">
+                <ui:Label text="XXX%" name="Lbl_Score" />
+                <ui:Label text="Result Title" name="Lbl_ResultTitle" />
+                <ui:Label text="Result description" name="Lbl_ResultDesc" />
+                <ui:Button text="Try Again" name="Btn_Restart" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,10 +1,7 @@
-/* ================= GLOBAL SETTINGS ================= */
 Label {
     color: rgb(50, 50, 50);
     -unity-font-style: bold;
 }
-
-/* ================= MENU STYLES ================= */
 
 #Container_Menu {
     justify-content: center;
@@ -12,7 +9,6 @@ Label {
     padding: 40px;
 }
 
-/* 2. Big Title Styling */
 #Lbl_Title {
     font-size: 65px;
     margin-bottom: 60px;
@@ -21,7 +17,6 @@ Label {
     width: 100%;
 }
 
-/* ================= BUTTON STYLES ================= */
 Button {
     border-radius: 15px;
     border-width: 4px;
@@ -33,13 +28,17 @@ Button {
     transition-duration: 0.1s;
     transition-property: scale;
     margin: 10px;
-    justify-content: center; 
-    align-items: center;     
+    justify-content: center;
+    align-items: center;
 }
 
-Button:hover { scale: 1.05; }
-Button:active { scale: 0.95; }
+Button:hover {
+    scale: 1.05;
+}
 
+Button:active {
+    scale: 0.95;
+}
 
 #Lbl_Ans {
     margin: 0;
@@ -49,9 +48,6 @@ Button:active { scale: 0.95; }
     width: 100%;
 }
 
-/* ================= QUIZ LAYOUT (The 40/60 Split) ================= */
-
-/* 1. TOP AREA (Always 40%) */
 #Box_Question {
     height: 40%;
     width: 100%;
@@ -65,7 +61,7 @@ Button:active { scale: 0.95; }
     white-space: normal;
     -unity-text-align: middle-center;
     width: 90%;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
 #Img_QuestionVisual {
@@ -75,16 +71,12 @@ Button:active { scale: 0.95; }
     scale-mode: scale-to-fit;
 }
 
-/* 2. BOTTOM AREA (Always 60%) */
 #Grid_Answers {
     height: 60%;
     width: 100%;
     padding: 20px;
 }
 
-/* ================= LAYOUT MODES (Controlled by C#) ================= */
-
-/* MODE: LIST (For Text Answers) */
 .layout-list {
     flex-direction: column;
     justify-content: space-evenly;
@@ -92,10 +84,9 @@ Button:active { scale: 0.95; }
 
 .layout-list Button {
     width: 100%;
-    height: 22%; /* 4 buttons * 22% = 88% height filled */
+    height: 22%;
 }
 
-/* MODE: GRID (For Image Answers) */
 .layout-grid {
     flex-direction: row;
     flex-wrap: wrap;
@@ -104,11 +95,65 @@ Button:active { scale: 0.95; }
 }
 
 .layout-grid Button {
-    width: 48%;   /* Fits 2 side-by-side */
-    height: 48%;  /* Fits 2 rows */
+    width: 48%;
+    height: 48%;
     margin: 1%;
 }
 
-/* Helper to hide unused elements */
-.layout-grid #Lbl_Ans { display: none; }
-.layout-list #Img_Ans { display: none; }
+.layout-grid #Lbl_Ans {
+    display: none;
+}
+
+.layout-list #Img_Ans {
+    display: none;
+}
+
+/* ================= RESULT SCREEN ================= */
+#Container_Result {
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight overlay effect */
+}
+
+#Box_Result {
+    width: 80%;
+    align-items: center; /* Center text horizontally */
+    justify-content: center;
+}
+
+#Lbl_Score {
+    font-size: 120px;       /* Massive score text */
+    color: rgb(220, 20, 60); /* Crimson Red (Matches Poland Theme) */
+    margin-bottom: 10px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+#Lbl_ResultTitle {
+    font-size: 50px;
+    margin-bottom: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+#Lbl_ResultDesc {
+    font-size: 30px;
+    margin-bottom: 50px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+    color: rgb(80, 80, 80);
+}
+
+/* Make the restart button distinct */
+#Btn_Restart {
+    width: 60%;
+    background-color: rgb(50, 50, 50); /* Dark Grey */
+    color: white;
+    border-color: black;
+}
+
+#Btn_Restart:hover {
+    background-color: rgb(80, 80, 80);
+    scale: 1.05;
+}
