@@ -27,17 +27,25 @@ Button {
     scale: 1;
     transition-duration: 0.1s;
     transition-property: scale;
+    transition-timing-function: ease-out-back;
     margin: 10px;
     justify-content: center;
     align-items: center;
 }
 
+/* HOVER STATE */
 Button:hover {
     scale: 1.05;
+    /* Hover can be slower/smoother */
+    transition-duration: 0.2s; 
 }
 
+/* CLICK STATE (The Press) */
 Button:active {
     scale: 0.95;
+    
+    /* 2. Instantly shrink when pressed (Snappy!) */
+    transition-duration: 0.1s; 
 }
 
 #Lbl_Ans {
@@ -157,3 +165,25 @@ Button:active {
     background-color: rgb(80, 80, 80);
     scale: 1.05;
 }
+
+/* ================= CURTAIN TRANSITION ================= */
+/* 1. The Container (Layout & Animation Settings ONLY) */
+#Panel_Transition {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: black;
+    
+    /* Ensure it's always in the visual tree */
+    display: flex; 
+    
+    /* Define the animation */
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+/* 2. The "Hidden" State */
+.curtain-hidden {
+    opacity: 0;
+}
+

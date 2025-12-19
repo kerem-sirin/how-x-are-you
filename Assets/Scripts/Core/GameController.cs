@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using HowX.Data;
@@ -11,36 +12,32 @@ namespace HowX.Core
 
         // --- UI Elements ---
         private VisualElement root;
+        private VisualElement transitionPanel;
         private VisualElement menuContainer, quizContainer, resultContainer;
         private UIDocument uiDocument;
 
-        // Menu UI
+        // Elements
         private Label titleLabel;
         private Button startButton;
         private Button langButton;
-
-        // Quiz UI
         private Label questionLabel;
         private Image questionImage;
         private Button[] answerButtons;
-
-        // Result UI
         private Label resultTitle;
         private Label resultDesc;
         private Label resultScore;
         private Button restartButton;
 
-        // --- Game State ---
+        // State
         private int currentQuestionIndex = 0;
         private int currentScore = 0;
         private bool isNativeLanguage = false;
+        private bool isTransitioning = false;
 
         private void Awake()
         {
             if (!TryGetComponent<UIDocument>(out uiDocument))
-            {
                 Debug.LogError("UIDocument missing!");
-            }
         }
 
         private void OnEnable()
@@ -48,21 +45,21 @@ namespace HowX.Core
             if (uiDocument == null) return;
             root = uiDocument.rootVisualElement;
 
-            // 1. Load Theme
             if (currentProfile != null && currentProfile.themeSheet != null)
             {
                 if (!root.styleSheets.Contains(currentProfile.themeSheet))
-                {
                     root.styleSheets.Add(currentProfile.themeSheet);
-                }
             }
 
-            // 2. Find Containers
+            // Find Containers
             menuContainer = root.Q<VisualElement>("Container_Menu");
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             resultContainer = root.Q<VisualElement>("Container_Result");
 
-            // 3. Find Elements
+            // NEW: Find the Curtain
+            transitionPanel = root.Q<VisualElement>("Panel_Transition");
+
+            // Find Elements
             titleLabel = root.Q<Label>("Lbl_Title");
             startButton = root.Q<Button>("Btn_Start");
             langButton = root.Q<Button>("Btn_LangToggle");
@@ -73,18 +70,17 @@ namespace HowX.Core
             resultScore = root.Q<Label>("Lbl_Score");
             restartButton = root.Q<Button>("Btn_Restart");
 
-            // 4. Setup Answer Buttons
+            // Setup Buttons
             answerButtons = new Button[4];
             for (int i = 0; i < 4; i++)
             {
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
                 int x = i;
-                // Only game logic subscription here
                 answerButtons[i].clicked -= () => OnAnswerClicked(x);
                 answerButtons[i].clicked += () => OnAnswerClicked(x);
             }
 
-            // 5. Hook up General Logic
+            // Hook Events
             startButton.clicked -= StartGame;
             startButton.clicked += StartGame;
             langButton.clicked -= ToggleLanguage;
@@ -92,61 +88,123 @@ namespace HowX.Core
             restartButton.clicked -= RestartGame;
             restartButton.clicked += RestartGame;
 
-            // 6. --- GLOBAL AUDIO BINDING ---
-            // Find EVERY button in the hierarchy (Menu, Quiz, Results)
             root.Query<Button>().ForEach(RegisterButtonAudio);
 
-            ShowMenu();
+            // Instant Init (No animation on startup)
+            InitializeUIState();
         }
 
-        // Helper to bind audio events to any button found
-        private void RegisterButtonAudio(Button btn)
+        private void InitializeUIState()
         {
-            // Fire Click Event
-            btn.clicked -= () => GameEvents.OnSubmit?.Invoke();
-            btn.clicked += () => GameEvents.OnSubmit?.Invoke();
+            // Reset Transition Panel
+            if (transitionPanel != null)
+            {
+                // Start hidden
+                // We ensure the class is definitely there.
+                if (!transitionPanel.ClassListContains("curtain-hidden"))
+                {
+                    transitionPanel.AddToClassList("curtain-hidden");
+                }
+                transitionPanel.pickingMode = PickingMode.Ignore;
+            }
 
-            // Fire Hover Event
-            btn.RegisterCallback<PointerEnterEvent>(evt => GameEvents.OnHover?.Invoke());
-        }
-
-        // --- LOGIC ---
-
-        private void ShowMenu()
-        {
             menuContainer.style.display = DisplayStyle.Flex;
             quizContainer.style.display = DisplayStyle.None;
             resultContainer.style.display = DisplayStyle.None;
 
+            UpdateMenuText();
+            GameEvents.OnGameRestart?.Invoke();
+        }
+
+        // --- NEW CURTAIN TRANSITION LOGIC ---
+        private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)
+        {
+            if (isTransitioning) yield break;
+            isTransitioning = true;
+
+            // 1. CURTAIN UP (Fade In)
+            if (transitionPanel != null)
+            {
+                transitionPanel.pickingMode = PickingMode.Position;
+
+                // B. Force Layout Update (Crucial!)
+                // Tell Unity: "Calculate that I am at Opacity 0 right now."
+                float ignored = transitionPanel.resolvedStyle.opacity;
+
+                // C. Trigger Animation (Target: Visible / Opacity 1)
+                // By removing the "Hidden" class, it reverts to the ID's default (Opacity 1).
+                if (transitionPanel.ClassListContains("curtain-hidden"))
+                {
+                    transitionPanel.RemoveFromClassList("curtain-hidden");
+                }
+
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            // 2. SWAP PANELS
+            if (outPanel != null) outPanel.style.display = DisplayStyle.None;
+            if (inPanel != null) inPanel.style.display = DisplayStyle.Flex;
+
+            yield return null;
+
+            // 3. CURTAIN DOWN (Fade Out)
+            if (transitionPanel != null)
+            {
+                // Target: Hidden / Opacity 0
+                transitionPanel.AddToClassList("curtain-hidden");
+
+                yield return new WaitForSeconds(0.5f);
+
+                transitionPanel.pickingMode = PickingMode.Ignore;
+            }
+
+            isTransitioning = false;
+        }
+
+        private void RegisterButtonAudio(Button btn)
+        {
+            // We don't strictly need !isTransitioning here anymore because 
+            // the Curtain blocks clicks, but it's good safety.
+            btn.clicked -= () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
+            btn.clicked += () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
+            btn.RegisterCallback<PointerEnterEvent>(evt => { if (!isTransitioning) GameEvents.OnHover?.Invoke(); });
+        }
+
+        // --- GAME FLOW (Same as before) ---
+
+        private void ShowMenu()
+        {
+            if (isTransitioning) return;
+            UpdateMenuText();
+            GameEvents.OnGameRestart?.Invoke();
+
+            VisualElement currentActive = resultContainer.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
+            StartCoroutine(SwitchPanels(currentActive, menuContainer));
+        }
+
+        private void UpdateMenuText()
+        {
             if (currentProfile != null)
                 titleLabel.text = $"How {currentProfile.countryAdjective} Are You?";
-
-            // Notify System: Back to Menu
-            GameEvents.OnGameRestart?.Invoke();
         }
 
         private void StartGame()
         {
+            if (isTransitioning) return;
+
             currentQuestionIndex = 0;
             currentScore = 0;
 
-            menuContainer.style.display = DisplayStyle.None;
-            quizContainer.style.display = DisplayStyle.Flex;
-
-            // Notify System: Game Started
             GameEvents.OnGameStart?.Invoke();
-
             LoadQuestion();
+
+            StartCoroutine(SwitchPanels(menuContainer, quizContainer));
         }
 
         private void RestartGame()
         {
-            currentQuestionIndex = 0;
-            currentScore = 0;
-
-            resultContainer.style.display = DisplayStyle.None;
+            if (isTransitioning) return;
             ShowMenu();
-            // Note: ShowMenu() invokes OnGameRestart, so we don't need to do it here
         }
 
         private void LoadQuestion()
@@ -159,7 +217,6 @@ namespace HowX.Core
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Set Text/Visual
             questionLabel.text = q.text.Get(isNativeLanguage);
 
             if (q.visual != null)
@@ -172,12 +229,10 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // Layout Switching
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
             gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
             gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
 
-            // Button Setup
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -218,6 +273,8 @@ namespace HowX.Core
 
         private void OnAnswerClicked(int index)
         {
+            if (isTransitioning) return;
+
             if (currentQuestionIndex >= currentProfile.questions.Count) return;
 
             bool correct = currentProfile.questions[currentQuestionIndex].answers[index].isCorrect;
@@ -240,18 +297,8 @@ namespace HowX.Core
 
         private void EndGame()
         {
-            // Notify System: Game Over
-            GameEvents.OnGameEnd?.Invoke();
-
-            quizContainer.style.display = DisplayStyle.None;
-            resultContainer.style.display = DisplayStyle.Flex;
-
             float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
-
-            if (resultScore != null)
-            {
-                resultScore.text = $"{percentage:F0}%";
-            }
+            if (resultScore != null) resultScore.text = $"{percentage:F0}%";
 
             TierData earnedTier = null;
             foreach (var tier in currentProfile.tiers)
@@ -262,17 +309,17 @@ namespace HowX.Core
                     break;
                 }
             }
-
             if (earnedTier == null && currentProfile.tiers.Count > 0)
-            {
                 earnedTier = currentProfile.tiers[currentProfile.tiers.Count - 1];
-            }
 
             if (earnedTier != null)
             {
                 resultTitle.text = earnedTier.title.Get(isNativeLanguage);
                 resultDesc.text = $"<b>{earnedTier.subtitle.Get(isNativeLanguage)}</b>\n\n{earnedTier.description.Get(isNativeLanguage)}";
             }
+
+            GameEvents.OnGameEnd?.Invoke();
+            StartCoroutine(SwitchPanels(quizContainer, resultContainer));
         }
     }
 }
