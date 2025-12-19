@@ -1,12 +1,15 @@
+using HowX.Data;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using HowX.Data;
 
 namespace HowX.Core
 {
     public class GameController : MonoBehaviour
     {
+        private const float QUESTION_SLIDE_DURATION = 0.225f;
+
         [Header("Reference")]
         [SerializeField] private QuizProfile currentProfile;
 
@@ -100,17 +103,28 @@ namespace HowX.Core
             if (transitionPanel != null)
             {
                 // Start hidden
-                // We ensure the class is definitely there.
-                if (!transitionPanel.ClassListContains("curtain-hidden"))
-                {
-                    transitionPanel.AddToClassList("curtain-hidden");
-                }
+                transitionPanel.AddToClassList("curtain-hidden");
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
 
-            menuContainer.style.display = DisplayStyle.Flex;
-            quizContainer.style.display = DisplayStyle.None;
-            resultContainer.style.display = DisplayStyle.None;
+            // Ensure Quiz Container starts in the correct state
+            if (quizContainer != null)
+            {
+                quizContainer.RemoveFromClassList("quiz-left");
+                quizContainer.RemoveFromClassList("quiz-right");
+                quizContainer.AddToClassList("quiz-center");
+
+                // OVERRIDE the USS value with your C# constant
+                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
+
+                quizContainer.style.display = DisplayStyle.None;
+            }
+
+            // Hide Results
+            if (resultContainer != null) resultContainer.style.display = DisplayStyle.None;
+
+            // Show Menu
+            if (menuContainer != null) menuContainer.style.display = DisplayStyle.Flex;
 
             UpdateMenuText();
             GameEvents.OnGameRestart?.Invoke();
@@ -209,12 +223,6 @@ namespace HowX.Core
 
         private void LoadQuestion()
         {
-            if (currentQuestionIndex >= currentProfile.questions.Count)
-            {
-                EndGame();
-                return;
-            }
-
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
             questionLabel.text = q.text.Get(isNativeLanguage);
@@ -271,17 +279,79 @@ namespace HowX.Core
             }
         }
 
+        // --- LOGIC ---
+
         private void OnAnswerClicked(int index)
         {
+            // 1. Block interactions
             if (isTransitioning) return;
 
+            // 2. Check Logic (Score update happens BEFORE animation starts)
             if (currentQuestionIndex >= currentProfile.questions.Count) return;
 
             bool correct = currentProfile.questions[currentQuestionIndex].answers[index].isCorrect;
             if (correct) currentScore++;
 
             currentQuestionIndex++;
-            LoadQuestion();
+            // 4. If last question, end game
+            if (currentQuestionIndex >= currentProfile.questions.Count)
+            {
+                EndGame();
+                return;
+            }
+
+            // 3. Start the Visual Sequence
+            StartCoroutine(NextQuestionSequence());
+        }
+
+        private IEnumerator NextQuestionSequence()
+        {
+            isTransitioning = true;
+
+            // DISABLE INTERACTION: No clicks, no hover effects
+            if (quizContainer != null) quizContainer.pickingMode = PickingMode.Ignore;
+
+            // === PHASE 1: EXIT ===
+            GameEvents.OnNextQuestion?.Invoke();
+
+            if (quizContainer != null)
+            {
+                quizContainer.RemoveFromClassList("quiz-center");
+                quizContainer.AddToClassList("quiz-right");
+                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
+            }
+
+            // === PHASE 2: UPDATE DATA ===
+            if (currentQuestionIndex < currentProfile.questions.Count)
+            {
+                LoadQuestion();
+            }
+
+            // === PHASE 3: TELEPORT ===
+            if (quizContainer != null)
+            {
+                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
+
+                quizContainer.RemoveFromClassList("quiz-right");
+                yield return null;
+                quizContainer.AddToClassList("quiz-left");
+                yield return null;
+
+                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
+            }
+
+            // === PHASE 4: ENTER ===
+            if (quizContainer != null)
+            {
+                quizContainer.RemoveFromClassList("quiz-left");
+                quizContainer.AddToClassList("quiz-center");
+                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
+
+                // RE-ENABLE INTERACTION: Clicks and hovers allowed again
+                quizContainer.pickingMode = PickingMode.Position;
+            }
+
+            isTransitioning = false;
         }
 
         private void ToggleLanguage()
