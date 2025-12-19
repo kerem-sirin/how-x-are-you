@@ -486,7 +486,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -614,11 +614,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.AudioController
   musicSource: {fileID: 1990667526}
   sfxSource: {fileID: 599482056}
-  menuMusic: {fileID: 8300000, guid: 61a063c3db99da3478caa90dfef64667, type: 3}
-  quizMusic: {fileID: 8300000, guid: 4805b84c503e7844e804ea9c1360c739, type: 3}
+  menuMusic: {fileID: 8300000, guid: 2282afd12b49cf3459c1f6c91ff1cfa8, type: 3}
+  quizMusic: {fileID: 8300000, guid: 8f8f78c08d26cbe40a385f22d6b0b458, type: 3}
   clickSound: {fileID: 8300000, guid: 791d234a17719b848b18fc97bba0424a, type: 3}
   hoverSound: {fileID: 8300000, guid: b34e623a0613c764aaf018e4b0cb613e, type: 3}
-  resultSound: {fileID: 8300000, guid: 65d13cc3049483444ac1fc2d97282793, type: 3}
+  resultSound: {fileID: 8300000, guid: ac431655c99c1ff42867249261ccb881, type: 3}
 --- !u!4 &1995532133
 Transform:
   m_ObjectHideFlags: 0
