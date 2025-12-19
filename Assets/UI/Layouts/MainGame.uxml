@@ -38,5 +38,6 @@
                 <ui:Button text="Try Again" name="Btn_Restart" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="Panel_Transition" picking-mode="Ignore" class="curtain-hidden" />
     </ui:VisualElement>
 </ui:UXML>
