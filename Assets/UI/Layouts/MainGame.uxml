@@ -12,24 +12,24 @@
         <ui:VisualElement name="Container_Quiz" style="flex-grow: 1; display: none;">
             <ui:VisualElement name="Box_Question">
                 <ui:Label text="Question goes here..." name="Lbl_QuestionText" />
-                <ui:Image name="Img_QuestionVisual" style="display: flex;" />
+                <ui:VisualElement name="Img_QuestionVisual" style="display: flex;" />
             </ui:VisualElement>
             <ui:VisualElement name="Grid_Answers">
                 <ui:Button name="Btn_Ans0">
                     <ui:Label text="Button 0" name="Lbl_Ans" style="display: flex;" />
-                    <ui:Image name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
+                    <ui:VisualElement name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans1">
                     <ui:Label text="Button 1" name="Lbl_Ans" style="display: flex;" />
-                    <ui:Image name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
+                    <ui:VisualElement name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans2">
                     <ui:Label text="Button 2" name="Lbl_Ans" style="display: flex;" />
-                    <ui:Image name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
+                    <ui:VisualElement name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
                 </ui:Button>
                 <ui:Button name="Btn_Ans3">
                     <ui:Label text="Button 3" name="Lbl_Ans" style="display: flex;" />
-                    <ui:Image name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
+                    <ui:VisualElement name="Img_Ans" scale-mode="ScaleToFit" style="flex-grow: 1; display: none;" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

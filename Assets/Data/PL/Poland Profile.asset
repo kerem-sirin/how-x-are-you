@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1876d1f63a248ff4e94560d628feca92, type: 3}
+  m_Name: Poland Profile
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuizProfile
+  countryName: Poland
+  countryAdjective: Polish
+  nativeLanguageName: Polski
+  folderName: PL
+  backgroundImage: {fileID: 0}
+  csvFile: {fileID: 4900000, guid: 867febb256f2269479caebb2c56a9310, type: 3}
+  questions:
+  - id: 01
+    questionText:
+      en: What is the capital?
+      native: Jaka jest stolica?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Warsaw
+      native: Warszawa
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Krakow
+      native: "Krak\xF3w"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Gdansk
+      native: "Gda\u0144sk"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Lodz
+      native: "\u0141\xF3d\u017A"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndex: 0
+    useImageAnswers: 0
+  tiers:
+  - title:
+      en: Russian Spy
+      native: Ruski Szpieg
+    maxPercentage: 12
+    subtitle:
+      en: O kurwa...
+      native: O kurwa...
+    description:
+      en: "You think \"Krak\xF3w\" is a type of cracker and you put ketchup on your
+        Pierogi. The ABW has been notified of your location. Please remain seated."
+      native: "My\u015Blisz, \u017Ce \"Krak\xF3w\" to rodzaj krakersa i polewasz
+        pierogi keczupem. ABW zosta\u0142a powiadomiona o twojej lokalizacji. Prosz\u0119
+        pozosta\u0107 na miejscu."
+  - title:
+      en: German Tourist
+      native: Niemiecki Turysta
+    maxPercentage: 25
+    subtitle:
+      en: Was ist das?
+      native: Was ist das?
+    description:
+      en: You are just here for the cheap beer and the dentist. You think Pierogi
+        is "Polish Pasta" and you are scared of the cashier at Biedronka.
+      native: "Jeste\u015B tu tylko dla taniego piwa i dentysty. My\u015Blisz, \u017Ce
+        pierogi to \"polski makaron\" i boisz si\u0119 kasjerki w Biedronce."
+  - title:
+      en: Erasmus Student
+      native: Student Erasmusa
+    maxPercentage: 40
+    subtitle:
+      en: Na Zdrowie!
+      native: Na Zdrowie!
+    description:
+      en: You love Soplica Hazelnut vodka and you know how to say "Kurwa". You think
+        Zakopane is a hidden gem. You still smile at strangers on the street (stop
+        doing that).
+      native: "Kochasz Soplic\u0119 Orzechow\u0105 i znasz s\u0142owo \"Kurwa\".
+        My\u015Blisz, \u017Ce Zakopane to ukryty skarb. Wci\u0105\u017C u\u015Bmiechasz
+        si\u0119 do obcych na ulicy (przesta\u0144 to robi\u0107)."
+  - title:
+      en: Average Kowalski
+      native: "Przeci\u0119tny Kowalski"
+    maxPercentage: 60
+    subtitle:
+      en: It'll be fine somehow.
+      native: "Jako\u015B to b\u0119dzie."
+    description:
+      en: You complain about the weather, the government, and the neighbors. You
+        have a plastic bag full of other plastic bags in your kitchen. You pay your
+        taxes, but you do it with great sadness.
+      native: "Narzekasz na pogod\u0119, rz\u0105d i s\u0105siad\xF3w. Masz w kuchni
+        reklam\xF3wk\u0119 pe\u0142n\u0105 innych reklam\xF3wek. P\u0142acisz podatki,
+        ale robisz to z wielkim smutkiem."
+  - title:
+      en: The Janusz - True Pole
+      native: Janusz - Prawdziwy Polak
+    maxPercentage: 75
+    subtitle:
+      en: Passat B5 Driver.
+      native: Kierowca Passata B5.
+    description:
+      en: You own a tactical screen (parawan) for Baltic sea battles. You wear socks
+        with sandals because it is aerodynamic. You know the price of butter in three
+        different supermarkets.
+      native: "Posiadasz taktyczny parawan do bitew morskich w Ba\u0142tyku. Nosisz
+        skarpety do sanda\u0142\xF3w, bo to aerodynamiczne. Znasz cen\u0119 mas\u0142a
+        w trzech r\xF3\u017Cnych supermarketach."
+  - title:
+      en: Babcia's Favorite
+      native: Wnuczek Babci
+    maxPercentage: 85
+    subtitle:
+      en: Eat the meat, leave the potatoes.
+      native: "Zjedz mi\u0119sko, ziemniaczki zostaw."
+    description:
+      en: "You are never hungry. You have an infinite supply of incomprehensible
+        proverbs. You can spot a draft (przeci\u0105g) from three rooms away and
+        you believe it is lethal."
+      native: "Nigdy nie jeste\u015B g\u0142odny. Znasz niesko\u0144czon\u0105 liczb\u0119
+        niezrozumia\u0142ych przys\u0142\xF3w. Wyczuwasz przeci\u0105g z trzech pokoi
+        dalej i wiesz, \u017Ce jest \u015Bmiertelny."
+  - title:
+      en: Pope's Driver
+      native: "Kierowca Papie\u017Ca"
+    maxPercentage: 94
+    subtitle:
+      en: JP2GMD.
+      native: JP2GMD.
+    description:
+      en: "You vibrate at the holy frequency of 21:37. You consume Cream Pies (Krem\xF3wki)
+        for breakfast. Your blood type is Onion Juice."
+      native: "Wibrujesz na \u015Bwi\u0119tej cz\u0119stotliwo\u015Bci 21:37. Jesz
+        krem\xF3wki na \u015Bniadanie. Twoja grupa krwi to Sok z Cebuli."
+  - title:
+      en: Messiah of Nations
+      native: "Mesjasz Narod\xF3w"
+    maxPercentage: 100
+    subtitle:
+      en: Glory to Great Poland.
+      native: "Chwa\u0142a Wielkiej Polsce."
+    description:
+      en: You have transcended Poland; you are Poland. You have resurrected the Winged
+        Hussars. Robert Lewandowski has a poster of you on his wall. You pay for
+        the toilet at the train station... and you enjoy it.
+      native: "Przekroczy\u0142e\u015B granice polsko\u015Bci; jeste\u015B Polsk\u0105.
+        Wskrzesi\u0142e\u015B Husari\u0119. Robert Lewandowski ma tw\xF3j plakat
+        na \u015Bcianie. P\u0142acisz za toalet\u0119 na dworcu... i sprawia ci to
+        przyjemno\u015B\u0107."
