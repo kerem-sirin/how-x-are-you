@@ -111,8 +111,6 @@ Label {
 
 #Lbl_QuestionText {
     font-size: 38px;
-    white-space: normal;
-    -unity-text-align: middle-center;
     width: 100%;
     
     /* Using Body Color (Clay) */
@@ -154,7 +152,12 @@ Button {
     /* Idle Text: Clay Color */
     color: var(--text-body); 
     -unity-font-style: bold;
-    
+    -unity-text-align: middle-center; /* Centers text nicely */
+    white-space: normal;
+
+    justify-content: center;
+    align-items: center;
+
     background-color: white;
     transition-duration: 0.2s;
     transition-property: scale, background-color, translate, color, border-color;
@@ -165,6 +168,8 @@ Button {
 Button Label {
     color: var(--text-body);
     -unity-font-style: bold;
+    -unity-text-align: middle-center; /* Centers text nicely */
+    white-space: normal; /* Enables wrapping */
 }
 
 /* HOVER: Background becomes Maize, Text becomes Teal */
