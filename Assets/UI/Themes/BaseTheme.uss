@@ -144,6 +144,10 @@ Button {
     border-radius: var(--radius-md);
     font-size: 28px;
     
+    /* Add breathing room for text */
+    padding-left: 24px;
+    padding-right: 24px;
+
     /* Clean text, removed muddy purple shadow */
     text-shadow: none; 
     
