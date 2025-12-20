@@ -49,12 +49,6 @@ namespace HowX.Core
             if (uiDocument == null) return;
             root = uiDocument.rootVisualElement;
 
-            if (currentProfile != null && currentProfile.themeSheet != null)
-            {
-                if (!root.styleSheets.Contains(currentProfile.themeSheet))
-                    root.styleSheets.Add(currentProfile.themeSheet);
-            }
-
             // Find Containers
             menuContainer = root.Q<VisualElement>("Container_Menu");
             quizContainer = root.Q<VisualElement>("Container_Quiz");

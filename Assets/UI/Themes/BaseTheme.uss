@@ -1,232 +1,279 @@
-Label {
-    color: rgb(50, 50, 50);
-    -unity-font-style: bold;
+/* ================= VARIABLES & DEFAULTS ================= */
+:root {
+    /* --- PALETTE: "Boho Matte" --- */
+    
+    /* BACKGROUNDS */
+    --theme-bg: rgb(231, 158, 133);       /* Terra Cotta (Main Background) */
+    --card-bg: rgba(255, 248, 245, 0.95); /* Warm White (Cards) */
+    
+    /* ACCENTS & INTERACTION */
+    --theme-accent: rgb(56, 115, 115);    /* Deep Teal (Progress, Borders, Hover Text) */
+    --hover-bg: rgb(240, 213, 154);       /* Maize Yellow (Hover Background) */
+    
+    /* TYPOGRAPHY */
+    --text-main: rgb(56, 115, 115);       /* Deep Teal (Headings, Score) */
+    --text-body: rgb(166, 112, 93);       /* Muted Clay (Questions, Button Idle) */
+    
+    /* GEOMETRY */
+    --radius-lg: 24px;
+    --radius-md: 16px;
 }
 
+/* Global Reset */
+Label {
+    color: var(--text-main);
+    -unity-font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+#Root {
+    background-color: var(--theme-bg);
+}
+
+/* ================= UTILITIES ================= */
+.progress-container {
+    height: 12px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 0; left: 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--theme-accent);
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out-circ;
+}
+
+/* ================= MAIN MENU ================= */
 #Container_Menu {
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 40px;
+    padding-top: 20%;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: var(--theme-bg);
 }
 
 #Lbl_Title {
-    font-size: 65px;
-    margin-bottom: 60px;
+    font-size: 60px;
+    color: var(--text-main);
     -unity-text-align: middle-center;
     white-space: normal;
+    
+    /* Generic shadow works with any color */
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1); 
+    
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    padding: 30px;
     width: 100%;
+    margin-bottom: 80px;
+    border-width: 2px;
+    border-color: var(--theme-accent);
 }
 
-Button {
-    border-radius: 15px;
-    border-width: 4px;
-    font-size: 32px;
-    -unity-font-style: bold;
-    background-color: rgb(230, 230, 230);
-    border-color: rgb(180, 180, 180);
-    scale: 1;
-    transition-duration: 0.1s;
-    transition-property: scale;
-    transition-timing-function: ease-out-back;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
+#Container_Menu Button {
+    width: 60%;
+    max-width: 500px;
+    height: 85px;
+    margin-bottom: 40px;
+    font-size: 36px;
 }
 
-/* HOVER STATE */
-Button:hover {
-    scale: 1.05;
-    transition-duration: 0.2s; 
-}
-
-/* CLICK STATE (The Press) */
-Button:active {
-    scale: 0.95;
-    transition-duration: 0.1s; 
-}
-
-#Lbl_Ans {
-    margin: 0;
-    padding: 0;
-    white-space: normal;
-    -unity-text-align: middle-center;
-    width: 100%;
+/* ================= QUIZ AREA ================= */
+#Container_Quiz {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: opacity, translate;
+    transition-duration: 0.225s;
+    transition-timing-function: ease-in-out;
 }
 
 #Box_Question {
     height: 40%;
-    width: 100%;
+    width: 92%;
+    margin-top: 15px;
+    align-self: center;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: var(--radius-lg);
 }
 
 #Lbl_QuestionText {
-    font-size: 40px;
+    font-size: 38px;
     white-space: normal;
     -unity-text-align: middle-center;
-    width: 90%;
-    flex-shrink: 0;
+    width: 100%;
+    
+    /* Using Body Color (Clay) */
+    color: var(--text-body); 
+    
+    /* Subtle white highlight instead of dark shadow for "engraved" look */
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); 
 }
 
 #Img_QuestionVisual {
-    height: 60%;
-    width: 80%;
+    height: 70%;
+    width: 90%;
     margin-top: 20px;
-    scale-mode: scale-to-fit;
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #Grid_Answers {
     height: 60%;
     width: 100%;
     padding: 20px;
+    justify-content: center;
 }
 
-.layout-list {
-    flex-direction: column;
-    justify-content: space-evenly;
+/* ================= BUTTONS (Semantic) ================= */
+Button {
+    border-width: 1px;
+    border-color: var(--text-body); /* Clay Border */
+    border-radius: var(--radius-md);
+    font-size: 28px;
+    
+    /* Add breathing room for text */
+    padding-left: 24px;
+    padding-right: 24px;
+
+    /* Clean text, removed muddy purple shadow */
+    text-shadow: none; 
+    
+    /* Idle Text: Clay Color */
+    color: var(--text-body); 
+    -unity-font-style: bold;
+    
+    background-color: white;
+    transition-duration: 0.2s;
+    transition-property: scale, background-color, translate, color, border-color;
+    transition-timing-function: ease-out;
 }
 
-.layout-list Button {
-    width: 100%;
-    height: 22%;
+/* Ensure nested labels match parent button color */
+Button Label {
+    color: var(--text-body);
+    -unity-font-style: bold;
 }
 
-.layout-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
+/* HOVER: Background becomes Maize, Text becomes Teal */
+Button:hover {
+    scale: 1.02;
+    background-color: var(--hover-bg);
+    color: var(--theme-accent);
+    border-color: var(--theme-accent);
+    translate: 0 -5px;
 }
 
-.layout-grid Button {
-    width: 48%;
-    height: 48%;
-    margin: 1%;
+Button:hover Label {
+    color: var(--theme-accent);
 }
 
-.layout-grid #Lbl_Ans {
-    display: none;
+/* ACTIVE: Pressed */
+Button:active {
+    scale: 0.98;
+    translate: 0 1px;
+    color: var(--theme-accent);
+    border-color: var(--theme-accent);
+    border-bottom-width: 0;
 }
 
-.layout-list #Img_Ans {
-    display: none;
+Button:active Label {
+    color: var(--theme-accent);
 }
 
 /* ================= RESULT SCREEN ================= */
 #Container_Result {
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.9); /* Slight overlay effect */
+    background-color: var(--theme-bg);
+    padding: 40px;
+    flex-direction: column;
 }
 
 #Box_Result {
-    width: 80%;
-    align-items: center; /* Center text horizontally */
-    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--radius-lg);
 }
 
 #Lbl_Score {
-    font-size: 120px;       /* Massive score text */
-    color: rgb(220, 20, 60); /* Crimson Red (Matches Poland Theme) */
-    margin-bottom: 10px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
+    font-size: 140px;
+    
+    /* Score is Main Color (Teal) */
+    color: var(--text-main); 
+    margin-bottom: 0;
+    
+    /* Soft shadow, not purple */
+    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.1); 
 }
 
 #Lbl_ResultTitle {
-    font-size: 50px;
+    font-size: 48px;
     margin-bottom: 20px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
+    color: var(--text-main);
     white-space: normal;
+    -unity-text-align: middle-center;
 }
 
 #Lbl_ResultDesc {
-    font-size: 30px;
-    margin-bottom: 50px;
+    font-size: 24px;
+    margin-bottom: 20px;
     white-space: normal;
     -unity-text-align: middle-center;
-    color: rgb(80, 80, 80);
+    
+    /* Desc is Body Color (Clay) */
+    color: var(--text-body); 
+    line-height: 1.4;
 }
 
-/* Make the restart button distinct */
 #Btn_Restart {
-    width: 60%;
-    background-color: rgb(50, 50, 50); /* Dark Grey */
-    color: white;
-    border-color: black;
+    width: 80%;
+    max-width: 400px;
+    height: 80px;
+    font-size: 36px;
+    margin-top: 40px;
 }
 
-#Btn_Restart:hover {
-    background-color: rgb(80, 80, 80);
-    scale: 1.05;
-}
-
-/* ================= CURTAIN TRANSITION ================= */
-/* 1. The Container (Layout & Animation Settings ONLY) */
+/* ================= UTILITY & ANIMATION STATES ================= */
 #Panel_Transition {
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
-    background-color: black;
     
-    /* Ensure it's always in the visual tree */
-    display: flex; 
+    /* Transition curtain is the Accent Color */
+    background-color: var(--theme-accent); 
     
-    /* Define the animation */
+    display: flex;
     transition-property: opacity;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
 
-/* 2. The "Hidden" State */
-.curtain-hidden {
-    opacity: 0;
-}
+/* Layout Classes */
+.layout-list { flex-direction: column; justify-content: space-evenly; }
+.layout-list Button { width: 100%; height: 22%; flex-direction: row; }
+.layout-list #Img_Ans { display: none; }
 
-/* ================= QUIZ PANEL TRANSITIONS ================= */
+.layout-grid { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-content: space-between; }
+.layout-grid Button { width: 48%; height: 48%; padding: 10px; }
+.layout-grid #Lbl_Ans { display: none; }
+.layout-grid #Img_Ans { width: 100%; height: 100%; -unity-background-scale-mode: scale-to-fit; }
 
-/* THE CONFIGURATOR (ID) */
-/* Only defines physics. Does NOT define position/opacity. */
-#Container_Quiz {
-    transition-property: opacity, translate;
-    transition-duration: 0.225s;
-    transition-timing-function: ease-in-out;
-}
-
-/* STATE 1: CENTER (Default/Visible) */
-.quiz-center {
-    opacity: 1;
-    translate: 0 0;
-}
-
-/* STATE 2: RIGHT (Exit) */
-.quiz-right {
-    opacity: 0;
-    translate: 100% 0;
-}
-
-/* STATE 3: LEFT (Entry) */
-.quiz-left {
-    opacity: 0;
-    translate: -100% 0;
-}
-
-/* PROGRESS BAR */
-.progress-container {
-    height: 10px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.1); /* Subtle track */
-    position: absolute; /* Pin to top */
-    top: 0;
-    left: 0;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%; /* Starts empty */
-    background-color: rgb(220, 20, 60); /* Match your Poland Red */
-    transition-property: width;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out;
-}
+.curtain-hidden { opacity: 0; }
+.quiz-center { opacity: 1; translate: 0 0; }
+.quiz-right { opacity: 0; translate: 100% 0; }
+.quiz-left { opacity: 0; translate: -100% 0; }

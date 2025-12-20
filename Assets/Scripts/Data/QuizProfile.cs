@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 
 namespace HowX.Data
 {
@@ -13,7 +12,6 @@ namespace HowX.Data
         public string nativeLanguageName; // "Polski"
 
         [Header("Visual Theme")]
-        public StyleSheet themeSheet;
         public Sprite backgroundImage;
 
         [Header("Data")]
