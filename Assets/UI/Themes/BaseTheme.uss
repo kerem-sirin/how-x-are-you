@@ -112,7 +112,9 @@ Label {
 #Lbl_QuestionText {
     font-size: 38px;
     width: 100%;
-    
+
+    white-space: normal;
+    -unity-text-align: middle-center;
     /* Using Body Color (Clay) */
     color: var(--text-body); 
     
