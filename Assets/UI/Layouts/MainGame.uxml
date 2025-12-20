@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Themes/BaseTheme.uss?fileID=7433441132597879392&amp;guid=c11e255e12cd109418957c9490eb7df5&amp;type=3#BaseTheme" />
+    <Style src="project://database/Assets/UI/Themes/BaseTheme.uss?fileID=7433441132597879392&amp;guid=c11e255e12cd109418957c9490eb7df5&amp;type=3" />
     <ui:VisualElement name="Root" style="flex-grow: 1;">
         <ui:VisualElement name="Container_Progress" class="progress-container">
             <ui:VisualElement name="Fill_Progress" class="progress-fill" />
@@ -38,8 +38,8 @@
                 <ui:Label text="XXX%" name="Lbl_Score" />
                 <ui:Label text="Result Title" name="Lbl_ResultTitle" />
                 <ui:Label text="Result description" name="Lbl_ResultDesc" />
-                <ui:Button text="Try Again" name="Btn_Restart" />
             </ui:VisualElement>
+            <ui:Button text="Try Again" name="Btn_Restart" />
         </ui:VisualElement>
         <ui:VisualElement name="Panel_Transition" picking-mode="Ignore" class="curtain-hidden" />
     </ui:VisualElement>

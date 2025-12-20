@@ -15,7 +15,6 @@ MonoBehaviour:
   countryName: Poland
   countryAdjective: Polish
   nativeLanguageName: Polski
-  themeSheet: {fileID: 7433441132597879392, guid: a53dfb081fb23494f84716cecf5eca11, type: 3}
   backgroundImage: {fileID: 0}
   questions:
   - {fileID: 11400000, guid: da8f7923ebf6fa14e8eb23b934e5b854, type: 2}
@@ -44,6 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78f541286d62a7c4684dac955bf51255, type: 2}
   - {fileID: 11400000, guid: a3f5ff4d61295124e9ba251e3c2f0ee9, type: 2}
   - {fileID: 11400000, guid: 555b883a675c6e142bb155448400b29f, type: 2}
+  - {fileID: 11400000, guid: 0d5493c464715ce4298f264ee2d991a4, type: 2}
   tiers:
   - title:
       en: Russian Spy
