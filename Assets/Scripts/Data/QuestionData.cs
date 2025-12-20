@@ -1,28 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace HowX.Data
 {
-    [CreateAssetMenu(fileName = "NewQuestion", menuName = "HowX/Question")]
-    public class QuestionData : ScriptableObject
-    {
-        [Header("Question Content")]
-        public LocalizedText text;
-
-        public Sprite visual;
-        public bool useImageAnswers;
-
-        [Header("Answers")]
-        public Answer[] answers;
-
-        [Header("Post-Question Info")]
-        public LocalizedText explanation;
-    }
-
     [System.Serializable]
-    public class Answer
+    public class QuestionData
     {
-        public LocalizedText text;
-        public Sprite image;
-        public bool isCorrect;
+        [Header("Organization")]
+        public string id;
+
+        [Header("Content")]
+        public LocalizedText questionText;
+        public Texture2D questionVisual;
+
+        [Space(10)]
+        public LocalizedText answer0; // Correct Answer
+        public Texture2D answer0_Image;
+
+        [Space(5)]
+        public LocalizedText answer1;
+        public Texture2D answer1_Image;
+
+        [Space(5)]
+        public LocalizedText answer2;
+        public Texture2D answer2_Image;
+
+        [Space(5)]
+        public LocalizedText answer3;
+        public Texture2D answer3_Image;
+
+        [Header("Settings")]
+        public bool useQuestionAnswer;
+        public List<int> correctIndices;
+        public bool useImageAnswers;
     }
 }

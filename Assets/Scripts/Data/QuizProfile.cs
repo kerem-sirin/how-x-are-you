@@ -7,15 +7,24 @@ namespace HowX.Data
     public class QuizProfile : ScriptableObject
     {
         [Header("Identity")]
-        public string countryName;        // "Poland"
-        public string countryAdjective;   // "Polish"
-        public string nativeLanguageName; // "Polski"
+        public string countryName;
+        public string countryAdjective;
+        public string nativeLanguageName;
+
+        [Tooltip("The folder code, e.g. 'PL' or 'TR'")]
+        public string folderName;
 
         [Header("Visual Theme")]
         public Sprite backgroundImage;
 
-        [Header("Data")]
-        public List<QuestionData> questions;
-        public List<TierData> tiers;
+        [Header("Import Settings")]
+        public TextAsset quizCsvFile;
+        public TextAsset tierCsvFile;
+
+        public string imageLibraryPath => $"Assets/Data/{folderName}/Images/";
+
+        [Header("Game Data")]
+        public List<QuestionData> questions = new List<QuestionData>();
+        public List<TierData> tiers = new List<TierData>();
     }
 }
