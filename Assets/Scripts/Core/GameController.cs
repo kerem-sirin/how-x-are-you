@@ -18,6 +18,7 @@ namespace HowX.Core
         private VisualElement transitionPanel;
         private VisualElement menuContainer, quizContainer, resultContainer;
         private UIDocument uiDocument;
+        private VisualElement progressBarFill;
 
         // Elements
         private Label titleLabel;
@@ -59,8 +60,11 @@ namespace HowX.Core
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             resultContainer = root.Q<VisualElement>("Container_Result");
 
-            // NEW: Find the Curtain
+            // Find the Curtain
             transitionPanel = root.Q<VisualElement>("Panel_Transition");
+
+            // Find Progress Bar Fill
+            progressBarFill = root.Q<VisualElement>("Fill_Progress");
 
             // Find Elements
             titleLabel = root.Q<Label>("Lbl_Title");
@@ -79,17 +83,29 @@ namespace HowX.Core
             {
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
                 int x = i;
-                answerButtons[i].clicked -= () => OnAnswerClicked(x);
-                answerButtons[i].clicked += () => OnAnswerClicked(x);
+                if (answerButtons[i] != null)
+                {
+                    answerButtons[i].clicked -= () => OnAnswerClicked(x);
+                    answerButtons[i].clicked += () => OnAnswerClicked(x);
+                }
             }
 
             // Hook Events
-            startButton.clicked -= StartGame;
-            startButton.clicked += StartGame;
-            langButton.clicked -= ToggleLanguage;
-            langButton.clicked += ToggleLanguage;
-            restartButton.clicked -= RestartGame;
-            restartButton.clicked += RestartGame;
+            if (startButton != null)
+            {
+                startButton.clicked -= StartGame;
+                startButton.clicked += StartGame;
+            }
+            if (langButton != null)
+            {
+                langButton.clicked -= ToggleLanguage;
+                langButton.clicked += ToggleLanguage;
+            }
+            if (restartButton != null)
+            {
+                restartButton.clicked -= RestartGame;
+                restartButton.clicked += RestartGame;
+            }
 
             root.Query<Button>().ForEach(RegisterButtonAudio);
 
@@ -120,6 +136,12 @@ namespace HowX.Core
                 quizContainer.style.display = DisplayStyle.None;
             }
 
+            // Reset Progress Bar
+            if (progressBarFill != null)
+            {
+                progressBarFill.style.width = Length.Percent(0);
+            }
+
             // Hide Results
             if (resultContainer != null) resultContainer.style.display = DisplayStyle.None;
 
@@ -142,11 +164,9 @@ namespace HowX.Core
                 transitionPanel.pickingMode = PickingMode.Position;
 
                 // B. Force Layout Update (Crucial!)
-                // Tell Unity: "Calculate that I am at Opacity 0 right now."
                 float ignored = transitionPanel.resolvedStyle.opacity;
 
                 // C. Trigger Animation (Target: Visible / Opacity 1)
-                // By removing the "Hidden" class, it reverts to the ID's default (Opacity 1).
                 if (transitionPanel.ClassListContains("curtain-hidden"))
                 {
                     transitionPanel.RemoveFromClassList("curtain-hidden");
@@ -177,14 +197,12 @@ namespace HowX.Core
 
         private void RegisterButtonAudio(Button btn)
         {
-            // We don't strictly need !isTransitioning here anymore because 
-            // the Curtain blocks clicks, but it's good safety.
             btn.clicked -= () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
             btn.clicked += () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
             btn.RegisterCallback<PointerEnterEvent>(evt => { if (!isTransitioning) GameEvents.OnHover?.Invoke(); });
         }
 
-        // --- GAME FLOW (Same as before) ---
+        // --- GAME FLOW ---
 
         private void ShowMenu()
         {
@@ -209,6 +227,9 @@ namespace HowX.Core
             currentQuestionIndex = 0;
             currentScore = 0;
 
+            // Reset Progress Bar at Start
+            if (progressBarFill != null) progressBarFill.style.width = Length.Percent(0);
+
             GameEvents.OnGameStart?.Invoke();
             LoadQuestion();
 
@@ -223,6 +244,8 @@ namespace HowX.Core
 
         private void LoadQuestion()
         {
+            if (currentQuestionIndex >= currentProfile.questions.Count) return;
+
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
             questionLabel.text = q.text.Get(isNativeLanguage);
@@ -238,8 +261,11 @@ namespace HowX.Core
             }
 
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
-            gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
-            gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
+            if (gridContainer != null)
+            {
+                gridContainer.EnableInClassList("layout-grid", q.useImageAnswers);
+                gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
+            }
 
             for (int i = 0; i < 4; i++)
             {
@@ -279,6 +305,21 @@ namespace HowX.Core
             }
         }
 
+        // --- NEW: PROGRESS BAR HELPER ---
+        private void UpdateProgressBar()
+        {
+            if (progressBarFill == null || currentProfile == null || currentProfile.questions.Count == 0) return;
+
+            // Calculate progress (e.g., 1 answered / 10 total = 10%)
+            // We use currentQuestionIndex because it has already been incremented 
+            // by OnAnswerClicked before this method runs.
+            float progress = (float)currentQuestionIndex / currentProfile.questions.Count * 100f;
+
+            if (progress > 100f) progress = 100f;
+
+            progressBarFill.style.width = Length.Percent(progress);
+        }
+
         // --- LOGIC ---
 
         private void OnAnswerClicked(int index)
@@ -292,7 +333,9 @@ namespace HowX.Core
             bool correct = currentProfile.questions[currentQuestionIndex].answers[index].isCorrect;
             if (correct) currentScore++;
 
+            // Increment index NOW so the next question is loaded during the transition
             currentQuestionIndex++;
+
             // 4. If last question, end game
             if (currentQuestionIndex >= currentProfile.questions.Count)
             {
@@ -322,9 +365,13 @@ namespace HowX.Core
             }
 
             // === PHASE 2: UPDATE DATA ===
+            // This is the "Invisible Window"
             if (currentQuestionIndex < currentProfile.questions.Count)
             {
                 LoadQuestion();
+
+                //Update Progress Bar
+                UpdateProgressBar();
             }
 
             // === PHASE 3: TELEPORT ===
@@ -367,6 +414,9 @@ namespace HowX.Core
 
         private void EndGame()
         {
+            // Fill progress bar to 100% on game end
+            if (progressBarFill != null) progressBarFill.style.width = Length.Percent(100);
+
             float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
             if (resultScore != null) resultScore.text = $"{percentage:F0}%";
 
