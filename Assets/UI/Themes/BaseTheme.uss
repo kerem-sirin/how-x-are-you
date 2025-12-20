@@ -211,3 +211,22 @@ Button:active {
     opacity: 0;
     translate: -100% 0;
 }
+
+/* PROGRESS BAR */
+.progress-container {
+    height: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle track */
+    position: absolute; /* Pin to top */
+    top: 0;
+    left: 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%; /* Starts empty */
+    background-color: rgb(220, 20, 60); /* Match your Poland Red */
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
