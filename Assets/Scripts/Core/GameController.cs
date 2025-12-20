@@ -25,7 +25,7 @@ namespace HowX.Core
         private Button startButton;
         private Button langButton;
         private Label questionLabel;
-        private Image questionImage;
+        private VisualElement questionImage;
         private Button[] answerButtons;
         private Label resultTitle;
         private Label resultDesc;
@@ -65,7 +65,7 @@ namespace HowX.Core
             startButton = root.Q<Button>("Btn_Start");
             langButton = root.Q<Button>("Btn_LangToggle");
             questionLabel = root.Q<Label>("Lbl_QuestionText");
-            questionImage = root.Q<Image>("Img_QuestionVisual");
+            questionImage = root.Q<VisualElement>("Img_QuestionVisual");
             resultTitle = root.Q<Label>("Lbl_ResultTitle");
             resultDesc = root.Q<Label>("Lbl_ResultDesc");
             resultScore = root.Q<Label>("Lbl_Score");
@@ -76,6 +76,14 @@ namespace HowX.Core
             for (int i = 0; i < 4; i++)
             {
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
+
+                if (answerButtons[i] == null)
+                {
+                    var grid = root.Q("Grid_Answers");
+                    if (grid != null && i < grid.childCount)
+                        answerButtons[i] = grid.ElementAt(i) as Button;
+                }
+
                 int x = i;
                 if (answerButtons[i] != null)
                 {
@@ -103,7 +111,6 @@ namespace HowX.Core
 
             root.Query<Button>().ForEach(RegisterButtonAudio);
 
-            // Instant Init (No animation on startup)
             InitializeUIState();
         }
 
@@ -112,7 +119,6 @@ namespace HowX.Core
             // Reset Transition Panel
             if (transitionPanel != null)
             {
-                // Start hidden
                 transitionPanel.AddToClassList("curtain-hidden");
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
@@ -123,30 +129,18 @@ namespace HowX.Core
                 quizContainer.RemoveFromClassList("quiz-left");
                 quizContainer.RemoveFromClassList("quiz-right");
                 quizContainer.AddToClassList("quiz-center");
-
-                // OVERRIDE the USS value with your C# constant
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
-
                 quizContainer.style.display = DisplayStyle.None;
             }
 
-            // Reset Progress Bar
-            if (progressBarFill != null)
-            {
-                progressBarFill.style.width = Length.Percent(0);
-            }
-
-            // Hide Results
+            if (progressBarFill != null) progressBarFill.style.width = Length.Percent(0);
             if (resultContainer != null) resultContainer.style.display = DisplayStyle.None;
-
-            // Show Menu
             if (menuContainer != null) menuContainer.style.display = DisplayStyle.Flex;
 
             UpdateMenuText();
             GameEvents.OnGameRestart?.Invoke();
         }
 
-        // --- NEW CURTAIN TRANSITION LOGIC ---
         private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)
         {
             if (isTransitioning) yield break;
@@ -156,15 +150,10 @@ namespace HowX.Core
             if (transitionPanel != null)
             {
                 transitionPanel.pickingMode = PickingMode.Position;
-
-                // B. Force Layout Update (Crucial!)
                 float ignored = transitionPanel.resolvedStyle.opacity;
 
-                // C. Trigger Animation (Target: Visible / Opacity 1)
                 if (transitionPanel.ClassListContains("curtain-hidden"))
-                {
                     transitionPanel.RemoveFromClassList("curtain-hidden");
-                }
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -178,11 +167,8 @@ namespace HowX.Core
             // 3. CURTAIN DOWN (Fade Out)
             if (transitionPanel != null)
             {
-                // Target: Hidden / Opacity 0
                 transitionPanel.AddToClassList("curtain-hidden");
-
                 yield return new WaitForSeconds(0.5f);
-
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
 
@@ -221,7 +207,6 @@ namespace HowX.Core
             currentQuestionIndex = 0;
             currentScore = 0;
 
-            // Reset Progress Bar at Start
             if (progressBarFill != null) progressBarFill.style.width = Length.Percent(0);
 
             GameEvents.OnGameStart?.Invoke();
@@ -238,22 +223,25 @@ namespace HowX.Core
 
         private void LoadQuestion()
         {
-            if (currentQuestionIndex >= currentProfile.questions.Count) return;
+            if (currentProfile == null || currentQuestionIndex >= currentProfile.questions.Count) return;
 
             QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            questionLabel.text = q.text.Get(isNativeLanguage);
+            // 1. Set Question Text
+            questionLabel.text = q.questionText.Get(isNativeLanguage);
 
-            if (q.visual != null)
+            // 2. Set Question Visual
+            if (q.useQuestionAnswer && q.questionVisual != null)
             {
                 questionImage.style.display = DisplayStyle.Flex;
-                questionImage.sprite = q.visual;
+                questionImage.style.backgroundImage = q.questionVisual;
             }
             else
             {
                 questionImage.style.display = DisplayStyle.None;
             }
 
+            // 3. Set Layout Class
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
             if (gridContainer != null)
             {
@@ -261,16 +249,23 @@ namespace HowX.Core
                 gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
             }
 
+            // 4. Populate Answers
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
                 if (btn == null) continue;
 
-                if (i < q.answers.Length)
+                GetAnswerData(q, i, out string ansText, out Texture2D ansImg);
+
+                if (!string.IsNullOrEmpty(ansText) || ansImg != null)
                 {
                     btn.style.display = DisplayStyle.Flex;
+
+                    // Ensure clean state (no leftover colors)
+                    btn.style.backgroundColor = StyleKeyword.Null;
+
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
-                    Image imgChild = btn.Q<Image>("Img_Ans");
+                    VisualElement imgChild = btn.Q<VisualElement>("Img_Ans");
 
                     if (q.useImageAnswers)
                     {
@@ -278,8 +273,7 @@ namespace HowX.Core
                         if (imgChild != null)
                         {
                             imgChild.style.display = DisplayStyle.Flex;
-                            imgChild.sprite = q.answers[i].image;
-                            imgChild.scaleMode = ScaleMode.ScaleToFit;
+                            if (ansImg != null) imgChild.style.backgroundImage = ansImg;
                         }
                     }
                     else
@@ -288,7 +282,7 @@ namespace HowX.Core
                         if (txtChild != null)
                         {
                             txtChild.style.display = DisplayStyle.Flex;
-                            txtChild.text = q.answers[i].text.Get(isNativeLanguage);
+                            txtChild.text = ansText;
                         }
                     }
                 }
@@ -299,18 +293,38 @@ namespace HowX.Core
             }
         }
 
-        // --- NEW: PROGRESS BAR HELPER ---
+        private void GetAnswerData(QuestionData q, int index, out string text, out Texture2D image)
+        {
+            text = "";
+            image = null;
+
+            switch (index)
+            {
+                case 0:
+                    text = q.answer0.Get(isNativeLanguage);
+                    image = q.answer0_Image;
+                    break;
+                case 1:
+                    text = q.answer1.Get(isNativeLanguage);
+                    image = q.answer1_Image;
+                    break;
+                case 2:
+                    text = q.answer2.Get(isNativeLanguage);
+                    image = q.answer2_Image;
+                    break;
+                case 3:
+                    text = q.answer3.Get(isNativeLanguage);
+                    image = q.answer3_Image;
+                    break;
+            }
+        }
+
         private void UpdateProgressBar()
         {
             if (progressBarFill == null || currentProfile == null || currentProfile.questions.Count == 0) return;
 
-            // Calculate progress (e.g., 1 answered / 10 total = 10%)
-            // We use currentQuestionIndex because it has already been incremented 
-            // by OnAnswerClicked before this method runs.
             float progress = (float)currentQuestionIndex / currentProfile.questions.Count * 100f;
-
             if (progress > 100f) progress = 100f;
-
             progressBarFill.style.width = Length.Percent(progress);
         }
 
@@ -318,26 +332,30 @@ namespace HowX.Core
 
         private void OnAnswerClicked(int index)
         {
-            // 1. Block interactions
             if (isTransitioning) return;
-
-            // 2. Check Logic (Score update happens BEFORE animation starts)
             if (currentQuestionIndex >= currentProfile.questions.Count) return;
 
-            bool correct = currentProfile.questions[currentQuestionIndex].answers[index].isCorrect;
-            if (correct) currentScore++;
+            QuestionData q = currentProfile.questions[currentQuestionIndex];
 
-            // Increment index NOW so the next question is loaded during the transition
+            bool correct = false;
+            if (q.correctIndices != null && q.correctIndices.Contains(index))
+            {
+                correct = true;
+            }
+
+            if (correct)
+            {
+                currentScore++;
+            }
+
             currentQuestionIndex++;
 
-            // 4. If last question, end game
             if (currentQuestionIndex >= currentProfile.questions.Count)
             {
                 EndGame();
                 return;
             }
 
-            // 3. Start the Visual Sequence
             StartCoroutine(NextQuestionSequence());
         }
 
@@ -345,8 +363,8 @@ namespace HowX.Core
         {
             isTransitioning = true;
 
-            // DISABLE INTERACTION: No clicks, no hover effects
             if (quizContainer != null) quizContainer.pickingMode = PickingMode.Ignore;
+
 
             // === PHASE 1: EXIT ===
             GameEvents.OnNextQuestion?.Invoke();
@@ -359,12 +377,9 @@ namespace HowX.Core
             }
 
             // === PHASE 2: UPDATE DATA ===
-            // This is the "Invisible Window"
             if (currentQuestionIndex < currentProfile.questions.Count)
             {
                 LoadQuestion();
-
-                //Update Progress Bar
                 UpdateProgressBar();
             }
 
@@ -372,12 +387,10 @@ namespace HowX.Core
             if (quizContainer != null)
             {
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
-
                 quizContainer.RemoveFromClassList("quiz-right");
                 yield return null;
                 quizContainer.AddToClassList("quiz-left");
                 yield return null;
-
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
             }
 
@@ -388,7 +401,6 @@ namespace HowX.Core
                 quizContainer.AddToClassList("quiz-center");
                 yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
 
-                // RE-ENABLE INTERACTION: Clicks and hovers allowed again
                 quizContainer.pickingMode = PickingMode.Position;
             }
 
@@ -398,7 +410,7 @@ namespace HowX.Core
         private void ToggleLanguage()
         {
             isNativeLanguage = !isNativeLanguage;
-            langButton.text = isNativeLanguage ? "Native" : "English";
+            if (langButton != null) langButton.text = isNativeLanguage ? "Native" : "English";
 
             if (quizContainer.style.display == DisplayStyle.Flex)
             {
@@ -408,7 +420,6 @@ namespace HowX.Core
 
         private void EndGame()
         {
-            // Fill progress bar to 100% on game end
             if (progressBarFill != null) progressBarFill.style.width = Length.Percent(100);
 
             float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
