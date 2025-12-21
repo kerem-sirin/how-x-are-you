@@ -17,31 +17,1214 @@ MonoBehaviour:
   nativeLanguageName: Polski
   folderName: PL
   backgroundImage: {fileID: 0}
-  csvFile: {fileID: 4900000, guid: 867febb256f2269479caebb2c56a9310, type: 3}
+  quizCsvFile: {fileID: 4900000, guid: 3579401337c2b4343b843bbb80ac7c3d, type: 3}
+  tierCsvFile: {fileID: 4900000, guid: c4037fb61819aa144ad6d5ef2a366f77, type: 3}
   questions:
+  - id: 00
+    questionText:
+      en: Where is Poland located?
+      native: "Gdzie le\u017Cy Polska?"
+    questionVisual: {fileID: 2800000, guid: d0c9ec36f05c1b84780017f12534d6f6, type: 3}
+    answer0:
+      en: Next to Russia unfortunately
+      native: Obok Rosji niestety
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: In the Middle East
+      native: Na Bliskim Wschodzie
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: It's a city in Germany
+      native: To miasto w Niemczech
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: On the Moon
+      native: "Na Ksi\u0119\u017Cycu"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
   - id: 01
     questionText:
-      en: What is the capital?
-      native: Jaka jest stolica?
+      en: Choose your fighter.
+      native: Wybierz swojego wojownika.
     questionVisual: {fileID: 0}
+    answer0:
+      en: Winiary
+      native: Winiary
+    answer0_Image: {fileID: 2800000, guid: 6771dce8e4b04e44ab45fcf87967e6bf, type: 3}
+    answer1:
+      en: Kielecki
+      native: Kielecki
+    answer1_Image: {fileID: 2800000, guid: 583aec55bfcf60746b036779a06625ef, type: 3}
+    answer2:
+      en: Heinz
+      native: Heinz
+    answer2_Image: {fileID: 2800000, guid: 1cb71291e8d1b644da8ddd230f3fcda6, type: 3}
+    answer3:
+      en: Hellmans
+      native: Hellmans
+    answer3_Image: {fileID: 2800000, guid: b9b4dd8ec94e78140804e8b6ea810c1a, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 0000000001000000
+    useImageAnswers: 1
+  - id: 02
+    questionText:
+      en: What is the currency of Poland?
+      native: Jaka jest waluta Polski?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Euro
+      native: Euro
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "Z\u0142oty"
+      native: "Z\u0142oty"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Rubles
+      native: Ruble
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Onions
+      native: Cebula
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 03
+    questionText:
+      en: When a Polish person says No, what do they mean?
+      native: "Co oznacza, gdy Polak m\xF3wi No?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: No (Disagree)
+      native: Nie
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Yes (Agree)
+      native: Tak
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Maybe
+      native: "Mo\u017Ce"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: I don't know
+      native: Nie wiem
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 04
+    questionText:
+      en: What is the unofficial national animal of Poland?
+      native: "Jakie jest nieoficjalne zwierz\u0119 narodowe Polski?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: White Eagle
+      native: "Orze\u0142 Bia\u0142y"
+    answer0_Image: {fileID: 2800000, guid: 23d7ebc6da4d46f46bc63af39ec1ea74, type: 3}
+    answer1:
+      en: Stork
+      native: Bocian
+    answer1_Image: {fileID: 2800000, guid: 25536916639c94149af2fa222c0b8218, type: 3}
+    answer2:
+      en: Proboscis Monkey
+      native: Nosacz Sundajski
+    answer2_Image: {fileID: 2800000, guid: f755d253046ae4e41a3216ffeadd2fe9, type: 3}
+    answer3:
+      en: Bear
+      native: "Nied\u017Awied\u017A"
+    answer3_Image: {fileID: 2800000, guid: 26f90dad46ee3aa479606f85fa842055, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 02000000
+    useImageAnswers: 1
+  - id: 05
+    questionText:
+      en: Where do you go on Saturday morning to fight for a promotion on fresh meat?
+      native: "Gdzie idziesz w sobotni poranek walczy\u0107 o promocj\u0119 na \u015Bwie\u017Ce
+        mi\u0119so?"
+    questionVisual: {fileID: 2800000, guid: ec3f86cd188b2d141971020eda50193c, type: 3}
+    answer0:
+      en: Biedronka
+      native: Biedronka
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Gucci Store
+      native: Sklep Gucci
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: The Library
+      native: Biblioteka
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: "\u017Babka"
+      native: "\u017Babka"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 06
+    questionText:
+      en: What is the main component of Polish air in winter?
+      native: "Jaki jest g\u0142\xF3wny sk\u0142adnik polskiego powietrza zim\u0105?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Oxygen
+      native: Tlen
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Smog
+      native: Smog
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Lavender Scent
+      native: Zapach lawendy
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Hope
+      native: Nadzieja
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 07
+    questionText:
+      en: Identify this tactical fortification.
+      native: "Zidentyfikuj t\u0119 fortyfikacj\u0119 taktyczn\u0105."
+    questionVisual: {fileID: 2800000, guid: e5b4092b6373aa7419295d014527bb79, type: 3}
+    answer0:
+      en: The Great Wall of China
+      native: "Wielki Mur Chi\u0144ski"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Parawaning
+      native: Parawaning
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A refugee camp
+      native: "Ob\xF3z dla uchod\u017Ac\xF3w"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: VIP Section
+      native: Sekcja VIP
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 08
+    questionText:
+      en: You are on a PKP train. What is the first thing you do?
+      native: "Jeste\u015B w poci\u0105gu PKP. Co robisz jako pierwsze?"
+    questionVisual: {fileID: 2800000, guid: 42c0342f5c5fe1f4c9810f491ab9250f, type: 3}
+    answer0:
+      en: Read a book quietly
+      native: "Cicho czytasz ksi\u0105\u017Ck\u0119"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Take off your shoes and eat a hard-boiled egg
+      native: Zdejmujesz buty i jesz jajko na twardo
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Drink water
+      native: "Pijesz wod\u0119"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Hack the mainframe
+      native: "W\u0142amujesz si\u0119 do systemu"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 09
+    questionText:
+      en: What happens at 21:37?
+      native: "Co dzieje si\u0119 o 21:37?"
+    questionVisual: {fileID: 2800000, guid: bbca23be23f57524fad40d3d75a23d1e, type: 3}
+    answer0:
+      en: Time to sleep
+      native: "Czas spa\u0107"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: We sing Barka
+      native: "\u015Apiewamy Bark\u0119"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Dinner time
+      native: "Czas na kolacj\u0119"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Nothing special
+      native: Nic specjalnego
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 10
+    questionText:
+      en: What is the main dish on Christmas Eve (Wigilia)?
+      native: "Jakie jest g\u0142\xF3wne danie na Wigilii?"
+    questionVisual: {fileID: 2800000, guid: 740deed082f686d4a93493d879077b9c, type: 3}
+    answer0:
+      en: Turkey
+      native: Indyk
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Carp
+      native: Karp
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Pizza
+      native: Pizza
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Pierogi with Meat
+      native: "Pierogi z mi\u0119sem"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 11
+    questionText:
+      en: What is the most Polish topping to put on pizza?
+      native: Jaki jest najbardziej polski dodatek do pizzy?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Pineapple
+      native: Ananas
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Garlic Sauce
+      native: Sos czosnkowy
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Pepperoni
+      native: Pepperoni
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Olive Oil
+      native: Oliwa
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 12
+    questionText:
+      en: At a Polish wedding, what happens at midnight?
+      native: "Co dzieje si\u0119 o p\xF3\u0142nocy na polskim weselu?"
+    questionVisual: {fileID: 2800000, guid: 7ad3628e845803b488ccc0e4135b6897, type: 3}
+    answer0:
+      en: The bride throws the bouquet
+      native: "Panna m\u0142oda rzuca bukietem"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Party game time (Oczepiny)
+      native: Oczepiny
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Everyone goes home
+      native: "Wszyscy id\u0105 do domu"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: The DJ plays Techno
+      native: DJ gra techno
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 13
+    questionText:
+      en: Which one is Kubota?
+      native: "Kt\xF3ry to Kubota?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Chimney
+      native: Komin
+    answer0_Image: {fileID: 2800000, guid: 32de8a851f95d894fb5364f66fef4379, type: 3}
+    answer1:
+      en: Kubota Slippers
+      native: Klapki Kubota
+    answer1_Image: {fileID: 2800000, guid: 1743b84d396ccfb469daa205647f3923, type: 3}
+    answer2:
+      en: Bridge
+      native: Most
+    answer2_Image: {fileID: 2800000, guid: 5419c8aec76796c469dcd65883eb9430, type: 3}
+    answer3:
+      en: Jelly
+      native: Galaretka
+    answer3_Image: {fileID: 2800000, guid: 04161924f03fc0348a8ccc18b6c89439, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 1
+  - id: 14
+    questionText:
+      en: What do Poles store in a bag full of bags?
+      native: "Co Polacy trzymaj\u0105 w torbie pe\u0142nej toreb?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Old documents
+      native: Stare dokumenty
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Christmas decorations
+      native: "Ozdoby \u015Bwi\u0105teczne"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: More plastic bags
+      native: "Wi\u0119cej reklam\xF3wek"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Shoes
+      native: Buty
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 15
+    questionText:
+      en: Christmas in Poland is officially canceled if TV does not broadcast this
+        movie.
+      native: "\u015Awi\u0119ta w Polsce s\u0105 odwo\u0142ane je\u015Bli w telewizji
+        nie ma tego filmu."
+    questionVisual: {fileID: 2800000, guid: 184b02613eeb76e499a044a8bf034471, type: 3}
+    answer0:
+      en: Die Hard
+      native: "Szklana Pu\u0142apka"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Home Alone
+      native: Kevin Sam w Domu
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Titanic
+      native: Titanic
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Shrek
+      native: Shrek
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 16
+    questionText:
+      en: "Complete the surname: Grzegorz Brz\u0119czyszczy..."
+      native: "Doko\u0144cz nazwisko: Grzegorz Brz\u0119czyszczy..."
+    questionVisual: {fileID: 0}
+    answer0:
+      en: ...kowalski
+      native: ...kowalski
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: ...niewicz
+      native: ...niewicz
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: ...kiewicz
+      native: ...kiewicz
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: ...brzyk
+      native: ...brzyk
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 17
+    questionText:
+      en: Who is this man?
+      native: "Kim jest ten m\u0119\u017Cczyzna?"
+    questionVisual: {fileID: 2800000, guid: a42f6e728c2b3d04984f0fe29f9f72e1, type: 3}
+    answer0:
+      en: Marcin Najman
+      native: Marcin Najman
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Pudzian
+      native: Pudzian
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Popek Monster
+      native: Popek Monster
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Andrzej Golota
+      native: "Andrzej Go\u0142ota"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 18
+    questionText:
+      en: You need a passport to enter this city.
+      native: Do tego miasta potrzebujesz paszportu.
+    questionVisual: {fileID: 2800000, guid: afc966eefadbf7448be1ed68d73d522b, type: 3}
     answer0:
       en: Warsaw
       native: Warszawa
     answer0_Image: {fileID: 0}
     answer1:
-      en: Krakow
+      en: Sosnowiec
+      native: Sosnowiec
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: "Krak\xF3w"
+      native: "Krak\xF3w"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: "Gda\u0144sk"
+      native: "Gda\u0144sk"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 19
+    questionText:
+      en: What is this building in Warsaw?
+      native: Co to za budynek w Warszawie?
+    questionVisual: {fileID: 2800000, guid: aa44b5eba647ae8408e9725e89125e3d, type: 3}
+    answer0:
+      en: The Prudential
+      native: Prudential
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Stalin's Rocket
+      native: Rakieta Stalina
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Palace of Culture and Science
+      native: "Pa\u0142ac Kultury i Nauki"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: "Z\u0142ota 44"
+      native: "Z\u0142ota 44"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 20
+    questionText:
+      en: Who is this national hero?
+      native: Kim jest ten bohater narodowy?
+    questionVisual: {fileID: 2800000, guid: 6e521e02bb3a4a94aa5fb92e84573259, type: 3}
+    answer0:
+      en: Robert Kubica
+      native: Robert Kubica
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "Adam Ma\u0142ysz"
+      native: "Adam Ma\u0142ysz"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: "Lech Wa\u0142\u0119sa"
+      native: "Lech Wa\u0142\u0119sa"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Super Mario
+      native: Super Mario
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 21
+    questionText:
+      en: You are at a party. Someone yells Bitter, bitter!. What happens?
+      native: "Jeste\u015B na weselu. Kto\u015B krzyczy Gorzko, gorzko!. Co si\u0119
+        dzieje?"
+    questionVisual: {fileID: 2800000, guid: 40f6c07c6e4bf2048bf4c5a16bc74854, type: 3}
+    answer0:
+      en: The vodka is bad
+      native: "W\xF3dka jest niedobra"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The Bride and Groom must kiss
+      native: "Para M\u0142oda musi si\u0119 ca\u0142owa\u0107"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A fight starts
+      native: "Zaczyna si\u0119 b\xF3jka"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Everyone leaves
+      native: "Wszyscy wychodz\u0105"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 22
+    questionText:
+      en: 'Complete the lyrics: Through your green eyes...'
+      native: "Doko\u0144cz tekst: Przez twe oczy zielone..."
+    questionVisual: {fileID: 2800000, guid: 7ad602db71a4844499eb296f8b2ef4ec, type: 3}
+    answer0:
+      en: ...I went crazy
+      native: "...oszala\u0142em"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: ...I see nothing
+      native: "...nic nie widz\u0119"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: ...I am in heaven
+      native: ...jestem w niebie
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: ...My head hurts
+      native: "...boli mnie g\u0142owa"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 23
+    questionText:
+      en: You are making a Kanapka for supper. How many slices of bread do you use?
+      native: "Robisz kanapk\u0119 na kolacj\u0119. Ilu kromek chleba u\u017Cywasz?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Two (Top and Bottom)
+      native: "Dwie (G\xF3ra i d\xF3\u0142)"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: One (Open Faced)
+      native: Jedna (Otwarta)
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Three (BigMac style)
+      native: Trzy (Typu BigMac)
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Bread is not used for Kanapka
+      native: "Do kanapek nie u\u017Cywa si\u0119 chleba"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 24
+    questionText:
+      en: The rest of the world calls it a Fashion Crime. We call it Comfort. What
+        is it?
+      native: "Reszta \u015Bwiata nazywa to Zbrodni\u0105 Mody. My nazywamy to Wygod\u0105.
+        Co to?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Crocs
+      native: Crocsy
+    answer0_Image: {fileID: 2800000, guid: bbb892429af606a4f9293fb1052fd969, type: 3}
+    answer1:
+      en: Ripped Jeans
+      native: "Podarte D\u017Cinsy"
+    answer1_Image: {fileID: 2800000, guid: ed4a2fc66ac3326439d4254d647cbdb4, type: 3}
+    answer2:
+      en: Socks with Sandals
+      native: "Skarpety i Sanda\u0142y"
+    answer2_Image: {fileID: 2800000, guid: a037a359a63c48448bf944cca90049cd, type: 3}
+    answer3:
+      en: Small Bag
+      native: Saszetka
+    answer3_Image: {fileID: 2800000, guid: db7c222e7c0449141b1991aef40335ec, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 02000000
+    useImageAnswers: 1
+  - id: 25
+    questionText:
+      en: What is the most dangerous question a Polish grandmother can ask?
+      native: Jakie jest najniebezpieczniejsze pytanie polskiej babci?
+    questionVisual: {fileID: 2800000, guid: 8a0e81bea75bfee45bc2eb64d4946bd8, type: 3}
+    answer0:
+      en: Do you have a girlfriend?
+      native: "Masz dziewczyn\u0119?"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Are you hungry?
+      native: "Jeste\u015B g\u0142odny?"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: When will you find a job?
+      native: "Kiedy znajdziesz prac\u0119?"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Do you go to church?
+      native: "Chodzisz do ko\u015Bcio\u0142a?"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 26
+    questionText:
+      en: You see a neighbor looking at your new car. What is he thinking?
+      native: "S\u0105siad patrzy na tw\xF3j nowy samoch\xF3d. Co my\u015Bli?"
+    questionVisual: {fileID: 2800000, guid: b33a50ee4bf8a1848b0897fb17bc3078, type: 3}
+    answer0:
+      en: Where did he steal the money from?
+      native: "Sk\u0105d on ukrad\u0142 na to pieni\u0105dze?"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Good for them!
+      native: Dobrze dla nich!
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: I should buy one too.
+      native: "Te\u017C sobie taki kupi\u0119."
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Nice color.
+      native: "\u0141adny kolor."
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 27
+    questionText:
+      en: What is the primary function of a Polish radiator?
+      native: "Jaka jest g\u0142\xF3wna funkcja kaloryfera?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Heating the room
+      native: Ogrzewanie pokoju
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Drying mushrooms and socks
+      native: "Suszenie grzyb\xF3w i skarpet"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Decoration
+      native: Dekoracja
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: It makes noise
+      native: "Robi ha\u0142as"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 28
+    questionText:
+      en: Which of these is NOT a real Polish soup?
+      native: "Kt\xF3ra z tych zup NIE jest prawdziw\u0105 polsk\u0105 zup\u0105?"
+    questionVisual: {fileID: 2800000, guid: 9cdc44eebf381a0408d7652117913744, type: 3}
+    answer0:
+      en: Czernina (Blood Soup)
+      native: Czernina (Zupa z krwi)
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Flaki (Guts Soup)
+      native: Flaki
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Chocolate Soup
+      native: Zupa Czekoladowa
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Fruit Soup (Zupa Owocowa)
+      native: Zupa Owocowa
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 29
+    questionText:
+      en: How do you cure a common cold in Poland?
+      native: "Jak w Polsce leczy si\u0119 przezi\u0119bienie?"
+    questionVisual: {fileID: 2800000, guid: a4f56784cab244a4e82f98ac097043e8, type: 3}
+    answer0:
+      en: Go to the doctor
+      native: Idziesz do lekarza
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Tea with raspberry juice and spiritus
+      native: Herbata z sokiem malinowym i spirytusem
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Antibiotics immediately
+      native: Antybiotyki natychmiast
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Sleep it off
+      native: "Wy\u015Bpij to"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 30
+    questionText:
+      en: What is Disco Polo?
+      native: Czym jest Disco Polo?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Music you hate but know every word to
+      native: "Muzyka kt\xF3rej nienawidzisz ale znasz ka\u017Cde s\u0142owo"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: A sport involving horses
+      native: "Sport z ko\u0144mi"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A type of candy
+      native: Rodzaj cukierka
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: A political party
+      native: Partia polityczna
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 31
+    questionText:
+      en: 'Select the correct reply: Na zdrowie!'
+      native: "Wybierz poprawn\u0105 odpowied\u017A: Na zdrowie!"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Thank you!
+      native: "Dzi\u0119kuj\u0119!"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Hello!
+      native: "Cze\u015B\u0107!"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: ...Ladies and Gentlemen!
+      native: ...Panie i Panowie!
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Cheers!
+      native: "Dzi\u0119ki!"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 03000000
+    useImageAnswers: 0
+  - id: 32
+    questionText:
+      en: "The name of the shop \u017Babka literally means:"
+      native: "Nazwa sklepu \u017Babka dos\u0142ownie oznacza:"
+    questionVisual: {fileID: 2800000, guid: 0ea7e531ea41cb646947a591a5d3829d, type: 3}
+    answer0:
+      en: The Swamp
+      native: Bagno
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Little Frog
+      native: "Ma\u0142a \u017Baba"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Green Market
+      native: Zielony Rynek
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Quick Shopping
+      native: Szybkie Zakupy
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 33
+    questionText:
+      en: Which one is the Vistula?
+      native: "Kt\xF3ra to Wis\u0142a?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Vistula
+      native: "Wis\u0142a"
+    answer0_Image: {fileID: 2800000, guid: ce1bacfe61826734288ae1a3caf2dea5, type: 3}
+    answer1:
+      en: Tatra Mountains
+      native: Tatry
+    answer1_Image: {fileID: 2800000, guid: bb1d62bde4b93874b9672afe2fabf959, type: 3}
+    answer2:
+      en: Czernina (Blood Soup)
+      native: Czernina (Zupa z krwi)
+    answer2_Image: {fileID: 2800000, guid: 8e8d24af38fba2949b6f0b8badffe5a9, type: 3}
+    answer3:
+      en: Maryla Rodowicz
+      native: Maryla Rodowicz
+    answer3_Image: {fileID: 2800000, guid: 3b9dc53694845144eaeed5e4458352dc, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 34
+    questionText:
+      en: Identify the Polish National Sport (besides football).
+      native: "Wska\u017C polski Sport Narodowy (poza pi\u0142k\u0105 no\u017Cn\u0105)."
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Tennis
+      native: Tenis
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Ski Jumping
+      native: Skoki Narciarskie
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Cricket
+      native: Krykiet
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Baseball
+      native: Baseball
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 35
+    questionText:
+      en: What is a Paragon?
+      native: Co to jest Paragon?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: A receipt you must keep for 5 years
+      native: "Paragon kt\xF3ry musisz trzyma\u0107 5 lat"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: A model citizen
+      native: Wzorowy obywatel
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A type of dragon
+      native: Rodzaj smoka
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: A shoe brand
+      native: "Marka but\xF3w"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 36
+    questionText:
+      en: 'Complete the phrase: Kurwa...'
+      native: "Doko\u0144cz fraz\u0119: Kurwa..."
+    questionVisual: {fileID: 0}
+    answer0:
+      en: ...is a bad word
+      native: "...to z\u0142e s\u0142owo"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: ...means curve
+      native: "...oznacza zakr\u0119t"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: "...ma\u0107!"
+      native: "...ma\u0107!"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: ...no!
+      native: ...nie!
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 37
+    questionText:
+      en: What is the scariest letter in the Polish alphabet?
+      native: Jaka jest najstraszniejsza litera w polskim alfabecie?
+    questionVisual: {fileID: 2800000, guid: 402d9fc2b102d5d4f9c44613caa59eaf, type: 3}
+    answer0:
+      en: Z
+      native: Z
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Sz
+      native: Sz
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A
+      native: A
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: O
+      native: O
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 38
+    questionText:
+      en: "Who is Wied\u017Amin?"
+      native: "Kim jest Wied\u017Amin?"
+    questionVisual: {fileID: 2800000, guid: e25d5d21911e7374db5e3d07fe1fcb87, type: 3}
+    answer0:
+      en: Geralt of Rivia
+      native: Geralt z Rivii
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The Wawel Dragon
+      native: Smok Wawelski
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Pan Twardowski
+      native: Pan Twardowski
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Janosik
+      native: Janosik
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 39
+    questionText:
+      en: What do you do when the bus driver claps?
+      native: Co robisz gdy kierowca autobusu klaszcze?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Clap with him
+      native: Klaszczesz z nim
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Check if your ticket is valid
+      native: Sprawdzasz bilet
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Dance
+      native: "Ta\u0144czysz"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Run away
+      native: Uciekasz
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 40
+    questionText:
+      en: Which city is known for having a mechanical goat clock?
+      native: "Kt\xF3re miasto s\u0142ynie z mechanicznych kozio\u0142k\xF3w na zegarze?"
+    questionVisual: {fileID: 2800000, guid: 99db5da956c83784297ff87ff5f4e9a1, type: 3}
+    answer0:
+      en: Warsaw
+      native: Warszawa
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "Krak\xF3w"
       native: "Krak\xF3w"
     answer1_Image: {fileID: 0}
     answer2:
-      en: Gdansk
-      native: "Gda\u0144sk"
+      en: "Pozna\u0144"
+      native: "Pozna\u0144"
     answer2_Image: {fileID: 0}
     answer3:
-      en: Lodz
-      native: "\u0141\xF3d\u017A"
+      en: "Gda\u0144sk"
+      native: "Gda\u0144sk"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 41
+    questionText:
+      en: What is Bigos?
+      native: Co to jest Bigos?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Hunter's Stew with cabbage and meat
+      native: "Gulasz my\u015Bliwski z kapust\u0105 i mi\u0119sem"
+    answer0_Image: {fileID: 2800000, guid: 77afeaa351defa44ab61d735f5635950, type: 3}
+    answer1:
+      en: A type of dance
+      native: "Rodzaj ta\u0144ca"
+    answer1_Image: {fileID: 2800000, guid: 77d186073f83f974a825a67d2f6147d9, type: 3}
+    answer2:
+      en: A castle
+      native: zamek
+    answer2_Image: {fileID: 2800000, guid: 36815f69a0cbd4544bb84ae7b4c367cc, type: 3}
+    answer3:
+      en: Vustula
+      native: Vustula
+    answer3_Image: {fileID: 2800000, guid: 36909ad14a8eddc4cba4c7243472b95e, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 42
+    questionText:
+      en: 'Translate: Not my circus, not my monkeys.'
+      native: "Przet\u0142umacz: Nie m\xF3j cyrk, nie moje ma\u0142py."
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Stop acting like a clown
+      native: "Przesta\u0144 b\u0142aznowa\u0107"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Not my problem
+      native: "To nie m\xF3j problem"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: This is a huge mess
+      native: "To wielki ba\u0142agan"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Leave me alone
+      native: "Daj mi spok\xF3j"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndex: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 43
+    questionText:
+      en: What is the most essential furniture in a Polish home?
+      native: "Jaki jest najwa\u017Cniejszy mebel w polskim domu?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Sofa
+      native: Sofa
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Bed
+      native: "\u0141\xF3\u017Cko"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Table
+      native: "St\xF3\u0142"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Trash bin under the sink
+      native: "Kosz na \u015Bmieci pod zlewem"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 03000000
+    useImageAnswers: 0
+  - id: 44
+    questionText:
+      en: Why do Polish people clap when the plane lands?
+      native: "Dlaczego Polacy klaszcz\u0105 po wyl\u0105dowaniu samolotu?"
+    questionVisual: {fileID: 2800000, guid: 5c0ae1f17a97b3646b13d59d46097485, type: 3}
+    answer0:
+      en: They are happy to be alive
+      native: "Ciesz\u0105 si\u0119 \u017Ce \u017Cyj\u0105"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: To thank the pilot
+      native: "\u017Beby podzi\u0119kowa\u0107 pilotowi"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: It is a rule
+      native: Taka jest zasada
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: They saw a bird
+      native: Zobaczyli ptaka
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 45
+    questionText:
+      en: "What is P\u0105czek?"
+      native: "Co to jest P\u0105czek?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: A doughnut filled with jam
+      native: "P\u0105czek z d\u017Cemem"
+    answer0_Image: {fileID: 2800000, guid: 06a362bd14136804380292b1c713977a, type: 3}
+    answer1:
+      en: A small spider
+      native: "Ma\u0142y paj\u0105k"
+    answer1_Image: {fileID: 2800000, guid: 4a151fd8748f6de4c87b03e1bf7ee005, type: 3}
+    answer2:
+      en: Wild mushrooms
+      native: Dzikie grzyby
+    answer2_Image: {fileID: 2800000, guid: 133cae4c2374a794ea5a90e3795470bc, type: 3}
+    answer3:
+      en: Plastic bag
+      native: Plastikowa torba
+    answer3_Image: {fileID: 2800000, guid: 1f988cb1949b7864193bb3101b04d07d, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 46
+    questionText:
+      en: When is Fat Thursday?
+      native: "Kiedy jest T\u0142usty Czwartek?"
+    questionVisual: {fileID: 2800000, guid: 11abfd8b315b6be498eb1a7dfc7af678, type: 3}
+    answer0:
+      en: Every Thursday
+      native: "W ka\u017Cdy czwartek"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Before Easter
+      native: "Przed Wielkanoc\u0105"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Before Lent (Last Thursday of Carnival)
+      native: "Przed Postem (Ostatni czwartek karnawa\u0142u)"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: When schools are closed on Summer
+      native: "Kiedy szko\u0142y s\u0105 zamkni\u0119te latem"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 02000000
+    useImageAnswers: 0
+  - id: 47
+    questionText:
+      en: "What is the Hejna\u0142 Mariacki?"
+      native: "Co to jest Hejna\u0142 Mariacki?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: A type of sausage
+      native: "Rodzaj kie\u0142basy"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "A trumpet signal played every hour in Krak\xF3w"
+      native: "Sygna\u0142 z tr\u0105bki grany co godzin\u0119 w Krakowie"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A famous painting
+      native: "S\u0142ynny obraz"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: A football chant
+      native: "Przy\u015Bpiewka pi\u0142karska"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 01000000
+    useImageAnswers: 0
+  - id: 48
+    questionText:
+      en: Who was Frederic Chopin?
+      native: "Kim by\u0142 Fryderyk Chopin?"
+    questionVisual: {fileID: 2800000, guid: 29285618659a9fb4199eedafc13a28e9, type: 3}
+    answer0:
+      en: Pianist
+      native: Pianista
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Writer
+      native: Pisarz
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Philosopher
+      native: Filozof
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Mathematician
+      native: Matematyk
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 49
+    questionText:
+      en: How do you greet someone in Poland?
+      native: "Jak witasz si\u0119 w Polsce?"
+    questionVisual: {fileID: 2800000, guid: 780cd2cc1efba234bb1567aa7d12a573, type: 3}
+    answer0:
+      en: Handshake
+      native: "U\u015Bcisk d\u0142oni"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Kiss on the cheek (3 times)
+      native: "Poca\u0142unek w policzek (3 razy)"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: A nod
+      native: "Skinienie g\u0142ow\u0105"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: All of them
+      native: Wszystkie
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 03000000
     useImageAnswers: 0
   tiers:
   - title:
@@ -52,10 +1235,10 @@ MonoBehaviour:
       en: O kurwa...
       native: O kurwa...
     description:
-      en: "You think \"Krak\xF3w\" is a type of cracker and you put ketchup on your
-        Pierogi. The ABW has been notified of your location. Please remain seated."
-      native: "My\u015Blisz, \u017Ce \"Krak\xF3w\" to rodzaj krakersa i polewasz
-        pierogi keczupem. ABW zosta\u0142a powiadomiona o twojej lokalizacji. Prosz\u0119
+      en: "You think Krak\xF3w is a type of cracker and you put ketchup on your Pierogi.
+        The ABW has been notified of your location. Please remain seated."
+      native: "My\u015Blisz, \u017Ce Krak\xF3w to rodzaj krakersa i polewasz pierogi
+        keczupem. ABW zosta\u0142a powiadomiona o twojej lokalizacji. Prosz\u0119
         pozosta\u0107 na miejscu."
   - title:
       en: German Tourist
@@ -66,9 +1249,9 @@ MonoBehaviour:
       native: Was ist das?
     description:
       en: You are just here for the cheap beer and the dentist. You think Pierogi
-        is "Polish Pasta" and you are scared of the cashier at Biedronka.
+        is Polish Pasta and you are scared of the cashier at Biedronka.
       native: "Jeste\u015B tu tylko dla taniego piwa i dentysty. My\u015Blisz, \u017Ce
-        pierogi to \"polski makaron\" i boisz si\u0119 kasjerki w Biedronce."
+        pierogi to polski makaron i boisz si\u0119 kasjerki w Biedronce."
   - title:
       en: Erasmus Student
       native: Student Erasmusa
@@ -77,19 +1260,19 @@ MonoBehaviour:
       en: Na Zdrowie!
       native: Na Zdrowie!
     description:
-      en: You love Soplica Hazelnut vodka and you know how to say "Kurwa". You think
+      en: You love Soplica Hazelnut vodka and you know how to say Kurwa. You think
         Zakopane is a hidden gem. You still smile at strangers on the street (stop
         doing that).
-      native: "Kochasz Soplic\u0119 Orzechow\u0105 i znasz s\u0142owo \"Kurwa\".
-        My\u015Blisz, \u017Ce Zakopane to ukryty skarb. Wci\u0105\u017C u\u015Bmiechasz
-        si\u0119 do obcych na ulicy (przesta\u0144 to robi\u0107)."
+      native: "Kochasz Soplic\u0119 Orzechow\u0105 i znasz s\u0142owo Kurwa. My\u015Blisz,
+        \u017Ce Zakopane to ukryty skarb. Wci\u0105\u017C u\u015Bmiechasz si\u0119
+        do obcych na ulicy (przesta\u0144 to robi\u0107)."
   - title:
       en: Average Kowalski
       native: "Przeci\u0119tny Kowalski"
     maxPercentage: 60
     subtitle:
-      en: It'll be fine somehow.
-      native: "Jako\u015B to b\u0119dzie."
+      en: It'll be fine somehow
+      native: "Jako\u015B to b\u0119dzie"
     description:
       en: You complain about the weather, the government, and the neighbors. You
         have a plastic bag full of other plastic bags in your kitchen. You pay your
@@ -102,8 +1285,8 @@ MonoBehaviour:
       native: Janusz - Prawdziwy Polak
     maxPercentage: 75
     subtitle:
-      en: Passat B5 Driver.
-      native: Kierowca Passata B5.
+      en: Passat B5 Driver
+      native: Kierowca Passata B5
     description:
       en: You own a tactical screen (parawan) for Baltic sea battles. You wear socks
         with sandals because it is aerodynamic. You know the price of butter in three
@@ -116,8 +1299,8 @@ MonoBehaviour:
       native: Wnuczek Babci
     maxPercentage: 85
     subtitle:
-      en: Eat the meat, leave the potatoes.
-      native: "Zjedz mi\u0119sko, ziemniaczki zostaw."
+      en: Eat the meat, leave the potatoes
+      native: "Zjedz mi\u0119sko, ziemniaczki zostaw"
     description:
       en: "You are never hungry. You have an infinite supply of incomprehensible
         proverbs. You can spot a draft (przeci\u0105g) from three rooms away and
@@ -130,8 +1313,8 @@ MonoBehaviour:
       native: "Kierowca Papie\u017Ca"
     maxPercentage: 94
     subtitle:
-      en: JP2GMD.
-      native: JP2GMD.
+      en: JP2GMD
+      native: JP2GMD
     description:
       en: "You vibrate at the holy frequency of 21:37. You consume Cream Pies (Krem\xF3wki)
         for breakfast. Your blood type is Onion Juice."
@@ -142,8 +1325,8 @@ MonoBehaviour:
       native: "Mesjasz Narod\xF3w"
     maxPercentage: 100
     subtitle:
-      en: Glory to Great Poland.
-      native: "Chwa\u0142a Wielkiej Polsce."
+      en: Glory to Great Poland
+      native: "Chwa\u0142a Wielkiej Polsce"
     description:
       en: You have transcended Poland; you are Poland. You have resurrected the Winged
         Hussars. Robert Lewandowski has a poster of you on his wall. You pay for
