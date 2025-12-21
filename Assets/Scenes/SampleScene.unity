@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.GameController
   currentProfile: {fileID: 11400000, guid: c5b9f914ad7383642a01ffed682603ed, type: 2}
+  questionsPerGame: 50
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
