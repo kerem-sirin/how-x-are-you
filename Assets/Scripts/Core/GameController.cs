@@ -13,6 +13,9 @@ namespace HowX.Core
         [Header("Reference")]
         [SerializeField] private QuizProfile currentProfile;
 
+        [Header("Settings")]
+        [SerializeField] private int questionsPerGame = 20;
+
         // --- UI Elements ---
         private VisualElement root;
         private VisualElement transitionPanel;
@@ -33,10 +36,16 @@ namespace HowX.Core
         private Button restartButton;
 
         // State
+        private List<QuestionData> activeQuestions;
         private int currentQuestionIndex = 0;
         private int currentScore = 0;
         private bool isNativeLanguage = false;
         private bool isTransitioning = false;
+
+        // --- NEW: Shuffle Mapping ---
+        // This array holds the real data index for each button position.
+        // e.g., currentShuffleIndices[0] = 2 means "Button 0 holds Answer 2"
+        private int[] currentShuffleIndices;
 
         private void Awake()
         {
@@ -53,11 +62,7 @@ namespace HowX.Core
             menuContainer = root.Q<VisualElement>("Container_Menu");
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             resultContainer = root.Q<VisualElement>("Container_Result");
-
-            // Find the Curtain
             transitionPanel = root.Q<VisualElement>("Panel_Transition");
-
-            // Find Progress Bar Fill
             progressBarFill = root.Q<VisualElement>("Fill_Progress");
 
             // Find Elements
@@ -76,7 +81,6 @@ namespace HowX.Core
             for (int i = 0; i < 4; i++)
             {
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
-
                 if (answerButtons[i] == null)
                 {
                     var grid = root.Q("Grid_Answers");
@@ -116,14 +120,11 @@ namespace HowX.Core
 
         private void InitializeUIState()
         {
-            // Reset Transition Panel
             if (transitionPanel != null)
             {
                 transitionPanel.AddToClassList("curtain-hidden");
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
-
-            // Ensure Quiz Container starts in the correct state
             if (quizContainer != null)
             {
                 quizContainer.RemoveFromClassList("quiz-left");
@@ -132,7 +133,6 @@ namespace HowX.Core
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
                 quizContainer.style.display = DisplayStyle.None;
             }
-
             if (progressBarFill != null) progressBarFill.style.width = Length.Percent(0);
             if (resultContainer != null) resultContainer.style.display = DisplayStyle.None;
             if (menuContainer != null) menuContainer.style.display = DisplayStyle.Flex;
@@ -141,68 +141,31 @@ namespace HowX.Core
             GameEvents.OnGameRestart?.Invoke();
         }
 
-        private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)
-        {
-            if (isTransitioning) yield break;
-            isTransitioning = true;
-
-            // 1. CURTAIN UP (Fade In)
-            if (transitionPanel != null)
-            {
-                transitionPanel.pickingMode = PickingMode.Position;
-                float ignored = transitionPanel.resolvedStyle.opacity;
-
-                if (transitionPanel.ClassListContains("curtain-hidden"))
-                    transitionPanel.RemoveFromClassList("curtain-hidden");
-
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            // 2. SWAP PANELS
-            if (outPanel != null) outPanel.style.display = DisplayStyle.None;
-            if (inPanel != null) inPanel.style.display = DisplayStyle.Flex;
-
-            yield return null;
-
-            // 3. CURTAIN DOWN (Fade Out)
-            if (transitionPanel != null)
-            {
-                transitionPanel.AddToClassList("curtain-hidden");
-                yield return new WaitForSeconds(0.5f);
-                transitionPanel.pickingMode = PickingMode.Ignore;
-            }
-
-            isTransitioning = false;
-        }
-
-        private void RegisterButtonAudio(Button btn)
-        {
-            btn.clicked -= () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
-            btn.clicked += () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
-            btn.RegisterCallback<PointerEnterEvent>(evt => { if (!isTransitioning) GameEvents.OnHover?.Invoke(); });
-        }
-
         // --- GAME FLOW ---
-
-        private void ShowMenu()
-        {
-            if (isTransitioning) return;
-            UpdateMenuText();
-            GameEvents.OnGameRestart?.Invoke();
-
-            VisualElement currentActive = resultContainer.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
-            StartCoroutine(SwitchPanels(currentActive, menuContainer));
-        }
-
-        private void UpdateMenuText()
-        {
-            if (currentProfile != null)
-                titleLabel.text = $"How {currentProfile.countryAdjective} Are You?";
-        }
 
         private void StartGame()
         {
             if (isTransitioning) return;
+            if (currentProfile == null || currentProfile.questions.Count == 0)
+            {
+                Debug.LogError("No Profile assigned!");
+                return;
+            }
+
+            // 1. Prepare & Shuffle Questions
+            activeQuestions = new List<QuestionData>(currentProfile.questions);
+            for (int i = 0; i < activeQuestions.Count; i++)
+            {
+                QuestionData temp = activeQuestions[i];
+                int randomIndex = Random.Range(i, activeQuestions.Count);
+                activeQuestions[i] = activeQuestions[randomIndex];
+                activeQuestions[randomIndex] = temp;
+            }
+
+            if (questionsPerGame > 0 && activeQuestions.Count > questionsPerGame)
+            {
+                activeQuestions = activeQuestions.GetRange(0, questionsPerGame);
+            }
 
             currentQuestionIndex = 0;
             currentScore = 0;
@@ -215,22 +178,27 @@ namespace HowX.Core
             StartCoroutine(SwitchPanels(menuContainer, quizContainer));
         }
 
-        private void RestartGame()
-        {
-            if (isTransitioning) return;
-            ShowMenu();
-        }
-
         private void LoadQuestion()
         {
-            if (currentProfile == null || currentQuestionIndex >= currentProfile.questions.Count) return;
+            if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
 
-            QuestionData q = currentProfile.questions[currentQuestionIndex];
+            QuestionData q = activeQuestions[currentQuestionIndex];
 
-            // 1. Set Question Text
+            // Create & Shuffle Answer Mapping ---
+            currentShuffleIndices = new int[] { 0, 1, 2, 3 };
+
+            // Fisher-Yates Shuffle for the answers
+            for (int i = 0; i < currentShuffleIndices.Length; i++)
+            {
+                int rnd = Random.Range(i, currentShuffleIndices.Length);
+                int temp = currentShuffleIndices[i];
+                currentShuffleIndices[i] = currentShuffleIndices[rnd];
+                currentShuffleIndices[rnd] = temp;
+            }
+
+            // 2. Set Question UI
             questionLabel.text = q.questionText.Get(isNativeLanguage);
 
-            // 2. Set Question Visual
             if (q.useQuestionAnswer && q.questionVisual != null)
             {
                 questionImage.style.display = DisplayStyle.Flex;
@@ -241,7 +209,6 @@ namespace HowX.Core
                 questionImage.style.display = DisplayStyle.None;
             }
 
-            // 3. Set Layout Class
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
             if (gridContainer != null)
             {
@@ -249,19 +216,20 @@ namespace HowX.Core
                 gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
             }
 
-            // 4. Populate Answers
+            // 3. Populate Buttons using the SHUFFLED indices
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
                 if (btn == null) continue;
 
-                GetAnswerData(q, i, out string ansText, out Texture2D ansImg);
+                // Ask the shuffle map which data to show
+                int realDataIndex = currentShuffleIndices[i];
+
+                GetAnswerData(q, realDataIndex, out string ansText, out Texture2D ansImg);
 
                 if (!string.IsNullOrEmpty(ansText) || ansImg != null)
                 {
                     btn.style.display = DisplayStyle.Flex;
-
-                    // Ensure clean state (no leftover colors)
                     btn.style.backgroundColor = StyleKeyword.Null;
 
                     Label txtChild = btn.Q<Label>("Lbl_Ans");
@@ -283,6 +251,7 @@ namespace HowX.Core
                         {
                             txtChild.style.display = DisplayStyle.Flex;
                             txtChild.text = ansText;
+                            txtChild.style.whiteSpace = WhiteSpace.Normal;
                         }
                     }
                 }
@@ -293,64 +262,28 @@ namespace HowX.Core
             }
         }
 
-        private void GetAnswerData(QuestionData q, int index, out string text, out Texture2D image)
-        {
-            text = "";
-            image = null;
-
-            switch (index)
-            {
-                case 0:
-                    text = q.answer0.Get(isNativeLanguage);
-                    image = q.answer0_Image;
-                    break;
-                case 1:
-                    text = q.answer1.Get(isNativeLanguage);
-                    image = q.answer1_Image;
-                    break;
-                case 2:
-                    text = q.answer2.Get(isNativeLanguage);
-                    image = q.answer2_Image;
-                    break;
-                case 3:
-                    text = q.answer3.Get(isNativeLanguage);
-                    image = q.answer3_Image;
-                    break;
-            }
-        }
-
-        private void UpdateProgressBar()
-        {
-            if (progressBarFill == null || currentProfile == null || currentProfile.questions.Count == 0) return;
-
-            float progress = (float)currentQuestionIndex / currentProfile.questions.Count * 100f;
-            if (progress > 100f) progress = 100f;
-            progressBarFill.style.width = Length.Percent(progress);
-        }
-
-        // --- LOGIC ---
-
-        private void OnAnswerClicked(int index)
+        private void OnAnswerClicked(int btnIndex)
         {
             if (isTransitioning) return;
-            if (currentQuestionIndex >= currentProfile.questions.Count) return;
+            if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
 
-            QuestionData q = currentProfile.questions[currentQuestionIndex];
+            QuestionData q = activeQuestions[currentQuestionIndex];
 
+            // --- KEY CHANGE: Unwrap the shuffle to find the real data index ---
+            int realDataIndex = currentShuffleIndices[btnIndex];
+
+            // Logic: Does the list contain the REAL data index?
             bool correct = false;
-            if (q.correctIndices != null && q.correctIndices.Contains(index))
+            if (q.correctIndices != null && q.correctIndices.Contains(realDataIndex))
             {
                 correct = true;
             }
 
-            if (correct)
-            {
-                currentScore++;
-            }
+            if (correct) currentScore++;
 
             currentQuestionIndex++;
 
-            if (currentQuestionIndex >= currentProfile.questions.Count)
+            if (currentQuestionIndex >= activeQuestions.Count)
             {
                 EndGame();
                 return;
@@ -359,70 +292,13 @@ namespace HowX.Core
             StartCoroutine(NextQuestionSequence());
         }
 
-        private IEnumerator NextQuestionSequence()
-        {
-            isTransitioning = true;
-
-            if (quizContainer != null) quizContainer.pickingMode = PickingMode.Ignore;
-
-
-            // === PHASE 1: EXIT ===
-            GameEvents.OnNextQuestion?.Invoke();
-
-            if (quizContainer != null)
-            {
-                quizContainer.RemoveFromClassList("quiz-center");
-                quizContainer.AddToClassList("quiz-right");
-                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
-            }
-
-            // === PHASE 2: UPDATE DATA ===
-            if (currentQuestionIndex < currentProfile.questions.Count)
-            {
-                LoadQuestion();
-                UpdateProgressBar();
-            }
-
-            // === PHASE 3: TELEPORT ===
-            if (quizContainer != null)
-            {
-                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
-                quizContainer.RemoveFromClassList("quiz-right");
-                yield return null;
-                quizContainer.AddToClassList("quiz-left");
-                yield return null;
-                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
-            }
-
-            // === PHASE 4: ENTER ===
-            if (quizContainer != null)
-            {
-                quizContainer.RemoveFromClassList("quiz-left");
-                quizContainer.AddToClassList("quiz-center");
-                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
-
-                quizContainer.pickingMode = PickingMode.Position;
-            }
-
-            isTransitioning = false;
-        }
-
-        private void ToggleLanguage()
-        {
-            isNativeLanguage = !isNativeLanguage;
-            if (langButton != null) langButton.text = isNativeLanguage ? "Native" : "English";
-
-            if (quizContainer.style.display == DisplayStyle.Flex)
-            {
-                LoadQuestion();
-            }
-        }
-
         private void EndGame()
         {
             if (progressBarFill != null) progressBarFill.style.width = Length.Percent(100);
 
-            float percentage = (float)currentScore / currentProfile.questions.Count * 100f;
+            float totalQs = activeQuestions != null ? activeQuestions.Count : 1;
+            float percentage = (float)currentScore / totalQs * 100f;
+
             if (resultScore != null) resultScore.text = $"{percentage:F0}%";
 
             TierData earnedTier = null;
@@ -445,6 +321,125 @@ namespace HowX.Core
 
             GameEvents.OnGameEnd?.Invoke();
             StartCoroutine(SwitchPanels(quizContainer, resultContainer));
+        }
+
+        private void UpdateProgressBar()
+        {
+            if (progressBarFill == null || activeQuestions == null || activeQuestions.Count == 0) return;
+
+            float progress = (float)currentQuestionIndex / activeQuestions.Count * 100f;
+            if (progress > 100f) progress = 100f;
+            progressBarFill.style.width = Length.Percent(progress);
+        }
+
+        // --- HELPERS ---
+
+        private void GetAnswerData(QuestionData q, int index, out string text, out Texture2D image)
+        {
+            text = "";
+            image = null;
+            switch (index)
+            {
+                case 0: text = q.answer0.Get(isNativeLanguage); image = q.answer0_Image; break;
+                case 1: text = q.answer1.Get(isNativeLanguage); image = q.answer1_Image; break;
+                case 2: text = q.answer2.Get(isNativeLanguage); image = q.answer2_Image; break;
+                case 3: text = q.answer3.Get(isNativeLanguage); image = q.answer3_Image; break;
+            }
+        }
+
+        private void ShowMenu()
+        {
+            if (isTransitioning) return;
+            UpdateMenuText();
+            GameEvents.OnGameRestart?.Invoke();
+            VisualElement currentActive = resultContainer.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
+            StartCoroutine(SwitchPanels(currentActive, menuContainer));
+        }
+
+        private void UpdateMenuText()
+        {
+            if (currentProfile != null)
+                titleLabel.text = $"How {currentProfile.countryAdjective} Are You?";
+        }
+
+        private void RestartGame()
+        {
+            if (isTransitioning) return;
+            ShowMenu();
+        }
+
+        private void ToggleLanguage()
+        {
+            isNativeLanguage = !isNativeLanguage;
+            if (langButton != null) langButton.text = isNativeLanguage ? "Native" : "English";
+            if (quizContainer.style.display == DisplayStyle.Flex) LoadQuestion();
+        }
+
+        private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)
+        {
+            if (isTransitioning) yield break;
+            isTransitioning = true;
+            if (transitionPanel != null)
+            {
+                transitionPanel.pickingMode = PickingMode.Position;
+                float ignored = transitionPanel.resolvedStyle.opacity;
+                if (transitionPanel.ClassListContains("curtain-hidden"))
+                    transitionPanel.RemoveFromClassList("curtain-hidden");
+                yield return new WaitForSeconds(0.5f);
+            }
+            if (outPanel != null) outPanel.style.display = DisplayStyle.None;
+            if (inPanel != null) inPanel.style.display = DisplayStyle.Flex;
+            yield return null;
+            if (transitionPanel != null)
+            {
+                transitionPanel.AddToClassList("curtain-hidden");
+                yield return new WaitForSeconds(0.5f);
+                transitionPanel.pickingMode = PickingMode.Ignore;
+            }
+            isTransitioning = false;
+        }
+
+        private IEnumerator NextQuestionSequence()
+        {
+            isTransitioning = true;
+            if (quizContainer != null) quizContainer.pickingMode = PickingMode.Ignore;
+            GameEvents.OnNextQuestion?.Invoke();
+
+            if (quizContainer != null)
+            {
+                quizContainer.RemoveFromClassList("quiz-center");
+                quizContainer.AddToClassList("quiz-right");
+                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
+            }
+            if (currentQuestionIndex < activeQuestions.Count)
+            {
+                LoadQuestion();
+                UpdateProgressBar();
+            }
+            if (quizContainer != null)
+            {
+                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
+                quizContainer.RemoveFromClassList("quiz-right");
+                yield return null;
+                quizContainer.AddToClassList("quiz-left");
+                yield return null;
+                quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
+            }
+            if (quizContainer != null)
+            {
+                quizContainer.RemoveFromClassList("quiz-left");
+                quizContainer.AddToClassList("quiz-center");
+                yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
+                quizContainer.pickingMode = PickingMode.Position;
+            }
+            isTransitioning = false;
+        }
+
+        private void RegisterButtonAudio(Button btn)
+        {
+            btn.clicked -= () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
+            btn.clicked += () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
+            btn.RegisterCallback<PointerEnterEvent>(evt => { if (!isTransitioning) GameEvents.OnHover?.Invoke(); });
         }
     }
 }
