@@ -1,4 +1,4 @@
-using HowX.Data;
+﻿using HowX.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +9,7 @@ namespace HowX.Core
     public class GameController : MonoBehaviour
     {
         private const float QUESTION_SLIDE_DURATION = 0.225f;
+        private const string MISSING_TEXT = "TEXT MISSING";
 
         [Header("Reference")]
         [SerializeField] private QuizProfile currentProfile;
@@ -22,6 +23,7 @@ namespace HowX.Core
         private VisualElement menuContainer, quizContainer, resultContainer;
         private UIDocument uiDocument;
         private VisualElement progressBarFill;
+        private VisualElement flagIcon;
 
         // Elements
         private Label titleLabel;
@@ -42,9 +44,7 @@ namespace HowX.Core
         private bool isNativeLanguage = false;
         private bool isTransitioning = false;
 
-        // --- NEW: Shuffle Mapping ---
-        // This array holds the real data index for each button position.
-        // e.g., currentShuffleIndices[0] = 2 means "Button 0 holds Answer 2"
+        // Shuffle Mapping
         private int[] currentShuffleIndices;
 
         private void Awake()
@@ -75,6 +75,7 @@ namespace HowX.Core
             resultDesc = root.Q<Label>("Lbl_ResultDesc");
             resultScore = root.Q<Label>("Lbl_Score");
             restartButton = root.Q<Button>("Btn_Restart");
+            flagIcon = root.Q<VisualElement>("Img_Flag");
 
             // Setup Buttons
             answerButtons = new Button[4];
@@ -137,12 +138,72 @@ namespace HowX.Core
             if (resultContainer != null) resultContainer.style.display = DisplayStyle.None;
             if (menuContainer != null) menuContainer.style.display = DisplayStyle.Flex;
 
-            UpdateMenuText();
+            UpdateUIText();
             GameEvents.OnGameRestart?.Invoke();
         }
 
-        // --- GAME FLOW ---
+        // LOCALIZATION LOGIC ---
+        private void UpdateUIText()
+        {
+            // Safety Check
+            if (currentProfile == null || currentProfile.uiData == null) return;
 
+            // 1. Dynamic Title
+            if (titleLabel != null)
+            {
+                string format = currentProfile.uiData.titleTemplate.Get(isNativeLanguage);
+
+                if (string.IsNullOrEmpty(format))
+                {
+                    titleLabel.text = MISSING_TEXT;
+                }
+                else
+                {
+                    try
+                    {
+                        // Safely attempt to format the string (e.g., "How {0} Are You?")
+                        titleLabel.text = string.Format(format, currentProfile.countryAdjective);
+                    }
+                    catch
+                    {
+                        // Fallback if the CSV string is broken (e.g. missing "{0}")
+                        titleLabel.text = MISSING_TEXT;
+                    }
+                }
+            }
+
+            // 2. Start Button
+            if (startButton != null)
+            {
+                string text = currentProfile.uiData.btnStart.Get(isNativeLanguage);
+                startButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
+            }
+
+            // 3. Restart Button
+            if (restartButton != null)
+            {
+                string text = currentProfile.uiData.btnRestart.Get(isNativeLanguage);
+                restartButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
+            }
+
+            // 4. Language Button
+            if (langButton != null)
+            {
+                // This relies purely on your CSV.
+                // Example CSV Row: btn_lang, "Language: Polish", "Język: Angielski"
+                string text = currentProfile.uiData.btnLang.Get(isNativeLanguage);
+                langButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
+            }
+
+            // 5. Flag (Menu)
+            if (flagIcon != null && currentProfile.uiData.flagIcon != null)
+            {
+                flagIcon.style.backgroundImage = currentProfile.uiData.flagIcon;
+                flagIcon.style.display = DisplayStyle.Flex;
+            }
+        }
+
+        // --- GAME FLOW ---
         private void StartGame()
         {
             if (isTransitioning) return;
@@ -152,7 +213,6 @@ namespace HowX.Core
                 return;
             }
 
-            // 1. Prepare & Shuffle Questions
             activeQuestions = new List<QuestionData>(currentProfile.questions);
             for (int i = 0; i < activeQuestions.Count; i++)
             {
@@ -184,10 +244,7 @@ namespace HowX.Core
 
             QuestionData q = activeQuestions[currentQuestionIndex];
 
-            // Create & Shuffle Answer Mapping ---
             currentShuffleIndices = new int[] { 0, 1, 2, 3 };
-
-            // Fisher-Yates Shuffle for the answers
             for (int i = 0; i < currentShuffleIndices.Length; i++)
             {
                 int rnd = Random.Range(i, currentShuffleIndices.Length);
@@ -196,7 +253,6 @@ namespace HowX.Core
                 currentShuffleIndices[rnd] = temp;
             }
 
-            // 2. Set Question UI
             questionLabel.text = q.questionText.Get(isNativeLanguage);
 
             if (q.useQuestionAnswer && q.questionVisual != null)
@@ -216,15 +272,12 @@ namespace HowX.Core
                 gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
             }
 
-            // 3. Populate Buttons using the SHUFFLED indices
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
                 if (btn == null) continue;
 
-                // Ask the shuffle map which data to show
                 int realDataIndex = currentShuffleIndices[i];
-
                 GetAnswerData(q, realDataIndex, out string ansText, out Texture2D ansImg);
 
                 if (!string.IsNullOrEmpty(ansText) || ansImg != null)
@@ -268,11 +321,8 @@ namespace HowX.Core
             if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
 
             QuestionData q = activeQuestions[currentQuestionIndex];
-
-            // --- KEY CHANGE: Unwrap the shuffle to find the real data index ---
             int realDataIndex = currentShuffleIndices[btnIndex];
 
-            // Logic: Does the list contain the REAL data index?
             bool correct = false;
             if (q.correctIndices != null && q.correctIndices.Contains(realDataIndex))
             {
@@ -350,16 +400,10 @@ namespace HowX.Core
         private void ShowMenu()
         {
             if (isTransitioning) return;
-            UpdateMenuText();
+            UpdateUIText(); // Updates text when returning to menu
             GameEvents.OnGameRestart?.Invoke();
             VisualElement currentActive = resultContainer.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
             StartCoroutine(SwitchPanels(currentActive, menuContainer));
-        }
-
-        private void UpdateMenuText()
-        {
-            if (currentProfile != null)
-                titleLabel.text = $"How {currentProfile.countryAdjective} Are You?";
         }
 
         private void RestartGame()
@@ -371,8 +415,9 @@ namespace HowX.Core
         private void ToggleLanguage()
         {
             isNativeLanguage = !isNativeLanguage;
-            if (langButton != null) langButton.text = isNativeLanguage ? "Native" : "English";
+            UpdateUIText(); // <--- This updates Buttons & Title immediately
             if (quizContainer.style.display == DisplayStyle.Flex) LoadQuestion();
+            if (resultContainer.style.display == DisplayStyle.Flex) EndGame(); // Refreshes Result text if toggle happens there
         }
 
         private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)

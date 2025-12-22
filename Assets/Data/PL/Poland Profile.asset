@@ -19,6 +19,21 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   quizCsvFile: {fileID: 4900000, guid: 3579401337c2b4343b843bbb80ac7c3d, type: 3}
   tierCsvFile: {fileID: 4900000, guid: c4037fb61819aa144ad6d5ef2a366f77, type: 3}
+  uiCsvFile: {fileID: 4900000, guid: 9be544a419cdcde4eb9e3ec43fcdf503, type: 3}
+  uiData:
+    btnStart:
+      en: Start Game
+      native: "Zacznij Gr\u0119"
+    btnRestart:
+      en: Try Again
+      native: "Spr\xF3buj Ponownie"
+    btnLang:
+      en: English
+      native: Polski
+    titleTemplate:
+      en: How {0} Are You?
+      native: "Jak bardzo {0} jeste\u015B?"
+    flagIcon: {fileID: 0}
   questions:
   - id: 00
     questionText:
