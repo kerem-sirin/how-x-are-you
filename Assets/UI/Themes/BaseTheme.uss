@@ -1,25 +1,14 @@
-/* ================= VARIABLES & DEFAULTS ================= */
 :root {
-    /* --- PALETTE: "Boho Matte" --- */
-    
-    /* BACKGROUNDS */
-    --theme-bg: rgb(231, 158, 133);       /* Terra Cotta (Main Background) */
-    --card-bg: rgba(255, 248, 245, 0.95); /* Warm White (Cards) */
-    
-    /* ACCENTS & INTERACTION */
-    --theme-accent: rgb(56, 115, 115);    /* Deep Teal (Progress, Borders, Hover Text) */
-    --hover-bg: rgb(240, 213, 154);       /* Maize Yellow (Hover Background) */
-    
-    /* TYPOGRAPHY */
-    --text-main: rgb(56, 115, 115);       /* Deep Teal (Headings, Score) */
-    --text-body: rgb(166, 112, 93);       /* Muted Clay (Questions, Button Idle) */
-    
-    /* GEOMETRY */
+    --theme-bg: rgb(231, 158, 133);
+    --card-bg: rgba(255, 248, 245, 0.95);
+    --theme-accent: rgb(56, 115, 115);
+    --hover-bg: rgb(240, 213, 154);
+    --text-main: rgb(56, 115, 115);
+    --text-body: rgb(166, 112, 93);
     --radius-lg: 24px;
     --radius-md: 16px;
 }
 
-/* Global Reset */
 Label {
     color: var(--text-main);
     -unity-font-style: bold;
@@ -28,16 +17,20 @@ Label {
 }
 
 #Root {
-    background-color: var(--theme-bg);
+    background-image: url("project://database/Assets/UI/Textures/Backgrounds/bg_pattern.png?fileID=2800000&guid=757476d2bd7ed7247b2f0bb5f3e6ac60&type=3#bg_pattern");
+    -unity-background-scale-mode: none;
+    background-repeat: repeat;
+    background-size: contain;
+    -unity-background-image-tint-color: rgb(231, 158, 133);
 }
 
-/* ================= UTILITIES ================= */
 .progress-container {
     height: 12px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
 }
 
 .progress-fill {
@@ -51,7 +44,6 @@ Label {
     transition-timing-function: ease-out-circ;
 }
 
-/* ================= MAIN MENU ================= */
 #Container_Menu {
     justify-content: flex-start;
     align-items: center;
@@ -59,40 +51,32 @@ Label {
     padding-bottom: 40px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: var(--theme-bg);
 }
 
 #Header_Box {
-    /* 1. Geometry & Layout */
     width: 100%;
     margin-bottom: 80px;
     padding: 30px;
-    
-    /* 2. Visuals (Background & Border) */
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-lg);
-    border-width: 2px;
-    border-color: var(--theme-accent);
-
-    /* 3. Helper to center the label inside */
+    background-color: rgba(255, 255, 255, 0);
     justify-content: center;
     align-items: center;
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_round_gradient.png?fileID=2800000&guid=519aad8d8810daa4cae11a23ec56fa19&type=3#button_round_gradient");
+    -unity-slice-left: 60;
+    -unity-slice-top: 60;
+    -unity-slice-right: 60;
+    -unity-slice-bottom: 60;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.78);
 }
 
 #Lbl_Title {
-    /* Typography Only */
     font-size: 60px;
     color: var(--text-main);
     -unity-text-align: middle-center;
     white-space: normal;
-    
-    /* Shadows stay on the text */
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1); 
-    
-    /* Reset margins since the Box handles spacing now */
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
     margin: 0;
     padding: 0;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     border-width: 0;
 }
 
@@ -104,7 +88,6 @@ Label {
     font-size: 36px;
 }
 
-/* ================= QUIZ AREA ================= */
 #Container_Quiz {
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0);
@@ -123,19 +106,20 @@ Label {
     padding: 30px;
     background-color: rgb(255, 255, 255);
     border-radius: var(--radius-lg);
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_square_gradient.png?fileID=2800000&guid=0df8b87f855dd1340abd0c59e276c0cd&type=3#button_square_gradient");
+    -unity-slice-left: 10;
+    -unity-slice-top: 10;
+    -unity-slice-right: 10;
+    -unity-slice-bottom: 10;
 }
 
 #Lbl_QuestionText {
     font-size: 38px;
     width: 100%;
-
     white-space: normal;
     -unity-text-align: middle-center;
-    /* Using Body Color (Clay) */
-    color: var(--text-body); 
-    
-    /* Subtle white highlight instead of dark shadow for "engraved" look */
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); 
+    color: var(--text-body);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 #Img_QuestionVisual {
@@ -153,57 +137,49 @@ Label {
     justify-content: center;
 }
 
-/* ================= BUTTONS (Semantic) ================= */
 Button {
-    border-width: 1px;
-    border-color: var(--text-body); /* Clay Border */
-    border-radius: var(--radius-md);
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-color: rgba(0, 0, 0, 0);
     font-size: 28px;
-    
-    /* Add breathing room for text */
     padding-left: 24px;
     padding-right: 24px;
-
-    /* Clean text, removed muddy purple shadow */
-    text-shadow: none; 
-    
-    /* Idle Text: Clay Color */
-    color: var(--text-body); 
+    text-shadow: none;
+    color: var(--text-body);
     -unity-font-style: bold;
-    -unity-text-align: middle-center; /* Centers text nicely */
+    -unity-text-align: middle-center;
     white-space: normal;
-
     justify-content: center;
     align-items: center;
-
-    background-color: white;
     transition-duration: 0.2s;
     transition-property: scale, background-color, translate, color, border-color;
     transition-timing-function: ease-out;
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_square_gradient.png?fileID=2800000&guid=0df8b87f855dd1340abd0c59e276c0cd&type=3#button_square_gradient");
+    -unity-slice-left: 70;
+    -unity-slice-top: 70;
+    -unity-slice-right: 70;
+    -unity-slice-bottom: 70;
 }
 
-/* Ensure nested labels match parent button color */
 Button Label {
     color: var(--text-body);
     -unity-font-style: bold;
-    -unity-text-align: middle-center; /* Centers text nicely */
-    white-space: normal; /* Enables wrapping */
+    -unity-text-align: middle-center;
+    white-space: normal;
 }
 
-/* HOVER: Background becomes Maize, Text becomes Teal */
 Button:hover {
     scale: 1.02;
-    background-color: var(--hover-bg);
     color: var(--theme-accent);
     border-color: var(--theme-accent);
     translate: 0 -5px;
+    -unity-background-image-tint-color: rgb(232, 255, 255);
 }
 
 Button:hover Label {
     color: var(--theme-accent);
 }
 
-/* ACTIVE: Pressed */
 Button:active {
     scale: 0.98;
     translate: 0 1px;
@@ -216,11 +192,9 @@ Button:active Label {
     color: var(--theme-accent);
 }
 
-/* ================= RESULT SCREEN ================= */
 #Container_Result {
     justify-content: center;
     align-items: center;
-    background-color: var(--theme-bg);
     padding: 40px;
     flex-direction: column;
 }
@@ -229,20 +203,20 @@ Button:active Label {
     width: 100%;
     max-width: 600px;
     align-items: center;
-    background-color: var(--card-bg);
     padding: 40px;
     border-radius: var(--radius-lg);
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_square_gradient.png?fileID=2800000&guid=0df8b87f855dd1340abd0c59e276c0cd&type=3#button_square_gradient");
+    -unity-slice-left: 60;
+    -unity-slice-top: 60;
+    -unity-slice-right: 60;
+    -unity-slice-bottom: 60;
 }
 
 #Lbl_Score {
     font-size: 140px;
-    
-    /* Score is Main Color (Teal) */
-    color: var(--text-main); 
+    color: var(--text-main);
     margin-bottom: 0;
-    
-    /* Soft shadow, not purple */
-    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.1); 
+    text-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 #Lbl_ResultTitle {
@@ -258,9 +232,7 @@ Button:active Label {
     margin-bottom: 20px;
     white-space: normal;
     -unity-text-align: middle-center;
-    
-    /* Desc is Body Color (Clay) */
-    color: var(--text-body); 
+    color: var(--text-body);
     line-height: 1.4;
 }
 
@@ -272,31 +244,73 @@ Button:active Label {
     margin-top: 40px;
 }
 
-/* ================= UTILITY & ANIMATION STATES ================= */
 #Panel_Transition {
     position: absolute;
-    top: 0; bottom: 0; left: 0; right: 0;
-    
-    /* Transition curtain is the Accent Color */
-    background-color: var(--theme-accent); 
-    
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--theme-accent);
     display: flex;
     transition-property: opacity;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
 
-/* Layout Classes */
-.layout-list { flex-direction: column; justify-content: space-evenly; }
-.layout-list Button { width: 100%; height: 22%; flex-direction: row; }
-.layout-list #Img_Ans { display: none; }
+.layout-list {
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 
-.layout-grid { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-content: space-between; }
-.layout-grid Button { width: 48%; height: 48%; padding: 10px; }
-.layout-grid #Lbl_Ans { display: none; }
-.layout-grid #Img_Ans { width: 100%; height: 100%; -unity-background-scale-mode: scale-to-fit; }
+.layout-list Button {
+    width: 100%;
+    height: 22%;
+    flex-direction: row;
+}
 
-.curtain-hidden { opacity: 0; }
-.quiz-center { opacity: 1; translate: 0 0; }
-.quiz-right { opacity: 0; translate: 100% 0; }
-.quiz-left { opacity: 0; translate: -100% 0; }
+.layout-list #Img_Ans {
+    display: none;
+}
+
+.layout-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.layout-grid Button {
+    width: 46%;
+    height: 46%;
+    margin: 1%;
+    padding: 6px;
+}
+
+.layout-grid #Lbl_Ans {
+    display: none;
+}
+
+.layout-grid #Img_Ans {
+    width: 100%;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.curtain-hidden {
+    opacity: 0;
+}
+
+.quiz-center {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.quiz-right {
+    opacity: 0;
+    translate: 100% 0;
+}
+
+.quiz-left {
+    opacity: 0;
+    translate: -100% 0;
+}
