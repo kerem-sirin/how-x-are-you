@@ -1,4 +1,5 @@
 ﻿using HowX.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,12 @@ namespace HowX.Core
         // Shuffle Mapping
         private int[] currentShuffleIndices;
 
+        // --- Callback Storage (for proper unsubscription) ---
+        private Action[] answerClickActions;
+        private Action submitAction;
+        private EventCallback<PointerEnterEvent> hoverCallback;
+        private List<Button> registeredAudioButtons = new List<Button>();
+
         private void Awake()
         {
             if (!TryGetComponent<UIDocument>(out uiDocument))
@@ -77,11 +84,54 @@ namespace HowX.Core
             restartButton = root.Q<Button>("Btn_Restart");
             flagIcon = root.Q<VisualElement>("Img_Flag");
 
-            // Setup Buttons
+            // Setup Answer Buttons with stored delegates
+            SetupAnswerButtons();
+
+            // Hook Menu/Result Events
+            if (startButton != null)
+                startButton.clicked += StartGame;
+
+            if (langButton != null)
+                langButton.clicked += ToggleLanguage;
+
+            if (restartButton != null)
+                restartButton.clicked += RestartGame;
+
+            // Register audio for all buttons
+            RegisterAllButtonAudio();
+
+            InitializeUIState();
+        }
+
+        private void OnDisable()
+        {
+            // Cleanup answer button callbacks
+            CleanupAnswerButtons();
+
+            // Cleanup menu/result button callbacks
+            if (startButton != null)
+                startButton.clicked -= StartGame;
+
+            if (langButton != null)
+                langButton.clicked -= ToggleLanguage;
+
+            if (restartButton != null)
+                restartButton.clicked -= RestartGame;
+
+            // Cleanup audio callbacks
+            UnregisterAllButtonAudio();
+        }
+
+        private void SetupAnswerButtons()
+        {
             answerButtons = new Button[4];
+            answerClickActions = new Action[4];
+
             for (int i = 0; i < 4; i++)
             {
                 answerButtons[i] = root.Q<Button>($"Btn_Ans{i}");
+
+                // Fallback: try to find by index in grid
                 if (answerButtons[i] == null)
                 {
                     var grid = root.Q("Grid_Answers");
@@ -89,34 +139,70 @@ namespace HowX.Core
                         answerButtons[i] = grid.ElementAt(i) as Button;
                 }
 
-                int x = i;
                 if (answerButtons[i] != null)
                 {
-                    answerButtons[i].clicked -= () => OnAnswerClicked(x);
-                    answerButtons[i].clicked += () => OnAnswerClicked(x);
+                    // Create and store the delegate with captured index
+                    int capturedIndex = i;
+                    answerClickActions[i] = () => OnAnswerClicked(capturedIndex);
+                    answerButtons[i].clicked += answerClickActions[i];
                 }
             }
+        }
 
-            // Hook Events
-            if (startButton != null)
-            {
-                startButton.clicked -= StartGame;
-                startButton.clicked += StartGame;
-            }
-            if (langButton != null)
-            {
-                langButton.clicked -= ToggleLanguage;
-                langButton.clicked += ToggleLanguage;
-            }
-            if (restartButton != null)
-            {
-                restartButton.clicked -= RestartGame;
-                restartButton.clicked += RestartGame;
-            }
+        private void CleanupAnswerButtons()
+        {
+            if (answerButtons == null || answerClickActions == null) return;
 
-            root.Query<Button>().ForEach(RegisterButtonAudio);
+            for (int i = 0; i < 4; i++)
+            {
+                if (answerButtons[i] != null && answerClickActions[i] != null)
+                {
+                    answerButtons[i].clicked -= answerClickActions[i];
+                }
+            }
+        }
 
-            InitializeUIState();
+        private void RegisterAllButtonAudio()
+        {
+            // Create reusable callbacks
+            submitAction = OnSubmitAudio;
+            hoverCallback = OnHoverAudio;
+
+            // Find and register all buttons
+            registeredAudioButtons.Clear();
+            root.Query<Button>().ForEach(btn =>
+            {
+                btn.clicked += submitAction;
+                btn.RegisterCallback(hoverCallback);
+                registeredAudioButtons.Add(btn);
+            });
+        }
+
+        private void UnregisterAllButtonAudio()
+        {
+            if (submitAction == null || hoverCallback == null) return;
+
+            foreach (var btn in registeredAudioButtons)
+            {
+                if (btn != null)
+                {
+                    btn.clicked -= submitAction;
+                    btn.UnregisterCallback(hoverCallback);
+                }
+            }
+            registeredAudioButtons.Clear();
+        }
+
+        private void OnSubmitAudio()
+        {
+            if (!isTransitioning)
+                GameEvents.OnSubmit?.Invoke();
+        }
+
+        private void OnHoverAudio(PointerEnterEvent evt)
+        {
+            if (!isTransitioning)
+                GameEvents.OnHover?.Invoke();
         }
 
         private void InitializeUIState()
@@ -151,7 +237,7 @@ namespace HowX.Core
             // 1. Dynamic Title
             if (titleLabel != null)
             {
-                string format = currentProfile.uiData.titleTemplate.Get(isNativeLanguage);
+                string format = currentProfile.uiData.titleTemplate?.Get(isNativeLanguage);
 
                 if (string.IsNullOrEmpty(format))
                 {
@@ -161,12 +247,10 @@ namespace HowX.Core
                 {
                     try
                     {
-                        // Safely attempt to format the string (e.g., "How {0} Are You?")
                         titleLabel.text = string.Format(format, currentProfile.countryAdjective);
                     }
                     catch
                     {
-                        // Fallback if the CSV string is broken (e.g. missing "{0}")
                         titleLabel.text = MISSING_TEXT;
                     }
                 }
@@ -175,23 +259,21 @@ namespace HowX.Core
             // 2. Start Button
             if (startButton != null)
             {
-                string text = currentProfile.uiData.btnStart.Get(isNativeLanguage);
+                string text = currentProfile.uiData.btnStart?.Get(isNativeLanguage);
                 startButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
             }
 
             // 3. Restart Button
             if (restartButton != null)
             {
-                string text = currentProfile.uiData.btnRestart.Get(isNativeLanguage);
+                string text = currentProfile.uiData.btnRestart?.Get(isNativeLanguage);
                 restartButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
             }
 
             // 4. Language Button
             if (langButton != null)
             {
-                // This relies purely on your CSV.
-                // Example CSV Row: btn_lang, "Language: Polish", "Język: Angielski"
-                string text = currentProfile.uiData.btnLang.Get(isNativeLanguage);
+                string text = currentProfile.uiData.btnLang?.Get(isNativeLanguage);
                 langButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
             }
 
@@ -207,21 +289,31 @@ namespace HowX.Core
         private void StartGame()
         {
             if (isTransitioning) return;
-            if (currentProfile == null || currentProfile.questions.Count == 0)
+
+            // Validate profile
+            if (currentProfile == null)
             {
-                Debug.LogError("No Profile assigned!");
+                Debug.LogError("No Quiz Profile assigned!");
                 return;
             }
 
+            if (currentProfile.questions == null || currentProfile.questions.Count == 0)
+            {
+                Debug.LogError($"Profile '{currentProfile.name}' has no questions!");
+                return;
+            }
+
+            // Shuffle questions (Fisher-Yates)
             activeQuestions = new List<QuestionData>(currentProfile.questions);
             for (int i = 0; i < activeQuestions.Count; i++)
             {
                 QuestionData temp = activeQuestions[i];
-                int randomIndex = Random.Range(i, activeQuestions.Count);
+                int randomIndex = UnityEngine.Random.Range(i, activeQuestions.Count);
                 activeQuestions[i] = activeQuestions[randomIndex];
                 activeQuestions[randomIndex] = temp;
             }
 
+            // Limit to questionsPerGame
             if (questionsPerGame > 0 && activeQuestions.Count > questionsPerGame)
             {
                 activeQuestions = activeQuestions.GetRange(0, questionsPerGame);
@@ -244,27 +336,35 @@ namespace HowX.Core
 
             QuestionData q = activeQuestions[currentQuestionIndex];
 
+            // Shuffle answer indices (Fisher-Yates)
             currentShuffleIndices = new int[] { 0, 1, 2, 3 };
             for (int i = 0; i < currentShuffleIndices.Length; i++)
             {
-                int rnd = Random.Range(i, currentShuffleIndices.Length);
+                int rnd = UnityEngine.Random.Range(i, currentShuffleIndices.Length);
                 int temp = currentShuffleIndices[i];
                 currentShuffleIndices[i] = currentShuffleIndices[rnd];
                 currentShuffleIndices[rnd] = temp;
             }
 
-            questionLabel.text = q.questionText.Get(isNativeLanguage);
+            // Set question text
+            if (questionLabel != null)
+                questionLabel.text = q.questionText?.Get(isNativeLanguage) ?? MISSING_TEXT;
 
-            if (q.useQuestionAnswer && q.questionVisual != null)
+            // Set question image
+            if (questionImage != null)
             {
-                questionImage.style.display = DisplayStyle.Flex;
-                questionImage.style.backgroundImage = q.questionVisual;
-            }
-            else
-            {
-                questionImage.style.display = DisplayStyle.None;
+                if (q.useQuestionAnswer && q.questionVisual != null)
+                {
+                    questionImage.style.display = DisplayStyle.Flex;
+                    questionImage.style.backgroundImage = q.questionVisual;
+                }
+                else
+                {
+                    questionImage.style.display = DisplayStyle.None;
+                }
             }
 
+            // Toggle grid/list layout
             VisualElement gridContainer = root.Q<VisualElement>("Grid_Answers");
             if (gridContainer != null)
             {
@@ -272,6 +372,7 @@ namespace HowX.Core
                 gridContainer.EnableInClassList("layout-list", !q.useImageAnswers);
             }
 
+            // Populate answer buttons
             for (int i = 0; i < 4; i++)
             {
                 Button btn = answerButtons[i];
@@ -323,12 +424,7 @@ namespace HowX.Core
             QuestionData q = activeQuestions[currentQuestionIndex];
             int realDataIndex = currentShuffleIndices[btnIndex];
 
-            bool correct = false;
-            if (q.correctIndices != null && q.correctIndices.Contains(realDataIndex))
-            {
-                correct = true;
-            }
-
+            bool correct = q.correctIndices != null && q.correctIndices.Contains(realDataIndex);
             if (correct) currentScore++;
 
             currentQuestionIndex++;
@@ -351,22 +447,34 @@ namespace HowX.Core
 
             if (resultScore != null) resultScore.text = $"{percentage:F0}%";
 
+            // Find earned tier
             TierData earnedTier = null;
-            foreach (var tier in currentProfile.tiers)
+            if (currentProfile?.tiers != null)
             {
-                if (percentage <= tier.maxPercentage)
+                foreach (var tier in currentProfile.tiers)
                 {
-                    earnedTier = tier;
-                    break;
+                    if (percentage <= tier.maxPercentage)
+                    {
+                        earnedTier = tier;
+                        break;
+                    }
                 }
+                // Fallback to highest tier
+                if (earnedTier == null && currentProfile.tiers.Count > 0)
+                    earnedTier = currentProfile.tiers[currentProfile.tiers.Count - 1];
             }
-            if (earnedTier == null && currentProfile.tiers.Count > 0)
-                earnedTier = currentProfile.tiers[currentProfile.tiers.Count - 1];
 
             if (earnedTier != null)
             {
-                resultTitle.text = earnedTier.title.Get(isNativeLanguage);
-                resultDesc.text = $"<b>{earnedTier.subtitle.Get(isNativeLanguage)}</b>\n\n{earnedTier.description.Get(isNativeLanguage)}";
+                if (resultTitle != null)
+                    resultTitle.text = earnedTier.title?.Get(isNativeLanguage) ?? "";
+
+                if (resultDesc != null)
+                {
+                    string subtitle = earnedTier.subtitle?.Get(isNativeLanguage) ?? "";
+                    string desc = earnedTier.description?.Get(isNativeLanguage) ?? "";
+                    resultDesc.text = $"<b>{subtitle}</b>\n\n{desc}";
+                }
             }
 
             GameEvents.OnGameEnd?.Invoke();
@@ -388,21 +496,36 @@ namespace HowX.Core
         {
             text = "";
             image = null;
+
+            if (q == null) return;
+
             switch (index)
             {
-                case 0: text = q.answer0.Get(isNativeLanguage); image = q.answer0_Image; break;
-                case 1: text = q.answer1.Get(isNativeLanguage); image = q.answer1_Image; break;
-                case 2: text = q.answer2.Get(isNativeLanguage); image = q.answer2_Image; break;
-                case 3: text = q.answer3.Get(isNativeLanguage); image = q.answer3_Image; break;
+                case 0:
+                    text = q.answer0?.Get(isNativeLanguage) ?? "";
+                    image = q.answer0_Image;
+                    break;
+                case 1:
+                    text = q.answer1?.Get(isNativeLanguage) ?? "";
+                    image = q.answer1_Image;
+                    break;
+                case 2:
+                    text = q.answer2?.Get(isNativeLanguage) ?? "";
+                    image = q.answer2_Image;
+                    break;
+                case 3:
+                    text = q.answer3?.Get(isNativeLanguage) ?? "";
+                    image = q.answer3_Image;
+                    break;
             }
         }
 
         private void ShowMenu()
         {
             if (isTransitioning) return;
-            UpdateUIText(); // Updates text when returning to menu
+            UpdateUIText();
             GameEvents.OnGameRestart?.Invoke();
-            VisualElement currentActive = resultContainer.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
+            VisualElement currentActive = resultContainer?.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
             StartCoroutine(SwitchPanels(currentActive, menuContainer));
         }
 
@@ -415,15 +538,20 @@ namespace HowX.Core
         private void ToggleLanguage()
         {
             isNativeLanguage = !isNativeLanguage;
-            UpdateUIText(); // <--- This updates Buttons & Title immediately
-            if (quizContainer.style.display == DisplayStyle.Flex) LoadQuestion();
-            if (resultContainer.style.display == DisplayStyle.Flex) EndGame(); // Refreshes Result text if toggle happens there
+            UpdateUIText();
+
+            if (quizContainer?.style.display == DisplayStyle.Flex)
+                LoadQuestion();
+
+            if (resultContainer?.style.display == DisplayStyle.Flex)
+                EndGame(); // Refreshes result text
         }
 
         private IEnumerator SwitchPanels(VisualElement outPanel, VisualElement inPanel)
         {
             if (isTransitioning) yield break;
             isTransitioning = true;
+
             if (transitionPanel != null)
             {
                 transitionPanel.pickingMode = PickingMode.Position;
@@ -432,15 +560,19 @@ namespace HowX.Core
                     transitionPanel.RemoveFromClassList("curtain-hidden");
                 yield return new WaitForSeconds(0.5f);
             }
+
             if (outPanel != null) outPanel.style.display = DisplayStyle.None;
             if (inPanel != null) inPanel.style.display = DisplayStyle.Flex;
+
             yield return null;
+
             if (transitionPanel != null)
             {
                 transitionPanel.AddToClassList("curtain-hidden");
                 yield return new WaitForSeconds(0.5f);
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
+
             isTransitioning = false;
         }
 
@@ -456,11 +588,13 @@ namespace HowX.Core
                 quizContainer.AddToClassList("quiz-right");
                 yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
             }
+
             if (currentQuestionIndex < activeQuestions.Count)
             {
                 LoadQuestion();
                 UpdateProgressBar();
             }
+
             if (quizContainer != null)
             {
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
@@ -470,6 +604,7 @@ namespace HowX.Core
                 yield return null;
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
             }
+
             if (quizContainer != null)
             {
                 quizContainer.RemoveFromClassList("quiz-left");
@@ -477,14 +612,8 @@ namespace HowX.Core
                 yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
                 quizContainer.pickingMode = PickingMode.Position;
             }
-            isTransitioning = false;
-        }
 
-        private void RegisterButtonAudio(Button btn)
-        {
-            btn.clicked -= () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
-            btn.clicked += () => { if (!isTransitioning) GameEvents.OnSubmit?.Invoke(); };
-            btn.RegisterCallback<PointerEnterEvent>(evt => { if (!isTransitioning) GameEvents.OnHover?.Invoke(); });
+            isTransitioning = false;
         }
     }
 }
