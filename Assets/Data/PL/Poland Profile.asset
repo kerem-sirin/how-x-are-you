@@ -33,7 +33,7 @@ MonoBehaviour:
     titleTemplate:
       en: How {0} Are You?
       native: "Jak bardzo {0} jeste\u015B?"
-    flagIcon: {fileID: 0}
+    flagIcon: {fileID: 2800000, guid: faac1c0fb68fbd346850e7a2dd9d8301, type: 3}
   questions:
   - id: 00
     questionText:
