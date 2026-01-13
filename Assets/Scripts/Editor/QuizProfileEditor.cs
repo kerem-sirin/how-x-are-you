@@ -40,6 +40,18 @@ public class QuizProfileEditor : Editor
             ImportTiers(profile);
         }
 
+        // --- BUTTON 3: UI & FLAGS (YELLOW) ---
+        GUI.backgroundColor = Color.yellow;
+        if (GUILayout.Button("IMPORT UI & FLAGS (CSV)", GUILayout.Height(40)))
+        {
+            if (profile.uiCsvFile == null)
+            {
+                Debug.LogError("Please assign a UI CSV File first!");
+                return;
+            }
+            ImportUI(profile);
+        }
+
         GUI.backgroundColor = Color.white;
     }
 
@@ -200,5 +212,48 @@ public class QuizProfileEditor : Editor
 
         EditorUtility.SetDirty(profile);
         Debug.Log($"✅ TIERS IMPORTED: {profile.tiers.Count} items.");
+    }
+
+    private void ImportUI(QuizProfile profile)
+    {
+        string rawText = profile.uiCsvFile.text;
+        List<string> lines = ParseCsvRows(rawText);
+
+        if (profile.uiData == null) profile.uiData = new UIData();
+
+        Debug.Log($"🎨 Starting UI Import for {profile.name}...");
+
+        // Load Flag Image (Naming convention: "Flag.png" in the Images folder)
+        string flagPath = $"{profile.imageLibraryPath}Flag.png";
+        profile.uiData.flagIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(flagPath);
+        if (profile.uiData.flagIcon == null) Debug.LogWarning($"⚠️ Missing Flag Image at: {flagPath}");
+
+        // Parse CSV Rows (Format: Key, EN, Native)
+        // Skip Header (i=1)
+        for (int i = 1; i < lines.Count; i++)
+        {
+            string line = lines[i].Trim();
+            if (string.IsNullOrEmpty(line)) continue;
+            string[] cols = Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            for (int c = 0; c < cols.Length; c++) cols[c] = cols[c].Trim('"', ' ', '\r', '\n');
+
+            if (cols.Length < 3) continue;
+
+            string key = cols[0].ToLower();
+            string en = cols[1];
+            string nat = cols[2];
+
+            // Map keys to fields
+            switch (key)
+            {
+                case "btn_start": profile.uiData.btnStart = new LocalizedText { en = en, native = nat }; break;
+                case "btn_restart": profile.uiData.btnRestart = new LocalizedText { en = en, native = nat }; break;
+                case "btn_lang": profile.uiData.btnLang = new LocalizedText { en = en, native = nat }; break;
+                case "title_template": profile.uiData.titleTemplate = new LocalizedText { en = en, native = nat }; break;
+            }
+        }
+
+        EditorUtility.SetDirty(profile);
+        Debug.Log("✅ UI Data Imported!");
     }
 }

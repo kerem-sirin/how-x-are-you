@@ -19,6 +19,21 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   quizCsvFile: {fileID: 4900000, guid: 3579401337c2b4343b843bbb80ac7c3d, type: 3}
   tierCsvFile: {fileID: 4900000, guid: c4037fb61819aa144ad6d5ef2a366f77, type: 3}
+  uiCsvFile: {fileID: 4900000, guid: 9be544a419cdcde4eb9e3ec43fcdf503, type: 3}
+  uiData:
+    btnStart:
+      en: Start Game
+      native: "Zacznij Gr\u0119"
+    btnRestart:
+      en: Try Again
+      native: "Spr\xF3buj Ponownie"
+    btnLang:
+      en: English
+      native: Polski
+    titleTemplate:
+      en: How {0} Are You?
+      native: "Jak bardzo {0} jeste\u015B?"
+    flagIcon: {fileID: 0}
   questions:
   - id: 00
     questionText:
@@ -74,12 +89,12 @@ MonoBehaviour:
       native: Jaka jest waluta Polski?
     questionVisual: {fileID: 0}
     answer0:
-      en: Euro
-      native: Euro
-    answer0_Image: {fileID: 0}
-    answer1:
       en: "Z\u0142oty"
       native: "Z\u0142oty"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Euro
+      native: Euro
     answer1_Image: {fileID: 0}
     answer2:
       en: Rubles
@@ -90,7 +105,7 @@ MonoBehaviour:
       native: Cebula
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 03
     questionText:
@@ -98,12 +113,12 @@ MonoBehaviour:
       native: "Co oznacza, gdy Polak m\xF3wi No?"
     questionVisual: {fileID: 0}
     answer0:
-      en: No (Disagree)
-      native: Nie
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Yes (Agree)
       native: Tak
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: No (Disagree)
+      native: Nie
     answer1_Image: {fileID: 0}
     answer2:
       en: Maybe
@@ -114,7 +129,7 @@ MonoBehaviour:
       native: Nie wiem
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 04
     questionText:
@@ -122,23 +137,23 @@ MonoBehaviour:
       native: "Jakie jest nieoficjalne zwierz\u0119 narodowe Polski?"
     questionVisual: {fileID: 0}
     answer0:
-      en: White Eagle
-      native: "Orze\u0142 Bia\u0142y"
-    answer0_Image: {fileID: 2800000, guid: 23d7ebc6da4d46f46bc63af39ec1ea74, type: 3}
+      en: Proboscis Monkey
+      native: Nosacz Sundajski
+    answer0_Image: {fileID: 2800000, guid: f755d253046ae4e41a3216ffeadd2fe9, type: 3}
     answer1:
       en: Stork
       native: Bocian
     answer1_Image: {fileID: 2800000, guid: 25536916639c94149af2fa222c0b8218, type: 3}
     answer2:
-      en: Proboscis Monkey
-      native: Nosacz Sundajski
-    answer2_Image: {fileID: 2800000, guid: f755d253046ae4e41a3216ffeadd2fe9, type: 3}
+      en: White Eagle
+      native: "Orze\u0142 Bia\u0142y"
+    answer2_Image: {fileID: 2800000, guid: 23d7ebc6da4d46f46bc63af39ec1ea74, type: 3}
     answer3:
       en: Bear
       native: "Nied\u017Awied\u017A"
     answer3_Image: {fileID: 2800000, guid: 26f90dad46ee3aa479606f85fa842055, type: 3}
     useQuestionAnswer: 0
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 1
   - id: 05
     questionText:
@@ -171,12 +186,12 @@ MonoBehaviour:
       native: "Jaki jest g\u0142\xF3wny sk\u0142adnik polskiego powietrza zim\u0105?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Oxygen
-      native: Tlen
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Smog
       native: Smog
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Oxygen
+      native: Tlen
     answer1_Image: {fileID: 0}
     answer2:
       en: Lavender Scent
@@ -187,7 +202,7 @@ MonoBehaviour:
       native: Nadzieja
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 07
     questionText:
@@ -195,12 +210,12 @@ MonoBehaviour:
       native: "Zidentyfikuj t\u0119 fortyfikacj\u0119 taktyczn\u0105."
     questionVisual: {fileID: 2800000, guid: e5b4092b6373aa7419295d014527bb79, type: 3}
     answer0:
-      en: The Great Wall of China
-      native: "Wielki Mur Chi\u0144ski"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Parawaning
       native: Parawaning
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The Great Wall of China
+      native: "Wielki Mur Chi\u0144ski"
     answer1_Image: {fileID: 0}
     answer2:
       en: A refugee camp
@@ -211,7 +226,7 @@ MonoBehaviour:
       native: Sekcja VIP
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 08
     questionText:
@@ -219,12 +234,12 @@ MonoBehaviour:
       native: "Jeste\u015B w poci\u0105gu PKP. Co robisz jako pierwsze?"
     questionVisual: {fileID: 2800000, guid: 42c0342f5c5fe1f4c9810f491ab9250f, type: 3}
     answer0:
-      en: Read a book quietly
-      native: "Cicho czytasz ksi\u0105\u017Ck\u0119"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Take off your shoes and eat a hard-boiled egg
       native: Zdejmujesz buty i jesz jajko na twardo
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Read a book quietly
+      native: "Cicho czytasz ksi\u0105\u017Ck\u0119"
     answer1_Image: {fileID: 0}
     answer2:
       en: Drink water
@@ -235,7 +250,7 @@ MonoBehaviour:
       native: "W\u0142amujesz si\u0119 do systemu"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 09
     questionText:
@@ -243,12 +258,12 @@ MonoBehaviour:
       native: "Co dzieje si\u0119 o 21:37?"
     questionVisual: {fileID: 2800000, guid: bbca23be23f57524fad40d3d75a23d1e, type: 3}
     answer0:
-      en: Time to sleep
-      native: "Czas spa\u0107"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: We sing Barka
       native: "\u015Apiewamy Bark\u0119"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Time to sleep
+      native: "Czas spa\u0107"
     answer1_Image: {fileID: 0}
     answer2:
       en: Dinner time
@@ -259,7 +274,7 @@ MonoBehaviour:
       native: Nic specjalnego
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 10
     questionText:
@@ -267,12 +282,12 @@ MonoBehaviour:
       native: "Jakie jest g\u0142\xF3wne danie na Wigilii?"
     questionVisual: {fileID: 2800000, guid: 740deed082f686d4a93493d879077b9c, type: 3}
     answer0:
-      en: Turkey
-      native: Indyk
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Carp
       native: Karp
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Turkey
+      native: Indyk
     answer1_Image: {fileID: 0}
     answer2:
       en: Pizza
@@ -283,7 +298,7 @@ MonoBehaviour:
       native: "Pierogi z mi\u0119sem"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 11
     questionText:
@@ -291,12 +306,12 @@ MonoBehaviour:
       native: Jaki jest najbardziej polski dodatek do pizzy?
     questionVisual: {fileID: 0}
     answer0:
-      en: Pineapple
-      native: Ananas
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Garlic Sauce
       native: Sos czosnkowy
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Pineapple
+      native: Ananas
     answer1_Image: {fileID: 0}
     answer2:
       en: Pepperoni
@@ -307,7 +322,7 @@ MonoBehaviour:
       native: Oliwa
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 12
     questionText:
@@ -315,12 +330,12 @@ MonoBehaviour:
       native: "Co dzieje si\u0119 o p\xF3\u0142nocy na polskim weselu?"
     questionVisual: {fileID: 2800000, guid: 7ad3628e845803b488ccc0e4135b6897, type: 3}
     answer0:
-      en: The bride throws the bouquet
-      native: "Panna m\u0142oda rzuca bukietem"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Party game time (Oczepiny)
       native: Oczepiny
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The bride throws the bouquet
+      native: "Panna m\u0142oda rzuca bukietem"
     answer1_Image: {fileID: 0}
     answer2:
       en: Everyone goes home
@@ -331,7 +346,7 @@ MonoBehaviour:
       native: DJ gra techno
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 13
     questionText:
@@ -339,13 +354,13 @@ MonoBehaviour:
       native: "Kt\xF3ry to Kubota?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Chimney
-      native: Komin
-    answer0_Image: {fileID: 2800000, guid: 32de8a851f95d894fb5364f66fef4379, type: 3}
-    answer1:
       en: Kubota Slippers
       native: Klapki Kubota
-    answer1_Image: {fileID: 2800000, guid: 1743b84d396ccfb469daa205647f3923, type: 3}
+    answer0_Image: {fileID: 2800000, guid: 1743b84d396ccfb469daa205647f3923, type: 3}
+    answer1:
+      en: Chimney
+      native: Komin
+    answer1_Image: {fileID: 2800000, guid: 32de8a851f95d894fb5364f66fef4379, type: 3}
     answer2:
       en: Bridge
       native: Most
@@ -355,7 +370,7 @@ MonoBehaviour:
       native: Galaretka
     answer3_Image: {fileID: 2800000, guid: 04161924f03fc0348a8ccc18b6c89439, type: 3}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 1
   - id: 14
     questionText:
@@ -363,23 +378,23 @@ MonoBehaviour:
       native: "Co Polacy trzymaj\u0105 w torbie pe\u0142nej toreb?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Old documents
-      native: Stare dokumenty
+      en: More plastic bags
+      native: "Wi\u0119cej reklam\xF3wek"
     answer0_Image: {fileID: 0}
     answer1:
       en: Christmas decorations
       native: "Ozdoby \u015Bwi\u0105teczne"
     answer1_Image: {fileID: 0}
     answer2:
-      en: More plastic bags
-      native: "Wi\u0119cej reklam\xF3wek"
+      en: Old documents
+      native: Stare dokumenty
     answer2_Image: {fileID: 0}
     answer3:
       en: Shoes
       native: Buty
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 15
     questionText:
@@ -389,12 +404,12 @@ MonoBehaviour:
         nie ma tego filmu."
     questionVisual: {fileID: 2800000, guid: 184b02613eeb76e499a044a8bf034471, type: 3}
     answer0:
-      en: Die Hard
-      native: "Szklana Pu\u0142apka"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Home Alone
       native: Kevin Sam w Domu
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Die Hard
+      native: "Szklana Pu\u0142apka"
     answer1_Image: {fileID: 0}
     answer2:
       en: Titanic
@@ -405,7 +420,7 @@ MonoBehaviour:
       native: Shrek
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 16
     questionText:
@@ -413,23 +428,23 @@ MonoBehaviour:
       native: "Doko\u0144cz nazwisko: Grzegorz Brz\u0119czyszczy..."
     questionVisual: {fileID: 0}
     answer0:
-      en: ...kowalski
-      native: ...kowalski
+      en: ...kiewicz
+      native: ...kiewicz
     answer0_Image: {fileID: 0}
     answer1:
       en: ...niewicz
       native: ...niewicz
     answer1_Image: {fileID: 0}
     answer2:
-      en: ...kiewicz
-      native: ...kiewicz
+      en: ...kowalski
+      native: ...kowalski
     answer2_Image: {fileID: 0}
     answer3:
       en: ...brzyk
       native: ...brzyk
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 17
     questionText:
@@ -437,12 +452,12 @@ MonoBehaviour:
       native: "Kim jest ten m\u0119\u017Cczyzna?"
     questionVisual: {fileID: 2800000, guid: a42f6e728c2b3d04984f0fe29f9f72e1, type: 3}
     answer0:
-      en: Marcin Najman
-      native: Marcin Najman
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Pudzian
       native: Pudzian
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Marcin Najman
+      native: Marcin Najman
     answer1_Image: {fileID: 0}
     answer2:
       en: Popek Monster
@@ -453,7 +468,7 @@ MonoBehaviour:
       native: "Andrzej Go\u0142ota"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 18
     questionText:
@@ -461,12 +476,12 @@ MonoBehaviour:
       native: Do tego miasta potrzebujesz paszportu.
     questionVisual: {fileID: 2800000, guid: afc966eefadbf7448be1ed68d73d522b, type: 3}
     answer0:
-      en: Warsaw
-      native: Warszawa
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Sosnowiec
       native: Sosnowiec
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Warsaw
+      native: Warszawa
     answer1_Image: {fileID: 0}
     answer2:
       en: "Krak\xF3w"
@@ -477,7 +492,7 @@ MonoBehaviour:
       native: "Gda\u0144sk"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 19
     questionText:
@@ -485,23 +500,23 @@ MonoBehaviour:
       native: Co to za budynek w Warszawie?
     questionVisual: {fileID: 2800000, guid: aa44b5eba647ae8408e9725e89125e3d, type: 3}
     answer0:
-      en: The Prudential
-      native: Prudential
+      en: Palace of Culture and Science
+      native: "Pa\u0142ac Kultury i Nauki"
     answer0_Image: {fileID: 0}
     answer1:
       en: Stalin's Rocket
       native: Rakieta Stalina
     answer1_Image: {fileID: 0}
     answer2:
-      en: Palace of Culture and Science
-      native: "Pa\u0142ac Kultury i Nauki"
+      en: The Prudential
+      native: Prudential
     answer2_Image: {fileID: 0}
     answer3:
       en: "Z\u0142ota 44"
       native: "Z\u0142ota 44"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 20
     questionText:
@@ -509,12 +524,12 @@ MonoBehaviour:
       native: Kim jest ten bohater narodowy?
     questionVisual: {fileID: 2800000, guid: 6e521e02bb3a4a94aa5fb92e84573259, type: 3}
     answer0:
-      en: Robert Kubica
-      native: Robert Kubica
-    answer0_Image: {fileID: 0}
-    answer1:
       en: "Adam Ma\u0142ysz"
       native: "Adam Ma\u0142ysz"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Robert Kubica
+      native: Robert Kubica
     answer1_Image: {fileID: 0}
     answer2:
       en: "Lech Wa\u0142\u0119sa"
@@ -525,21 +540,21 @@ MonoBehaviour:
       native: Super Mario
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 21
     questionText:
-      en: You are at a party. Someone yells Bitter, bitter!. What happens?
+      en: You are at a party. Someone yells Bitter, bitter! What happens?
       native: "Jeste\u015B na weselu. Kto\u015B krzyczy Gorzko, gorzko!. Co si\u0119
         dzieje?"
     questionVisual: {fileID: 2800000, guid: 40f6c07c6e4bf2048bf4c5a16bc74854, type: 3}
     answer0:
-      en: The vodka is bad
-      native: "W\xF3dka jest niedobra"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: The Bride and Groom must kiss
       native: "Para M\u0142oda musi si\u0119 ca\u0142owa\u0107"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The vodka is bad
+      native: "W\xF3dka jest niedobra"
     answer1_Image: {fileID: 0}
     answer2:
       en: A fight starts
@@ -550,7 +565,7 @@ MonoBehaviour:
       native: "Wszyscy wychodz\u0105"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 22
     questionText:
@@ -582,12 +597,12 @@ MonoBehaviour:
       native: "Robisz kanapk\u0119 na kolacj\u0119. Ilu kromek chleba u\u017Cywasz?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Two (Top and Bottom)
-      native: "Dwie (G\xF3ra i d\xF3\u0142)"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: One (Open Faced)
       native: Jedna (Otwarta)
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Two (Top and Bottom)
+      native: "Dwie (G\xF3ra i d\xF3\u0142)"
     answer1_Image: {fileID: 0}
     answer2:
       en: Three (BigMac style)
@@ -598,7 +613,7 @@ MonoBehaviour:
       native: "Do kanapek nie u\u017Cywa si\u0119 chleba"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 24
     questionText:
@@ -608,23 +623,23 @@ MonoBehaviour:
         Co to?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Crocs
-      native: Crocsy
-    answer0_Image: {fileID: 2800000, guid: bbb892429af606a4f9293fb1052fd969, type: 3}
+      en: Socks with Sandals
+      native: "Skarpety i Sanda\u0142y"
+    answer0_Image: {fileID: 2800000, guid: a037a359a63c48448bf944cca90049cd, type: 3}
     answer1:
       en: Ripped Jeans
       native: "Podarte D\u017Cinsy"
     answer1_Image: {fileID: 2800000, guid: ed4a2fc66ac3326439d4254d647cbdb4, type: 3}
     answer2:
-      en: Socks with Sandals
-      native: "Skarpety i Sanda\u0142y"
-    answer2_Image: {fileID: 2800000, guid: a037a359a63c48448bf944cca90049cd, type: 3}
+      en: Crocs
+      native: Crocsy
+    answer2_Image: {fileID: 2800000, guid: bbb892429af606a4f9293fb1052fd969, type: 3}
     answer3:
       en: Small Bag
       native: Saszetka
     answer3_Image: {fileID: 2800000, guid: db7c222e7c0449141b1991aef40335ec, type: 3}
     useQuestionAnswer: 0
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 1
   - id: 25
     questionText:
@@ -632,12 +647,12 @@ MonoBehaviour:
       native: Jakie jest najniebezpieczniejsze pytanie polskiej babci?
     questionVisual: {fileID: 2800000, guid: 8a0e81bea75bfee45bc2eb64d4946bd8, type: 3}
     answer0:
-      en: Do you have a girlfriend?
-      native: "Masz dziewczyn\u0119?"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Are you hungry?
       native: "Jeste\u015B g\u0142odny?"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Do you have a girlfriend?
+      native: "Masz dziewczyn\u0119?"
     answer1_Image: {fileID: 0}
     answer2:
       en: When will you find a job?
@@ -648,7 +663,7 @@ MonoBehaviour:
       native: "Chodzisz do ko\u015Bcio\u0142a?"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 26
     questionText:
@@ -680,12 +695,12 @@ MonoBehaviour:
       native: "Jaka jest g\u0142\xF3wna funkcja kaloryfera?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Heating the room
-      native: Ogrzewanie pokoju
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Drying mushrooms and socks
       native: "Suszenie grzyb\xF3w i skarpet"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Heating the room
+      native: Ogrzewanie pokoju
     answer1_Image: {fileID: 0}
     answer2:
       en: Decoration
@@ -696,7 +711,7 @@ MonoBehaviour:
       native: "Robi ha\u0142as"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 28
     questionText:
@@ -704,23 +719,23 @@ MonoBehaviour:
       native: "Kt\xF3ra z tych zup NIE jest prawdziw\u0105 polsk\u0105 zup\u0105?"
     questionVisual: {fileID: 2800000, guid: 9cdc44eebf381a0408d7652117913744, type: 3}
     answer0:
-      en: Czernina (Blood Soup)
-      native: Czernina (Zupa z krwi)
+      en: Chocolate Soup (Zupa Czekoladowa)
+      native: Zupa Czekoladowa
     answer0_Image: {fileID: 0}
     answer1:
-      en: Flaki (Guts Soup)
+      en: Guts Soup (Flaki )
       native: Flaki
     answer1_Image: {fileID: 0}
     answer2:
-      en: Chocolate Soup
-      native: Zupa Czekoladowa
+      en: Blood Soup (Czernina )
+      native: Czernina
     answer2_Image: {fileID: 0}
     answer3:
       en: Fruit Soup (Zupa Owocowa)
       native: Zupa Owocowa
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 29
     questionText:
@@ -728,12 +743,12 @@ MonoBehaviour:
       native: "Jak w Polsce leczy si\u0119 przezi\u0119bienie?"
     questionVisual: {fileID: 2800000, guid: a4f56784cab244a4e82f98ac097043e8, type: 3}
     answer0:
-      en: Go to the doctor
-      native: Idziesz do lekarza
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Tea with raspberry juice and spiritus
       native: Herbata z sokiem malinowym i spirytusem
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Go to the doctor
+      native: Idziesz do lekarza
     answer1_Image: {fileID: 0}
     answer2:
       en: Antibiotics immediately
@@ -744,7 +759,7 @@ MonoBehaviour:
       native: "Wy\u015Bpij to"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 30
     questionText:
@@ -776,8 +791,8 @@ MonoBehaviour:
       native: "Wybierz poprawn\u0105 odpowied\u017A: Na zdrowie!"
     questionVisual: {fileID: 0}
     answer0:
-      en: Thank you!
-      native: "Dzi\u0119kuj\u0119!"
+      en: Cheers!
+      native: "Dzi\u0119ki!"
     answer0_Image: {fileID: 0}
     answer1:
       en: Hello!
@@ -788,11 +803,11 @@ MonoBehaviour:
       native: ...Panie i Panowie!
     answer2_Image: {fileID: 0}
     answer3:
-      en: Cheers!
-      native: "Dzi\u0119ki!"
+      en: Thank you!
+      native: "Dzi\u0119kuj\u0119!"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 03000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 32
     questionText:
@@ -800,12 +815,12 @@ MonoBehaviour:
       native: "Nazwa sklepu \u017Babka dos\u0142ownie oznacza:"
     questionVisual: {fileID: 2800000, guid: 0ea7e531ea41cb646947a591a5d3829d, type: 3}
     answer0:
-      en: The Swamp
-      native: Bagno
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Little Frog
       native: "Ma\u0142a \u017Baba"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The Swamp
+      native: Bagno
     answer1_Image: {fileID: 0}
     answer2:
       en: Green Market
@@ -816,7 +831,7 @@ MonoBehaviour:
       native: Szybkie Zakupy
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 33
     questionText:
@@ -848,12 +863,12 @@ MonoBehaviour:
       native: "Wska\u017C polski Sport Narodowy (poza pi\u0142k\u0105 no\u017Cn\u0105)."
     questionVisual: {fileID: 0}
     answer0:
-      en: Tennis
-      native: Tenis
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Ski Jumping
       native: Skoki Narciarskie
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Tennis
+      native: Tenis
     answer1_Image: {fileID: 0}
     answer2:
       en: Cricket
@@ -864,7 +879,7 @@ MonoBehaviour:
       native: Baseball
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 35
     questionText:
@@ -896,23 +911,23 @@ MonoBehaviour:
       native: "Doko\u0144cz fraz\u0119: Kurwa..."
     questionVisual: {fileID: 0}
     answer0:
-      en: ...is a bad word
-      native: "...to z\u0142e s\u0142owo"
+      en: "...ma\u0107!"
+      native: "...ma\u0107!"
     answer0_Image: {fileID: 0}
     answer1:
       en: ...means curve
       native: "...oznacza zakr\u0119t"
     answer1_Image: {fileID: 0}
     answer2:
-      en: "...ma\u0107!"
-      native: "...ma\u0107!"
+      en: ...is a bad word
+      native: "...to z\u0142e s\u0142owo"
     answer2_Image: {fileID: 0}
     answer3:
       en: ...no!
       native: ...nie!
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 37
     questionText:
@@ -920,12 +935,12 @@ MonoBehaviour:
       native: Jaka jest najstraszniejsza litera w polskim alfabecie?
     questionVisual: {fileID: 2800000, guid: 402d9fc2b102d5d4f9c44613caa59eaf, type: 3}
     answer0:
-      en: Z
-      native: Z
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Sz
       native: Sz
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Z
+      native: Z
     answer1_Image: {fileID: 0}
     answer2:
       en: A
@@ -936,7 +951,7 @@ MonoBehaviour:
       native: O
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 38
     questionText:
@@ -968,12 +983,12 @@ MonoBehaviour:
       native: Co robisz gdy kierowca autobusu klaszcze?
     questionVisual: {fileID: 0}
     answer0:
-      en: Clap with him
-      native: Klaszczesz z nim
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Check if your ticket is valid
       native: Sprawdzasz bilet
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Clap with him
+      native: Klaszczesz z nim
     answer1_Image: {fileID: 0}
     answer2:
       en: Dance
@@ -984,7 +999,7 @@ MonoBehaviour:
       native: Uciekasz
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 40
     questionText:
@@ -992,23 +1007,23 @@ MonoBehaviour:
       native: "Kt\xF3re miasto s\u0142ynie z mechanicznych kozio\u0142k\xF3w na zegarze?"
     questionVisual: {fileID: 2800000, guid: 99db5da956c83784297ff87ff5f4e9a1, type: 3}
     answer0:
-      en: Warsaw
-      native: Warszawa
+      en: "Pozna\u0144"
+      native: "Pozna\u0144"
     answer0_Image: {fileID: 0}
     answer1:
       en: "Krak\xF3w"
       native: "Krak\xF3w"
     answer1_Image: {fileID: 0}
     answer2:
-      en: "Pozna\u0144"
-      native: "Pozna\u0144"
+      en: Warsaw
+      native: Warszawa
     answer2_Image: {fileID: 0}
     answer3:
       en: "Gda\u0144sk"
       native: "Gda\u0144sk"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 41
     questionText:
@@ -1040,12 +1055,12 @@ MonoBehaviour:
       native: "Przet\u0142umacz: Nie m\xF3j cyrk, nie moje ma\u0142py."
     questionVisual: {fileID: 0}
     answer0:
-      en: Stop acting like a clown
-      native: "Przesta\u0144 b\u0142aznowa\u0107"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: Not my problem
       native: "To nie m\xF3j problem"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Stop acting like a clown
+      native: "Przesta\u0144 b\u0142aznowa\u0107"
     answer1_Image: {fileID: 0}
     answer2:
       en: This is a huge mess
@@ -1056,7 +1071,7 @@ MonoBehaviour:
       native: "Daj mi spok\xF3j"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 43
     questionText:
@@ -1064,8 +1079,8 @@ MonoBehaviour:
       native: "Jaki jest najwa\u017Cniejszy mebel w polskim domu?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Sofa
-      native: Sofa
+      en: Trash bin under the sink
+      native: "Kosz na \u015Bmieci pod zlewem"
     answer0_Image: {fileID: 0}
     answer1:
       en: Bed
@@ -1076,11 +1091,11 @@ MonoBehaviour:
       native: "St\xF3\u0142"
     answer2_Image: {fileID: 0}
     answer3:
-      en: Trash bin under the sink
-      native: "Kosz na \u015Bmieci pod zlewem"
+      en: Sofa
+      native: Sofa
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 03000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 44
     questionText:
@@ -1088,12 +1103,12 @@ MonoBehaviour:
       native: "Dlaczego Polacy klaszcz\u0105 po wyl\u0105dowaniu samolotu?"
     questionVisual: {fileID: 2800000, guid: 5c0ae1f17a97b3646b13d59d46097485, type: 3}
     answer0:
-      en: They are happy to be alive
-      native: "Ciesz\u0105 si\u0119 \u017Ce \u017Cyj\u0105"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: To thank the pilot
       native: "\u017Beby podzi\u0119kowa\u0107 pilotowi"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: They are happy to be alive
+      native: "Ciesz\u0105 si\u0119 \u017Ce \u017Cyj\u0105"
     answer1_Image: {fileID: 0}
     answer2:
       en: It is a rule
@@ -1104,7 +1119,7 @@ MonoBehaviour:
       native: Zobaczyli ptaka
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 45
     questionText:
@@ -1136,23 +1151,23 @@ MonoBehaviour:
       native: "Kiedy jest T\u0142usty Czwartek?"
     questionVisual: {fileID: 2800000, guid: 11abfd8b315b6be498eb1a7dfc7af678, type: 3}
     answer0:
-      en: Every Thursday
-      native: "W ka\u017Cdy czwartek"
+      en: Before Lent (Last Thursday of Carnival)
+      native: "Przed Postem (Ostatni czwartek karnawa\u0142u)"
     answer0_Image: {fileID: 0}
     answer1:
       en: Before Easter
       native: "Przed Wielkanoc\u0105"
     answer1_Image: {fileID: 0}
     answer2:
-      en: Before Lent (Last Thursday of Carnival)
-      native: "Przed Postem (Ostatni czwartek karnawa\u0142u)"
+      en: Every Thursday
+      native: "W ka\u017Cdy czwartek"
     answer2_Image: {fileID: 0}
     answer3:
       en: When schools are closed on Summer
       native: "Kiedy szko\u0142y s\u0105 zamkni\u0119te latem"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 02000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 47
     questionText:
@@ -1160,12 +1175,12 @@ MonoBehaviour:
       native: "Co to jest Hejna\u0142 Mariacki?"
     questionVisual: {fileID: 0}
     answer0:
-      en: A type of sausage
-      native: "Rodzaj kie\u0142basy"
-    answer0_Image: {fileID: 0}
-    answer1:
       en: "A trumpet signal played every hour in Krak\xF3w"
       native: "Sygna\u0142 z tr\u0105bki grany co godzin\u0119 w Krakowie"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: A type of sausage
+      native: "Rodzaj kie\u0142basy"
     answer1_Image: {fileID: 0}
     answer2:
       en: A famous painting
@@ -1176,7 +1191,7 @@ MonoBehaviour:
       native: "Przy\u015Bpiewka pi\u0142karska"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
-    correctIndices: 01000000
+    correctIndices: 00000000
     useImageAnswers: 0
   - id: 48
     questionText:
@@ -1208,8 +1223,8 @@ MonoBehaviour:
       native: "Jak witasz si\u0119 w Polsce?"
     questionVisual: {fileID: 2800000, guid: 780cd2cc1efba234bb1567aa7d12a573, type: 3}
     answer0:
-      en: Handshake
-      native: "U\u015Bcisk d\u0142oni"
+      en: All of them
+      native: Wszystkie
     answer0_Image: {fileID: 0}
     answer1:
       en: Kiss on the cheek (3 times)
@@ -1220,11 +1235,11 @@ MonoBehaviour:
       native: "Skinienie g\u0142ow\u0105"
     answer2_Image: {fileID: 0}
     answer3:
-      en: All of them
-      native: Wszystkie
+      en: Handshake
+      native: "U\u015Bcisk d\u0142oni"
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
-    correctIndices: 03000000
+    correctIndices: 00000000
     useImageAnswers: 0
   tiers:
   - title:
