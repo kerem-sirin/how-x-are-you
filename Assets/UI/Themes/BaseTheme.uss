@@ -62,22 +62,38 @@ Label {
     background-color: var(--theme-bg);
 }
 
+#Header_Box {
+    /* 1. Geometry & Layout */
+    width: 100%;
+    margin-bottom: 80px;
+    padding: 30px;
+    
+    /* 2. Visuals (Background & Border) */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    border-width: 2px;
+    border-color: var(--theme-accent);
+
+    /* 3. Helper to center the label inside */
+    justify-content: center;
+    align-items: center;
+}
+
 #Lbl_Title {
+    /* Typography Only */
     font-size: 60px;
     color: var(--text-main);
     -unity-text-align: middle-center;
     white-space: normal;
     
-    /* Generic shadow works with any color */
+    /* Shadows stay on the text */
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1); 
     
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-lg);
-    padding: 30px;
-    width: 100%;
-    margin-bottom: 80px;
-    border-width: 2px;
-    border-color: var(--theme-accent);
+    /* Reset margins since the Box handles spacing now */
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0,0,0,0);
+    border-width: 0;
 }
 
 #Container_Menu Button {

@@ -20,10 +20,12 @@ namespace HowX.Data
         [Header("Import Settings")]
         public TextAsset quizCsvFile;
         public TextAsset tierCsvFile;
+        public TextAsset uiCsvFile;
 
         public string imageLibraryPath => $"Assets/Data/{folderName}/Images/";
 
         [Header("Game Data")]
+        public UIData uiData = new UIData();
         public List<QuestionData> questions = new List<QuestionData>();
         public List<TierData> tiers = new List<TierData>();
     }
