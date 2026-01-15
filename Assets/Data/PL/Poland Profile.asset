@@ -31,8 +31,8 @@ MonoBehaviour:
       en: English
       native: Polski
     titleTemplate:
-      en: How {0} Are You?
-      native: "Jak bardzo {0} jeste\u015B?"
+      en: How Polish Are You?
+      native: "Jak bardzo jeste\u015B Polakiem?"
     flagIcon: {fileID: 2800000, guid: faac1c0fb68fbd346850e7a2dd9d8301, type: 3}
   questions:
   - id: 00
