@@ -237,9 +237,9 @@ namespace HowX.Core
             // 1. Dynamic Title
             if (titleLabel != null)
             {
-                string format = currentProfile.uiData.titleTemplate?.Get(isNativeLanguage);
+                string text = currentProfile.uiData.titleTemplate?.Get(isNativeLanguage);
 
-                if (string.IsNullOrEmpty(format))
+                if (string.IsNullOrEmpty(text))
                 {
                     titleLabel.text = MISSING_TEXT;
                 }
@@ -247,7 +247,7 @@ namespace HowX.Core
                 {
                     try
                     {
-                        titleLabel.text = string.Format(format, currentProfile.countryAdjective);
+                        titleLabel.text = text;
                     }
                     catch
                     {
