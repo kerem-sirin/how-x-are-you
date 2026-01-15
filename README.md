@@ -6,12 +6,13 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-WebGL-blue)
 
-<!-- 
-Add your screenshots here:
-![Menu Screenshot](Screenshots/menu.png)
-![Quiz Screenshot](Screenshots/quiz.png)
-![Result Screenshot](Screenshots/result.png)
--->
+
+<p align="center">
+  <img src="Screenshots/menu.png" alt="Menu Screenshot" width="200">
+  <img src="Screenshots/quiz.png" alt="Quiz Screenshot" width="200">
+  <img src="Screenshots/result.png" alt="Result Screenshot" width="200">
+</p>
+
 
 ---
 
