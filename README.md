@@ -6,13 +6,12 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-WebGL-blue)
 
-
+<!-- Add your screenshots here -->
 <p align="center">
   <img src="Screenshots/menu.png" alt="Menu Screenshot" width="200">
   <img src="Screenshots/quiz.png" alt="Quiz Screenshot" width="200">
   <img src="Screenshots/result.png" alt="Result Screenshot" width="200">
 </p>
-
 
 ---
 
@@ -31,7 +30,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 ## 🎮 Play Now
 
-> 🔗 **[Play on itch.io](https://bluebuckgames.itch.io/how-polish-are-you)**
+> 🔗 **[Play on itch.io](https://YOUR_USERNAME.itch.io/how-x-are-you)**
 
 ---
 
@@ -298,10 +297,23 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
+## 🎵 Music Credits
+
+Music by [Kevin MacLeod](https://incompetech.com)  
+Licensed under [Creative Commons: By Attribution 4.0](http://creativecommons.org/licenses/by/4.0/)
+
+| Track | Usage |
+|-------|-------|
+| "Cloud Dancer" | Menu Music |
+| "Journey To Ascend" | Quiz Music |
+| "Sergio's Magic Dustbin" | Result Music |
+
+---
+
 ## 📬 Contact
 
-- **itch.io:** [Bluebuck](https://bluebuckgames.itch.io/)
-- **GitHub:** [@kerem-sirin](https://github.com/kerem-sirin)
+- **itch.io:** [YOUR_USERNAME](https://YOUR_USERNAME.itch.io)
+- **GitHub:** [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
 
 ---
 
