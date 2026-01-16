@@ -12,11 +12,11 @@ namespace HowX.Core
         [Header("Music Clips")]
         [SerializeField] private AudioClip menuMusic;
         [SerializeField] private AudioClip quizMusic;
+        [SerializeField] private AudioClip resultMusic;
 
         [Header("SFX Clips")]
         [SerializeField] private AudioClip clickSound;
         [SerializeField] private AudioClip hoverSound;
-        [SerializeField] private AudioClip resultSound;
         [SerializeField] private AudioClip whooshSound;
 
         // Store default values for reset
@@ -66,18 +66,7 @@ namespace HowX.Core
         // --- Event Handlers ---
         private void PlayMenuMusic() => PlayMusic(menuMusic);
         private void PlayQuizMusic() => PlayMusic(quizMusic);
-
-        private void PlayGameEnd()
-        {
-            StopMusic();
-
-            // Play result sound through musicSource since it's now idle
-            // This avoids any pitch/volume state issues with sfxSource
-            if (resultSound != null && musicSource != null)
-            {
-                musicSource.PlayOneShot(resultSound);
-            }
-        }
+        private void PlayGameEnd() => PlayMusic(resultMusic);
 
         private void PlayClick() => PlayRandomizedSFX(clickSound);
         private void PlayHover() => PlayRandomizedSFX(hoverSound);
@@ -138,12 +127,6 @@ namespace HowX.Core
                 musicSource.loop = true;
                 musicSource.Play();
             }
-        }
-
-        private void StopMusic()
-        {
-            if (musicSource != null)
-                musicSource.Stop();
         }
     }
 }
