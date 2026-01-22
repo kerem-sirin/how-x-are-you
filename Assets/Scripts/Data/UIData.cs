@@ -10,7 +10,7 @@ namespace HowX.Data
         public LocalizedText btnRestart;
         public LocalizedText btnLang;
 
-        // Title Template: "How {0} Are You?"
+        // Title Template: "How (name) Are You?"
         public LocalizedText titleTemplate;
 
         // Dynamic Flag

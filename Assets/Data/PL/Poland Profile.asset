@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1876d1f63a248ff4e94560d628feca92, type: 3}
   m_Name: Poland Profile
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuizProfile
-  countryName: Poland
-  countryAdjective: Polish
-  nativeLanguageName: Polski
   folderName: PL
   backgroundImage: {fileID: 0}
   quizCsvFile: {fileID: 4900000, guid: 3579401337c2b4343b843bbb80ac7c3d, type: 3}
   tierCsvFile: {fileID: 4900000, guid: c4037fb61819aa144ad6d5ef2a366f77, type: 3}
   uiCsvFile: {fileID: 4900000, guid: 9be544a419cdcde4eb9e3ec43fcdf503, type: 3}
+  quizSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?usp=sharing
+  tierSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=2099088389#gid=2099088389
+  uiSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1316458360#gid=1316458360
   uiData:
     btnStart:
       en: Start Game
@@ -1237,6 +1237,78 @@ MonoBehaviour:
     answer3:
       en: Handshake
       native: "U\u015Bcisk d\u0142oni"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 50
+    questionText:
+      en: Who controls the weather in Poland?
+      native: "Kto steruje pogod\u0105 w Polsce?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Donald Tusk
+      native: Donald Tusk
+    answer0_Image: {fileID: 2800000, guid: 472264d3770b3194094e5fcfafca4170, type: 3}
+    answer1:
+      en: Storm (X-Men)
+      native: Storm (X-Men)
+    answer1_Image: {fileID: 2800000, guid: 1d43b800bc732fb43a2d1794f016fbda, type: 3}
+    answer2:
+      en: Ciri (The Witcher)
+      native: "Ciri (Wied\u017Amin)"
+    answer2_Image: {fileID: 2800000, guid: ed1c8ef915d85054cba3b29d64e6bf06, type: 3}
+    answer3:
+      en: The Meteorologist
+      native: Pogodynka
+    answer3_Image: {fileID: 2800000, guid: 3abe16a3c8b836e4bb48e3dccacb5e72, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 51
+    questionText:
+      en: What is the deadliest invisible force known to Poles?
+      native: "Jaka jest najbardziej \u015Bmiertelna niewidzialna si\u0142a?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: The Draft
+      native: "Przeci\u0105g"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Carbon Monoxide
+      native: Czad
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: WiFi Signals
+      native: "Sygna\u0142 WiFi"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Silence
+      native: Cisza
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 52
+    questionText:
+      en: What is the true national sport of Polish autumn?
+      native: Jaki jest prawdziwy sport narodowy polskiej jesieni?
+    questionVisual: {fileID: 2800000, guid: 7f441e69c36e1cb4aabd625a50934a13, type: 3}
+    answer0:
+      en: Mushroom Picking
+      native: Grzybobranie
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Leaf Raking
+      native: "Grabienie li\u015Bci"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Complaining about rain
+      native: Narzekanie na deszcz
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Umbrella Wrestling
+      native: Zapasy z parasolem
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
     correctIndices: 00000000

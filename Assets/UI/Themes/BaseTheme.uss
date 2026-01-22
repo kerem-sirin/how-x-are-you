@@ -47,15 +47,19 @@ Label {
 #Container_Menu {
     justify-content: flex-start;
     align-items: center;
-    padding-top: 20%;
-    padding-bottom: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 5%;
+}
+
+.container-menu-zone {
+    width: 100%;
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
 }
 
 #Header_Box {
     width: 100%;
-    margin-bottom: 80px;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0);
     justify-content: center;
@@ -85,7 +89,7 @@ Label {
     max-width: 500px;
     height: 85px;
     margin-bottom: 40px;
-    font-size: 36px;
+    font-size: 48px;
 }
 
 #Container_Quiz {
@@ -114,7 +118,7 @@ Label {
 }
 
 #Lbl_QuestionText {
-    font-size: 38px;
+    font-size: 52px;
     width: 100%;
     white-space: normal;
     -unity-text-align: middle-center;
@@ -141,7 +145,7 @@ Button {
     background-color: rgba(0, 0, 0, 0);
     border-width: 0;
     border-color: rgba(0, 0, 0, 0);
-    font-size: 28px;
+    font-size: 48px;
     padding-left: 24px;
     padding-right: 24px;
     text-shadow: none;
@@ -228,7 +232,7 @@ Button:active Label {
 }
 
 #Lbl_ResultDesc {
-    font-size: 24px;
+    font-size: 40px;
     margin-bottom: 20px;
     white-space: normal;
     -unity-text-align: middle-center;

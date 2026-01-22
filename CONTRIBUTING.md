@@ -32,11 +32,8 @@ git clone https://github.com/YOUR_USERNAME/how-x-are-you
 
 ```
 Assets/Data/XX/           # Use ISO 3166-1 alpha-2 code (JP, DE, BR, etc.)
-├── Images/
-│   └── Flag.png          # Country flag (any size, will be scaled)
-├── How X Are You - XX Quiz.csv
-├── How X Are You - XX Tier.csv
-└── How X Are You - XX UI.csv
+└── Images/
+    └── Flag.png          # Country flag (any size, will be scaled)
 ```
 
 #### 3. Use the Google Sheet Template
@@ -45,11 +42,85 @@ Assets/Data/XX/           # Use ISO 3166-1 alpha-2 code (JP, DE, BR, etc.)
 
 1. Open the template (contains Polish example data)
 2. **File → Make a copy** to your own Google Drive
-3. Rename tabs from `PL` to your country code (e.g., `JP Quiz`, `JP Tier`, `JP UI`)
-4. Replace content with your country's data
-5. Export each tab: **File → Download → Comma-separated values (.csv)**
+3. Rename your copy to match your country (e.g., "How X Are You - Japan")
+4. Replace content with your country's data in all 3 tabs: **Quiz**, **Tier**, **UI**
 
-#### 4. Questions CSV Format
+---
+
+## 📊 Importing Data: Two Methods
+
+You can import data either via **Google Sheets URLs** (recommended) or **local CSV files**.
+
+### Method 1: Google Sheets Import (Recommended) 🌐
+
+This method imports directly from your Google Sheet — no need to download CSV files!
+
+#### Step 1: Make Your Sheet Public
+
+1. Open your Google Sheet
+2. Click **Share** (top-right)
+3. Change access to **"Anyone with the link"** → **Viewer**
+4. Click **Done**
+
+#### Step 2: Get Tab URLs with GIDs
+
+Each tab in Google Sheets has a unique **GID** (tab identifier). You need the URL for each tab.
+
+**How to find the GID:**
+
+1. Click on the tab you want (Quiz, Tier, or UI)
+2. Look at the URL in your browser:
+   ```
+   https://docs.google.com/spreadsheets/d/1abc123xyz/edit#gid=0
+                                                           ↑↑↑
+                                                        This is the GID
+   ```
+3. Copy the **full URL** including the `gid=` parameter
+
+**Example URLs:**
+| Tab | Example URL |
+|-----|-------------|
+| Quiz | `https://docs.google.com/spreadsheets/d/1abc.../edit#gid=0` |
+| Tier | `https://docs.google.com/spreadsheets/d/1abc.../edit#gid=123456789` |
+| UI | `https://docs.google.com/spreadsheets/d/1abc.../edit#gid=987654321` |
+
+> 💡 **Tip:** The first tab usually has `gid=0`. Other tabs have longer numeric GIDs.
+
+#### Step 3: Import in Unity
+
+1. Open your **QuizProfile** ScriptableObject
+2. Paste the URLs into the **Google Sheets URLs** section:
+   - Quiz Sheet URL
+   - Tier Sheet URL
+   - UI Sheet URL
+3. Click the corresponding **Import (Google Sheets)** buttons:
+   - **IMPORT QUESTIONS (Google Sheets)** — Green button
+   - **IMPORT TIERS (Google Sheets)** — Cyan button
+   - **IMPORT UI & FLAGS (Google Sheets)** — Yellow button
+4. Click **VALIDATE PROFILE** to check for errors
+
+---
+
+### Method 2: Local CSV Import 📁
+
+If you prefer working with local files:
+
+1. Export each tab from Google Sheets: **File → Download → Comma-separated values (.csv)**
+2. Save CSV files to your country folder:
+   ```
+   Assets/Data/XX/
+   ├── How X Are You - XX Quiz.csv
+   ├── How X Are You - XX Tier.csv
+   └── How X Are You - XX UI.csv
+   ```
+3. In Unity, assign CSV files to the **Import from CSV** section
+4. Click the corresponding **Import (CSV)** buttons
+
+---
+
+## 📋 Data Format Reference
+
+### Questions (Quiz Tab)
 
 | Column | Required | Notes |
 |--------|----------|-------|
@@ -70,7 +141,7 @@ Assets/Data/XX/           # Use ISO 3166-1 alpha-2 code (JP, DE, BR, etc.)
 - Avoid controversial political topics
 - Use images for visual variety
 
-#### 5. Prepare Tiers CSV
+### Tiers (Tier Tab)
 
 Create 8 tiers with increasing `MaxPercent` values:
 
@@ -90,46 +161,72 @@ Create 8 tiers with increasing `MaxPercent` values:
 - Subtitles should be short catchphrases
 - Descriptions can be longer and playful
 
-#### 6. Prepare UI CSV
+### UI Strings (UI Tab)
 
-```csv
-Key,EN,Native
-btn_start,Start Game,[Native translation]
-btn_restart,Try Again,[Native translation]
-btn_lang,English,[Native language name]
-title_template,How {0} Are You?,[Native equivalent with {0} placeholder]
-```
+| Key | EN | Native |
+|-----|-----|--------|
+| btn_start | Start Game | [Native translation] |
+| btn_restart | Try Again | [Native translation] |
+| btn_lang | English | [Native language name] |
+| title_template | How Polish Are You? | [Full title in native language] |
 
-#### 7. Add Images
+> 💡 **Note:** The `title_template` should be the complete title, not a template with placeholders.
 
-**Naming Convention:**
-- Question images: `Q_00.png`, `Q_01.png`, etc.
-- Answer images: `Q_00_00.png`, `Q_00_01.png`, etc.
-- Flag: `Flag.png`
+---
 
-**Image Guidelines:**
-- Format: PNG (transparency supported)
-- Size: No strict requirement (scaled in UI)
-- Content: Family-friendly, no copyrighted material
+## 🖼️ Image Guidelines
 
-#### 8. Create ScriptableObject in Unity
+### Naming Convention
 
-1. Right-click → **Create → HowX → Country Profile**
-2. Configure all fields
-3. Assign CSV files
-4. Click **IMPORT QUESTIONS**, **IMPORT TIERS**, **IMPORT UI**
-5. Click **VALIDATE PROFILE** — fix any errors
+| Type | Pattern | Example |
+|------|---------|---------|
+| Question Image | `Q_{ID}.png` | `Q_05.png` |
+| Answer Image | `Q_{ID}_{AnswerIndex}.png` | `Q_05_00.png`, `Q_05_01.png` |
+| Flag | `Flag.png` | `Flag.png` |
 
-#### 9. Test Thoroughly
+- IDs are **zero-padded** to 2 digits: `00`, `01`, `02`...
+- Answer indices: `00`, `01`, `02`, `03`
+
+### Image Requirements
+
+- **Format:** PNG (transparency supported)
+- **Size:** No strict requirement (scaled in UI)
+- **Content:** Family-friendly, no copyrighted material
+
+---
+
+## 🎮 Create ScriptableObject in Unity
+
+1. Right-click in Project window → **Create → HowX → Country Profile**
+2. Name it (e.g., `Profile_Japan`)
+3. Configure the profile:
+
+| Field | Example | Description |
+|-------|---------|-------------|
+| Folder Name | `JP` | Must match folder in `Assets/Data/` |
+
+4. Add your Google Sheets URLs or CSV files
+5. Click the **Import** buttons
+6. Click **VALIDATE PROFILE** — fix any errors
+
+---
+
+## ✅ Testing Checklist
+
+Before submitting, verify:
 
 - [ ] Play full game in English
 - [ ] Play full game in Native language
 - [ ] Toggle language mid-game
 - [ ] Verify all images load
 - [ ] Check all tier results display correctly
-- [ ] Test on different screen sizes (if possible)
+- [ ] Test in **Portrait** orientation
+- [ ] Test in **Landscape** orientation
+- [ ] Run **VALIDATE PROFILE** with no errors
 
-#### 10. Submit Pull Request
+---
+
+## 📤 Submit Pull Request
 
 ```bash
 git checkout -b country/XX   # e.g., country/JP
@@ -141,7 +238,7 @@ git push origin country/XX
 Then open a PR with:
 - Country name and code
 - Number of questions
-- Any special notes
+- Link to your Google Sheet (for review)
 - Screenshot of result screen
 
 ---
@@ -172,6 +269,8 @@ Found a bug? Open an issue with:
 - Use meaningful variable names
 - Comment complex logic
 - Follow existing namespace structure (`HowX.Core`, `HowX.Data`)
+- Store Action delegates as fields for event subscriptions (avoid memory leaks)
+- Use UI Toolkit exclusively (no UGUI)
 - Test thoroughly before submitting
 
 ### Pull Request Process
@@ -204,6 +303,6 @@ Found a bug? Open an issue with:
 
 ## 🙋 Questions?
 
-Open an issue with the `question` label or reach out to the maintainers.
+Open an issue with the `question` label or start a Discussion.
 
 Thank you for helping make "How X Are You?" more fun for everyone! 🎉
