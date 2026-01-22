@@ -17,20 +17,21 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 ## ✨ Features
 
-- **🌍 Multi-Country Support** — Create unlimited country profiles with unique questions, tiers, and localization
+- **🌐 Multi-Country Support** — Create unlimited country profiles with unique questions, tiers, and localization
 - **🔀 Randomized Gameplay** — Questions and answers shuffle every playthrough
-- **🌐 Bilingual** — Toggle between English and native language instantly
+- **🌍 Bilingual** — Toggle between English and native language instantly
 - **📊 Tiered Results** — 8 result tiers with unique titles, subtitles, and descriptions
-- **📱 Mobile-First** — Responsive UI designed for WebGL on mobile browsers
+- **📱 Responsive Design** — Supports both Portrait and Landscape orientations
 - **🎨 Boho Matte Theme** — Warm, inviting visual style with custom assets
-- **📝 CSV-Driven** — All content managed via spreadsheets for easy editing
+- **📊 Google Sheets Integration** — Import data directly from Google Sheets URLs
+- **📁 CSV Support** — Alternative local CSV import for offline workflows
 - **🔊 Dynamic Audio** — Randomized SFX pitch for satisfying feedback
 
 ---
 
 ## 🎮 Play Now
 
-> 🔗 **[Play on itch.io](https://YOUR_USERNAME.itch.io/how-x-are-you)**
+> 🔗 **[Play on itch.io](https://bluebuckgames.itch.io/how-polish-are-you)**
 
 ---
 
@@ -45,7 +46,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/how-x-are-you.git
+   git clone https://github.com/kerem-sirin/how-x-are-you
    ```
 
 2. **Open in Unity**
@@ -68,19 +69,22 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 Assets/
 ├── Data/
 │   └── PL/                      # Country profile folder
-│       ├── Images/              # Question & answer images
-│       │   ├── Q_00.png         # Question image (ID: 00)
-│       │   ├── Q_01_00.png      # Answer image (Q01, Answer 0)
-│       │   └── Flag.png         # Country flag
 │       ├── How X Are You - PL Quiz.csv
 │       ├── How X Are You - PL Tier.csv
-│       └── How X Are You - PL UI.csv
+│       ├── How X Are You - PL UI.csv
+│       └── Images/              # Question & answer images
+│           ├── Q_00.png         # Question image (ID: 00)
+│           ├── Q_01_00.png      # Answer image (Q01, Answer 0)
+│           └── Flag.png         # Country flag
 │
 ├── Scripts/
 │   ├── Core/
 │   │   ├── GameController.cs    # Main game loop & UI
 │   │   ├── AudioController.cs   # Music & SFX management
-│   │   └── GameEvents.cs        # Event system
+│   │   ├── GameEvents.cs        # Event system
+│   │   ├── MediaQuery.cs        # Orientation detection
+│   │   ├── MediaQueryEvents.cs  # Orientation events
+│   │   └── ResponsiveUI.cs      # Panel/stylesheet swapping
 │   ├── Data/
 │   │   ├── QuizProfile.cs       # ScriptableObject definition
 │   │   ├── QuestionData.cs      # Question structure
@@ -88,11 +92,13 @@ Assets/
 │   │   ├── UIData.cs            # UI strings structure
 │   │   └── LocalizedText.cs     # Bilingual text wrapper
 │   └── Editor/
-│       └── QuizProfileEditor.cs # CSV import & validation
+│       └── QuizProfileEditor.cs # CSV/Google Sheets import & validation
 │
 ├── UI/
 │   ├── Themes/
-│   │   └── BaseTheme.uss        # Main stylesheet
+│   │   ├── BaseTheme.uss        # Main stylesheet
+│   │   ├── BaseTheme-Portrait.uss   # Portrait overrides
+│   │   └── BaseTheme-Landscape.uss  # Landscape overrides
 │   ├── Layouts/
 │   │   └── MainGame.uxml        # UI structure
 │   └── Textures/                # UI assets (buttons, frames, backgrounds)
@@ -108,101 +114,55 @@ Assets/
 ### Step 1: Create Folder Structure
 
 ```
-Assets/Data/XX/                  # XX = country code (e.g., TR, DE, JP)
-├── Images/
-│   └── Flag.png
-├── How X Are You - XX Quiz.csv
-├── How X Are You - XX Tier.csv
-└── How X Are You - XX UI.csv
+Assets/Data/XX/                  # XX = country code (e.g., DE, JP)
+└── Images/
+    └── Flag.png
 ```
 
 ### Step 2: Create ScriptableObject
 
 1. Right-click in Project window
 2. **Create → HowX → Country Profile**
-3. Name it (e.g., `Profile_Turkey`)
+3. Name it (e.g., `Profile_Poland`)
 
 ### Step 3: Configure Profile
 
 | Field | Example | Description |
 |-------|---------|-------------|
-| Country Name | `Turkey` | Display name |
-| Country Adjective | `Turkish` | Used in title: "How Turkish Are You?" |
-| Native Language Name | `Türkçe` | For reference |
-| Folder Name | `TR` | Must match folder in Assets/Data/ |
+| Folder Name | `PL` | Must match folder in Assets/Data/ |
 
-### Step 4: Prepare CSV Files
+### Step 4: Import Data
 
-Assign your CSV files to the profile, then click the import buttons:
+You can import data from **Google Sheets** (recommended) or **local CSV files**.
 
-1. **IMPORT QUESTIONS (CSV)** — Green button
-2. **IMPORT TIERS (CSV)** — Cyan button  
-3. **IMPORT UI & FLAGS (CSV)** — Yellow button
-4. **VALIDATE PROFILE** — Magenta button (check for errors)
+#### Option A: Google Sheets Import 🌐
+
+1. Copy the [Google Sheet Template](https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/)
+2. Fill in your country's data
+3. Make the sheet public (Share → Anyone with link → Viewer)
+4. Copy each tab's URL and paste into the profile
+5. Click the **Import (Google Sheets)** buttons
+
+#### Option B: CSV Import 📁
+
+1. Export CSVs from Google Sheets
+2. Assign CSV files to the profile
+3. Click the **Import (CSV)** buttons
+
+### Step 5: Validate
+
+Click **VALIDATE PROFILE** to check for errors.
 
 ---
 
-## 📊 CSV Format Reference
-
-### 📋 Google Sheet Template
+## 📋 Google Sheet Template
 
 > **[📄 View Template on Google Sheets](https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?usp=sharing)**
 > 
 > This template contains 3 tabs: **Quiz**, **Tier**, and **UI**. You can:
 > - 📝 **Comment** on the sheet to suggest improvements
 > - 📋 **Make a copy** (File → Make a copy) to create your own country profile
-> - ⬇️ **Export as CSV** (File → Download → Comma-separated values) for each tab
-
----
-
-### Questions CSV
-
-| Column | Type | Description |
-|--------|------|-------------|
-| ID | Integer | Unique question ID (0, 1, 2...) |
-| CorrectIndex | String | Correct answer(s): `0` or `0,1` for multiple |
-| Q_EN | String | Question text (English) |
-| Q_Native | String | Question text (Native language) |
-| Use Question Image | Boolean | `TRUE` if question has image |
-| Use Answer Image | Boolean | `TRUE` if answers are images |
-| A0_EN, A0_Native | String | Answer 0 (typically correct) |
-| A1_EN, A1_Native | String | Answer 1 |
-| A2_EN, A2_Native | String | Answer 2 |
-| A3_EN, A3_Native | String | Answer 3 |
-
-**Example:**
-```csv
-ID,CorrectIndex,Q_EN,Q_Native,Use Question Image,Use Answer Image,A0_EN,A0_Native,A1_EN,A1_Native,A2_EN,A2_Native,A3_EN,A3_Native
-0,0,Where is Poland located?,Gdzie leży Polska?,TRUE,FALSE,Next to Russia unfortunately,Obok Rosji niestety,In the Middle East,Na Bliskim Wschodzie,It's a city in Germany,To miasto w Niemczech,On the Moon,Na Księżycu
-```
-
-### Tiers CSV
-
-| Column | Type | Description |
-|--------|------|-------------|
-| MaxPercent | Float | Maximum score % for this tier |
-| Title_EN | String | Tier title (English) |
-| Title_Native | String | Tier title (Native) |
-| Subtitle_EN | String | Short subtitle (English) |
-| Subtitle_Native | String | Short subtitle (Native) |
-| Desc_EN | String | Full description (English) |
-| Desc_Native | String | Full description (Native) |
-
-**Example:**
-```csv
-MaxPercent,Title_EN,Title_Native,Subtitle_EN,Subtitle_Native,Desc_EN,Desc_Native
-25,Tourist,Turist,Just visiting,Sadece ziyaret,You need to explore more!,Daha fazla keşfetmelisin!
-50,Enthusiast,Meraklı,Getting there,Yolda,You know the basics!,Temelleri biliyorsun!
-```
-
-### UI CSV
-
-| Key | EN | Native |
-|-----|-----|--------|
-| btn_start | Start Game | Oyuna Başla |
-| btn_restart | Try Again | Tekrar Dene |
-| btn_lang | English | Türkçe |
-| title_template | How {0} Are You? | Ne Kadar {0}sin? |
+> - 🌐 **Import directly** using tab URLs in Unity
 
 ---
 
@@ -241,12 +201,26 @@ Custom assets are in `Assets/UI/Textures/`:
 
 ---
 
+## 📱 Responsive Design
+
+The game supports both **Portrait** and **Landscape** orientations:
+
+| Orientation | Layout |
+|-------------|--------|
+| Portrait | Question on top, answers on bottom |
+| Landscape | Question on left, answers on right |
+
+Orientation is detected automatically and the UI adapts via stylesheet swapping.
+
+---
+
 ## 🏗️ Building for WebGL
 
 1. **File → Build Settings**
 2. Select **WebGL** platform
 3. Click **Switch Platform**
 4. **Player Settings:**
+   - Resolution: **960 x 540**
    - Compression Format: **Brotli** (for itch.io)
    - Memory Size: **256 MB** (adjust if needed)
    - Enable **Decompression Fallback**
@@ -258,26 +232,27 @@ Custom assets are in `Assets/UI/Textures/`:
 2. Set **Kind of project** to **HTML**
 3. Upload your WebGL build as a `.zip`
 4. Check **This file will be played in the browser**
-5. Set viewport dimensions (recommended: **960 x 600** or **responsive**)
+5. Set viewport dimensions: **960 x 540**
+6. Enable **Mobile friendly** and **Fullscreen button**
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
-### Adding a New Country Profile
+### Quick Start for Contributors
 
 1. Fork the repository
 2. Create your country folder in `Assets/Data/`
-3. Prepare CSV files and images
-4. Test thoroughly with **VALIDATE PROFILE**
+3. Use the [Google Sheet Template](https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/)
+4. Import and test with **VALIDATE PROFILE**
 5. Submit a Pull Request
 
 ### Guidelines
 
 - Follow existing code style
-- Test on both desktop and mobile browsers
+- Test on both Portrait and Landscape orientations
 - Ensure all text has both EN and Native translations
 - Keep questions family-friendly and culturally respectful
 
@@ -312,8 +287,8 @@ Licensed under [Creative Commons: By Attribution 4.0](http://creativecommons.org
 
 ## 📬 Contact
 
-- **itch.io:** [YOUR_USERNAME](https://YOUR_USERNAME.itch.io)
-- **GitHub:** [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- **itch.io:** [bluebuckgames](https://bluebuckgames.itch.io)
+- **GitHub:** [@qurikuduo](https://github.com/qurikuduo)
 
 ---
 

@@ -68,8 +68,6 @@
 #Container_Menu {
     justify-content: center;
     align-items: center;
-    padding-top: 0;
-    padding-bottom: 20%;
 }
 
 #Header_Box {
