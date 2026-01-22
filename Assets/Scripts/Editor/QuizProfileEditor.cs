@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 using HowX.Data;
+using UnityEngine.Networking;
 
 [CustomEditor(typeof(QuizProfile))]
 public class QuizProfileEditor : Editor
@@ -15,51 +16,101 @@ public class QuizProfileEditor : Editor
 
         QuizProfile profile = (QuizProfile)target;
 
-        // --- BUTTON 1: QUESTIONS ---
-        GUI.backgroundColor = Color.green;
-        if (GUILayout.Button("IMPORT QUESTIONS (CSV)", GUILayout.Height(40)))
+        // ========== CSV IMPORT SECTION ==========
+        EditorGUILayout.LabelField("Import from CSV (Local Files)", EditorStyles.boldLabel);
+        GUILayout.Space(5);
+
+        EditorGUILayout.BeginHorizontal();
+
+        // --- BUTTON 1: QUESTIONS (CSV) ---
+        GUI.backgroundColor = new Color(0.6f, 0.9f, 0.6f); // Light green
+        if (GUILayout.Button("IMPORT QUESTIONS\n(CSV)", GUILayout.Height(50)))
         {
             if (profile.quizCsvFile == null)
             {
-                Debug.LogError("❌ Please assign a Question CSV File to the profile first!");
+                EditorUtility.DisplayDialog("Missing File", "Please assign a Quiz CSV File first!", "OK");
                 return;
             }
-            ImportQuestions(profile);
+            ImportQuestions(profile, profile.quizCsvFile.text);
         }
 
-        GUILayout.Space(10);
-
-        // --- BUTTON 2: TIERS ---
-        GUI.backgroundColor = Color.cyan;
-        if (GUILayout.Button("IMPORT TIERS (CSV)", GUILayout.Height(40)))
+        // --- BUTTON 2: TIERS (CSV) ---
+        GUI.backgroundColor = new Color(0.6f, 0.9f, 0.9f); // Light cyan
+        if (GUILayout.Button("IMPORT TIERS\n(CSV)", GUILayout.Height(50)))
         {
             if (profile.tierCsvFile == null)
             {
-                Debug.LogError("❌ Please assign a Tier CSV File first!");
+                EditorUtility.DisplayDialog("Missing File", "Please assign a Tier CSV File first!", "OK");
                 return;
             }
-            ImportTiers(profile);
+            ImportTiers(profile, profile.tierCsvFile.text);
         }
 
-        GUILayout.Space(10);
-
-        // --- BUTTON 3: UI & FLAGS ---
-        GUI.backgroundColor = Color.yellow;
-        if (GUILayout.Button("IMPORT UI & FLAGS (CSV)", GUILayout.Height(40)))
+        // --- BUTTON 3: UI & FLAGS (CSV) ---
+        GUI.backgroundColor = new Color(0.9f, 0.9f, 0.6f); // Light yellow
+        if (GUILayout.Button("IMPORT UI & FLAGS\n(CSV)", GUILayout.Height(50)))
         {
             if (profile.uiCsvFile == null)
             {
-                Debug.LogError("❌ Please assign a UI CSV File first!");
+                EditorUtility.DisplayDialog("Missing File", "Please assign a UI CSV File first!", "OK");
                 return;
             }
-            ImportUI(profile);
+            ImportUI(profile, profile.uiCsvFile.text);
         }
+
+        EditorGUILayout.EndHorizontal();
 
         GUILayout.Space(20);
 
-        // --- BUTTON 4: VALIDATE ---
-        GUI.backgroundColor = Color.magenta;
-        if (GUILayout.Button("VALIDATE PROFILE", GUILayout.Height(30)))
+        // ========== GOOGLE SHEETS IMPORT SECTION ==========
+        EditorGUILayout.LabelField("Import from Google Sheets", EditorStyles.boldLabel);
+        GUILayout.Space(5);
+
+        EditorGUILayout.BeginHorizontal();
+
+        // --- BUTTON 4: QUESTIONS (Google Sheets) ---
+        GUI.backgroundColor = new Color(0.4f, 0.7f, 0.4f); // Darker green
+        if (GUILayout.Button("IMPORT QUESTIONS\n(Google Sheets)", GUILayout.Height(50)))
+        {
+            if (string.IsNullOrEmpty(profile.quizSheetUrl))
+            {
+                EditorUtility.DisplayDialog("Missing URL", "Please enter a Quiz Sheet URL first!", "OK");
+                return;
+            }
+            FetchAndImportQuestions(profile);
+        }
+
+        // --- BUTTON 5: TIERS (Google Sheets) ---
+        GUI.backgroundColor = new Color(0.4f, 0.7f, 0.7f); // Darker cyan
+        if (GUILayout.Button("IMPORT TIERS\n(Google Sheets)", GUILayout.Height(50)))
+        {
+            if (string.IsNullOrEmpty(profile.tierSheetUrl))
+            {
+                EditorUtility.DisplayDialog("Missing URL", "Please enter a Tier Sheet URL first!", "OK");
+                return;
+            }
+            FetchAndImportTiers(profile);
+        }
+
+        // --- BUTTON 6: UI & FLAGS (Google Sheets) ---
+        GUI.backgroundColor = new Color(0.7f, 0.7f, 0.4f); // Darker yellow
+        if (GUILayout.Button("IMPORT UI & FLAGS\n(Google Sheets)", GUILayout.Height(50)))
+        {
+            if (string.IsNullOrEmpty(profile.uiSheetUrl))
+            {
+                EditorUtility.DisplayDialog("Missing URL", "Please enter a UI Sheet URL first!", "OK");
+                return;
+            }
+            FetchAndImportUI(profile);
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        GUILayout.Space(20);
+
+        // ========== VALIDATE SECTION ==========
+        GUI.backgroundColor = new Color(0.9f, 0.6f, 0.9f); // Light magenta
+        if (GUILayout.Button("VALIDATE PROFILE", GUILayout.Height(35)))
         {
             ValidateProfile(profile);
         }
@@ -67,7 +118,143 @@ public class QuizProfileEditor : Editor
         GUI.backgroundColor = Color.white;
     }
 
-    // --- VALIDATION ---
+    // =========================================================================
+    // GOOGLE SHEETS FETCH METHODS
+    // =========================================================================
+
+    private void FetchAndImportQuestions(QuizProfile profile)
+    {
+        string exportUrl = ConvertToExportUrl(profile.quizSheetUrl);
+        if (exportUrl == null)
+        {
+            EditorUtility.DisplayDialog("Invalid URL", "The Quiz Sheet URL format is invalid.\n\nExpected format:\nhttps://docs.google.com/spreadsheets/d/SHEET_ID/edit?gid=TAB_GID", "OK");
+            return;
+        }
+
+        FetchCsvFromGoogle(exportUrl, "Questions", (csv) =>
+        {
+            ImportQuestions(profile, csv);
+            EditorUtility.DisplayDialog("Success", $"Imported {profile.questions.Count} questions from Google Sheets!", "OK");
+        });
+    }
+
+    private void FetchAndImportTiers(QuizProfile profile)
+    {
+        string exportUrl = ConvertToExportUrl(profile.tierSheetUrl);
+        if (exportUrl == null)
+        {
+            EditorUtility.DisplayDialog("Invalid URL", "The Tier Sheet URL format is invalid.\n\nExpected format:\nhttps://docs.google.com/spreadsheets/d/SHEET_ID/edit?gid=TAB_GID", "OK");
+            return;
+        }
+
+        FetchCsvFromGoogle(exportUrl, "Tiers", (csv) =>
+        {
+            ImportTiers(profile, csv);
+            EditorUtility.DisplayDialog("Success", $"Imported {profile.tiers.Count} tiers from Google Sheets!", "OK");
+        });
+    }
+
+    private void FetchAndImportUI(QuizProfile profile)
+    {
+        string exportUrl = ConvertToExportUrl(profile.uiSheetUrl);
+        if (exportUrl == null)
+        {
+            EditorUtility.DisplayDialog("Invalid URL", "The UI Sheet URL format is invalid.\n\nExpected format:\nhttps://docs.google.com/spreadsheets/d/SHEET_ID/edit?gid=TAB_GID", "OK");
+            return;
+        }
+
+        FetchCsvFromGoogle(exportUrl, "UI & Flags", (csv) =>
+        {
+            ImportUI(profile, csv);
+            EditorUtility.DisplayDialog("Success", "Imported UI data from Google Sheets!", "OK");
+        });
+    }
+
+    /// <summary>
+    /// Converts a Google Sheets edit URL to a CSV export URL.
+    /// Input:  https://docs.google.com/spreadsheets/d/SHEET_ID/edit?gid=TAB_GID
+    /// Output: https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=TAB_GID
+    /// </summary>
+    private string ConvertToExportUrl(string editUrl)
+    {
+        if (string.IsNullOrEmpty(editUrl)) return null;
+
+        // Pattern to match Google Sheets URL
+        // Supports: /edit?gid=123, /edit#gid=123, /edit?gid=123&other=params
+        var match = Regex.Match(editUrl, @"docs\.google\.com/spreadsheets/d/([^/]+).*[?#&]gid=(\d+)");
+
+        if (!match.Success)
+        {
+            // Try without gid (default to 0)
+            var matchNoGid = Regex.Match(editUrl, @"docs\.google\.com/spreadsheets/d/([^/]+)");
+            if (matchNoGid.Success)
+            {
+                string sheetId = matchNoGid.Groups[1].Value;
+                return $"https://docs.google.com/spreadsheets/d/{sheetId}/export?format=csv&gid=0";
+            }
+            return null;
+        }
+
+        string id = match.Groups[1].Value;
+        string gid = match.Groups[2].Value;
+
+        return $"https://docs.google.com/spreadsheets/d/{id}/export?format=csv&gid={gid}";
+    }
+
+    /// <summary>
+    /// Fetches CSV data from a Google Sheets export URL.
+    /// </summary>
+    private void FetchCsvFromGoogle(string url, string dataType, System.Action<string> onSuccess)
+    {
+        EditorUtility.DisplayProgressBar($"Fetching {dataType}", "Connecting to Google Sheets...", 0.2f);
+
+        var request = UnityWebRequest.Get(url);
+        var operation = request.SendWebRequest();
+
+        // Poll until complete (Editor doesn't support async well)
+        while (!operation.isDone)
+        {
+            EditorUtility.DisplayProgressBar($"Fetching {dataType}", "Downloading data...", 0.5f);
+            System.Threading.Thread.Sleep(50);
+        }
+
+        EditorUtility.ClearProgressBar();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError ||
+            request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            string errorMsg = request.error;
+
+            if (request.responseCode == 404)
+            {
+                errorMsg = "Sheet not found. Check that the URL is correct.";
+            }
+            else if (request.responseCode == 403 || request.responseCode == 401)
+            {
+                errorMsg = "Access denied. Make sure the sheet is set to:\n'Anyone with the link can view'";
+            }
+
+            EditorUtility.DisplayDialog("Fetch Failed", $"Failed to fetch {dataType}:\n\n{errorMsg}", "OK");
+            Debug.LogError($"❌ Google Sheets fetch failed: {request.error}");
+            return;
+        }
+
+        string csv = request.downloadHandler.text;
+
+        if (string.IsNullOrEmpty(csv))
+        {
+            EditorUtility.DisplayDialog("Empty Response", $"The {dataType} sheet appears to be empty.", "OK");
+            return;
+        }
+
+        Debug.Log($"✅ Fetched {dataType} from Google Sheets ({csv.Length} characters)");
+        onSuccess?.Invoke(csv);
+    }
+
+    // =========================================================================
+    // VALIDATION
+    // =========================================================================
+
     private void ValidateProfile(QuizProfile profile)
     {
         Debug.Log($"🔍 Validating Profile: {profile.name}...");
@@ -185,23 +372,6 @@ public class QuizProfileEditor : Editor
             }
         }
 
-        // 6. Check identity fields
-        if (string.IsNullOrEmpty(profile.countryName))
-        {
-            Debug.LogWarning("⚠️ Country Name is empty!");
-            warningCount++;
-        }
-        if (string.IsNullOrEmpty(profile.countryAdjective))
-        {
-            Debug.LogWarning("⚠️ Country Adjective is empty (used in title)!");
-            warningCount++;
-        }
-        if (string.IsNullOrEmpty(profile.folderName))
-        {
-            Debug.LogError("❌ Folder Name is empty! Images won't load.");
-            errorCount++;
-        }
-
         // Summary
         Debug.Log("────────────────────────────────");
         if (errorCount == 0 && warningCount == 0)
@@ -214,44 +384,59 @@ public class QuizProfileEditor : Editor
         }
     }
 
-    // --- HELPER: ROBUST CSV PARSER ---
+    // =========================================================================
+    // CSV PARSING HELPERS
+    // =========================================================================
+
     private List<string> ParseCsvRows(string rawText)
     {
+        // Handle different line endings
+        rawText = rawText.Replace("\r\n", "\n").Replace("\r", "\n");
+
         List<string> rows = new List<string>();
         bool inQuotes = false;
-        System.Text.StringBuilder currentRow = new System.Text.StringBuilder();
+        string currentRow = "";
 
         for (int i = 0; i < rawText.Length; i++)
         {
             char c = rawText[i];
-            if (c == '\"')
+
+            if (c == '"')
             {
                 inQuotes = !inQuotes;
-                currentRow.Append(c);
+                currentRow += c;
             }
-            else if ((c == '\n' || c == '\r') && !inQuotes)
+            else if (c == '\n' && !inQuotes)
             {
-                if (c == '\r' && i + 1 < rawText.Length && rawText[i + 1] == '\n') i++;
-                rows.Add(currentRow.ToString());
-                currentRow.Clear();
+                if (!string.IsNullOrWhiteSpace(currentRow))
+                    rows.Add(currentRow);
+                currentRow = "";
             }
             else
             {
-                currentRow.Append(c);
+                currentRow += c;
             }
         }
-        if (currentRow.Length > 0) rows.Add(currentRow.ToString());
+
+        // Don't forget the last row
+        if (!string.IsNullOrWhiteSpace(currentRow))
+            rows.Add(currentRow);
+
         return rows;
     }
 
-    private void ImportQuestions(QuizProfile profile)
+    // =========================================================================
+    // IMPORT METHODS (Shared by CSV and Google Sheets)
+    // =========================================================================
+
+    private void ImportQuestions(QuizProfile profile, string csvText)
     {
-        List<string> lines = ParseCsvRows(profile.quizCsvFile.text);
+        List<string> lines = ParseCsvRows(csvText);
 
         if (profile.questions == null) profile.questions = new List<QuestionData>();
         profile.questions.Clear();
 
-        Debug.Log($"📂 Starting Question Import for {profile.name}...");
+        Debug.Log($"📝 Starting Question Import for {profile.name}...");
 
         HashSet<string> seenIds = new HashSet<string>();
         List<string> duplicateIds = new List<string>();
@@ -337,6 +522,7 @@ public class QuizProfileEditor : Editor
         }
 
         EditorUtility.SetDirty(profile);
+        AssetDatabase.SaveAssets();
 
         // Summary
         Debug.Log("────────────────────────────────");
@@ -365,9 +551,9 @@ public class QuizProfileEditor : Editor
         return tex;
     }
 
-    private void ImportTiers(QuizProfile profile)
+    private void ImportTiers(QuizProfile profile, string csvText)
     {
-        List<string> lines = ParseCsvRows(profile.tierCsvFile.text);
+        List<string> lines = ParseCsvRows(csvText);
 
         if (profile.tiers == null) profile.tiers = new List<TierData>();
         profile.tiers.Clear();
@@ -404,6 +590,8 @@ public class QuizProfileEditor : Editor
         profile.tiers.Sort((a, b) => a.maxPercentage.CompareTo(b.maxPercentage));
 
         EditorUtility.SetDirty(profile);
+        AssetDatabase.SaveAssets();
+
         Debug.Log($"✅ TIERS IMPORTED: {profile.tiers.Count} items.");
 
         // Warn if no 100% tier
@@ -417,10 +605,9 @@ public class QuizProfileEditor : Editor
         }
     }
 
-    private void ImportUI(QuizProfile profile)
+    private void ImportUI(QuizProfile profile, string csvText)
     {
-        string rawText = profile.uiCsvFile.text;
-        List<string> lines = ParseCsvRows(rawText);
+        List<string> lines = ParseCsvRows(csvText);
 
         if (profile.uiData == null) profile.uiData = new UIData();
 
@@ -478,6 +665,8 @@ public class QuizProfileEditor : Editor
         }
 
         EditorUtility.SetDirty(profile);
+        AssetDatabase.SaveAssets();
+
         Debug.Log("✅ UI Data Imported!");
     }
 }
