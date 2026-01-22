@@ -1,0 +1,112 @@
+/*
+ * BaseTheme-Portrait.uss
+ * Portrait-specific overrides for "How X Are You?"
+ * 
+ * Applied when screen height > width (aspect ratio < 1.2)
+ * This file resets any landscape-specific changes back to portrait layout.
+ * 
+ * Base styles are in BaseTheme.uss (already portrait-optimized)
+ */
+
+/* ============================================
+   QUIZ SCREEN - Portrait Layout
+   Question on TOP, Answers on BOTTOM
+   ============================================ */
+
+#Container_Quiz {
+    flex-direction: column;
+}
+
+#Box_Question {
+    width: 92%;
+    height: 40%;
+    margin-top: 15px;
+    margin-left: 0;
+    align-self: center;
+}
+
+#Grid_Answers {
+    width: 100%;
+    height: 60%;
+}
+
+/* Text answers - vertical list */
+.layout-list {
+    flex-direction: column;
+}
+
+.layout-list Button {
+    width: 100%;
+    height: 22%;
+}
+
+/* Image answers - 2x2 grid */
+.layout-grid Button {
+    width: 46%;
+    height: 46%;
+}
+
+/* ============================================
+   MENU SCREEN - Portrait Layout
+   Vertically centered with balanced spacing
+   ============================================ */
+
+#Container_Menu {
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 20%;
+}
+
+#Header_Box {
+    width: 95%;
+    max-width: 650px;
+    margin-bottom: 14%;
+    padding: 45px;
+}
+
+#Lbl_Title {
+    font-size: 80px;
+}
+
+#Container_Menu Button {
+    width: 88%;
+    max-width: 580px;
+    height: 110px;
+    margin-bottom: 40px;
+    font-size: 46px;
+}
+
+/* ============================================
+   RESULT SCREEN - Portrait Layout
+   ============================================ */
+
+#Container_Result {
+    flex-direction: column;
+}
+
+#Box_Result {
+    width: 100%;
+    min-width: 80%;
+    max-width: 700px;
+    padding: 50px;
+}
+
+#Lbl_Score {
+    font-size: 160px;
+}
+
+#Lbl_ResultTitle {
+    font-size: 58px;
+}
+
+#Lbl_ResultDesc {
+    font-size: 30px;
+}
+
+#Btn_Restart {
+    width: 85%;
+    max-width: 550px;
+    height: 120px;
+    font-size: 46px;
+}

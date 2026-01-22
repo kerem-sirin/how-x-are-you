@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 54952405}
   - component: {fileID: 54952404}
   - component: {fileID: 54952406}
+  - component: {fileID: 54952408}
+  - component: {fileID: 54952407}
   m_Layer: 0
   m_Name: UI_Manager
   m_TagString: Untagged
@@ -189,6 +191,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.GameController
   currentProfile: {fileID: 11400000, guid: c5b9f914ad7383642a01ffed682603ed, type: 2}
   questionsPerGame: 20
+--- !u!114 &54952407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54952403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78225f454bd2658479ddf647432185c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.ResponsiveUI
+  document: {fileID: 54952404}
+  portraitPanelSettings: {fileID: 11400000, guid: 7fac10d4881658748bf3b7bb932c561d, type: 2}
+  landscapePanelSettings: {fileID: 11400000, guid: 3259b92742ac88741b8f864578a095fb, type: 2}
+  debugMode: 0
+--- !u!114 &54952408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54952403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b430ffdaca1a72947a15da0460b28051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HowX.Core.MediaQuery
+  document: {fileID: 54952404}
+  landscapeThreshold: 1.2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
