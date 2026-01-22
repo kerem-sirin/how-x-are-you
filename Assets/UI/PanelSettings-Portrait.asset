@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: DefaultPanelSettings
+  m_Name: PanelSettings-Portrait
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.PanelSettings
-  themeUss: {fileID: -4733365628477956816, guid: b41ac209177b62144b05f3825180ff1e, type: 3}
+  themeUss: {fileID: -4733365628477956816, guid: 9918f2544381bfe4abce23b1503af956, type: 3}
   m_DisableNoThemeWarning: 0
   m_TargetTexture: {fileID: 0}
   m_RenderMode: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   m_Scale: 1
   m_ReferenceDpi: 96
   m_FallbackDpi: 96
-  m_ReferenceResolution: {x: 600, y: 960}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_Match: 1
+  m_Match: 0.5
   m_SortingOrder: 0
   m_TargetDisplay: 0
   m_BindingLogLevel: 0

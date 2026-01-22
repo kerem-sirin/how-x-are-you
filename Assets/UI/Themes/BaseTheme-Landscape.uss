@@ -1,0 +1,140 @@
+/*
+ * BaseTheme-Landscape.uss
+ * Landscape-specific overrides for "How X Are You?"
+ * 
+ * Applied when screen width > height (aspect ratio >= 1.2)
+ * Main change: Quiz shows Question on LEFT, Answers on RIGHT
+ */
+
+/* ============================================
+   PROGRESS BAR - Landscape Layout
+   ============================================ */
+
+.progress-container {
+    height: 24px;
+}
+
+.progress-fill {
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* ============================================
+   QUIZ SCREEN - Landscape Layout
+   Question on LEFT (40%), Answers on RIGHT (60%)
+   ============================================ */
+
+#Container_Quiz {
+    flex-direction: row;
+    padding: 15px;
+}
+
+#Box_Question {
+    width: 40%;
+    height: 96%;
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-self: center;
+}
+
+#Img_QuestionVisual {
+    height: 60%;
+    width: 85%;
+}
+
+#Grid_Answers {
+    width: 58%;
+    height: 100%;
+    padding: 10px;
+}
+
+/* Text answers - vertical stack on right side */
+.layout-list {
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.layout-list Button {
+    width: 100%;
+    height: 23%;
+}
+
+/* Image answers - 2x2 grid on right side */
+.layout-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.layout-grid Button {
+    width: 48%;
+    height: 48%;
+    margin: 0.5%;
+}
+
+/* ============================================
+   MENU SCREEN - Landscape Layout
+   Vertically centered with constrained width
+   ============================================ */
+
+#Container_Menu {
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0%;
+}
+
+#Header_Box {
+    width: 100%;
+    min-width: 60%;
+    max-width: 700px;
+    margin-bottom: 10%;
+    padding: 50px;
+}
+
+#Lbl_Title {
+    font-size: 72px;
+}
+
+#Container_Menu Button {
+    width: 60%;
+    max-width: 520px;
+    height: 110px;
+    margin-bottom: 25px;
+}
+
+/* ============================================
+   RESULT SCREEN - Landscape Layout
+   Wider card, adjusted typography
+   ============================================ */
+
+#Container_Result {
+    flex-direction: column;
+    padding: 30px;
+}
+
+#Box_Result {
+    width: 100%;
+    min-width: 60%;
+    max-width: 800px;
+    padding: 45px;
+}
+
+#Lbl_Score {
+    font-size: 130px;
+}
+
+#Lbl_ResultTitle {
+    font-size: 52px;
+    margin-bottom: 15px;
+}
+
+#Btn_Restart {
+    width: 60%;
+    max-width: 500px;
+    height: 110px;
+    font-size: 44px;
+    margin-top: 25px;
+}
