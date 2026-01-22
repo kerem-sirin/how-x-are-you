@@ -7,6 +7,19 @@
  */
 
 /* ============================================
+   PROGRESS BAR - Landscape Layout
+   ============================================ */
+
+.progress-container {
+    height: 24px;
+}
+
+.progress-fill {
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* ============================================
    QUIZ SCREEN - Landscape Layout
    Question on LEFT (40%), Answers on RIGHT (60%)
    ============================================ */
@@ -23,10 +36,6 @@
     margin-left: 10px;
     margin-right: 10px;
     align-self: center;
-}
-
-#Lbl_QuestionText {
-    font-size: 32px;
 }
 
 #Img_QuestionVisual {
@@ -49,7 +58,6 @@
 .layout-list Button {
     width: 100%;
     height: 23%;
-    font-size: 24px;
 }
 
 /* Image answers - 2x2 grid on right side */
@@ -82,8 +90,8 @@
     width: 100%;
     min-width: 60%;
     max-width: 700px;
-    margin-bottom: 15%;
-    padding: 45px;
+    margin-bottom: 10%;
+    padding: 50px;
 }
 
 #Lbl_Title {
@@ -95,7 +103,6 @@
     max-width: 520px;
     height: 110px;
     margin-bottom: 25px;
-    font-size: 46px;
 }
 
 /* ============================================
@@ -121,11 +128,6 @@
 
 #Lbl_ResultTitle {
     font-size: 52px;
-    margin-bottom: 15px;
-}
-
-#Lbl_ResultDesc {
-    font-size: 28px;
     margin-bottom: 15px;
 }
 

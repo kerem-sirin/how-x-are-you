@@ -9,18 +9,32 @@
  */
 
 /* ============================================
+   PROGRESS BAR - Portrait Layout
+   ============================================ */
+
+.progress-container {
+    height: 32px;
+}
+
+.progress-fill {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* ============================================
    QUIZ SCREEN - Portrait Layout
    Question on TOP, Answers on BOTTOM
    ============================================ */
 
 #Container_Quiz {
     flex-direction: column;
+    padding-top: 20px;
 }
 
 #Box_Question {
     width: 92%;
     height: 40%;
-    margin-top: 15px;
+    margin-top: 30px;
     margin-left: 0;
     align-self: center;
 }
@@ -60,9 +74,10 @@
 
 #Header_Box {
     width: 95%;
+    min-width: 70%;
     max-width: 650px;
-    margin-bottom: 14%;
-    padding: 45px;
+    margin-bottom: 24%;
+    padding: 50px;
 }
 
 #Lbl_Title {
@@ -74,7 +89,6 @@
     max-width: 580px;
     height: 110px;
     margin-bottom: 40px;
-    font-size: 46px;
 }
 
 /* ============================================
@@ -98,10 +112,6 @@
 
 #Lbl_ResultTitle {
     font-size: 58px;
-}
-
-#Lbl_ResultDesc {
-    font-size: 30px;
 }
 
 #Btn_Restart {
