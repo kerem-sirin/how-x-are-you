@@ -76,8 +76,6 @@
     width: 95%;
     min-width: 70%;
     max-width: 650px;
-    margin-bottom: 24%;
-    padding: 50px;
 }
 
 #Lbl_Title {

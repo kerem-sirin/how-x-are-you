@@ -4,12 +4,16 @@
             <ui:VisualElement name="Fill_Progress" class="progress-fill" />
         </ui:VisualElement>
         <ui:VisualElement name="Container_Menu" style="flex-grow: 1; display: flex;">
-            <ui:VisualElement name="Header_Box">
-                <ui:Label text="How X Are You?" name="Lbl_Title" />
-                <ui:VisualElement name="Img_Flag" style="position: absolute; top: -15px; right: -15px; width: 80px; height: 60px; -unity-background-scale-mode: scale-to-fit; rotate: 15deg;" />
+            <ui:VisualElement name="Zone_Top" class="container-menu-zone" style="justify-content: space-around;">
+                <ui:VisualElement name="Header_Box">
+                    <ui:Label text="How X Are You?" name="Lbl_Title" />
+                    <ui:VisualElement name="Img_Flag" style="position: absolute; top: -15px; right: -15px; width: 80px; height: 60px; -unity-background-scale-mode: scale-to-fit; rotate: 15deg;" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="Start Game" name="Btn_Start" />
-            <ui:Button text="EN / X" name="Btn_LangToggle" />
+            <ui:VisualElement name="Zone_Bottom" class="container-menu-zone" style="justify-content: flex-start;">
+                <ui:Button text="Start Game" name="Btn_Start" />
+                <ui:Button text="EN / X" name="Btn_LangToggle" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Container_Quiz" style="flex-grow: 1; display: none;">
             <ui:VisualElement name="Box_Question">
