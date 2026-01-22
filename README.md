@@ -59,7 +59,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
    Assets/Scenes/MainGame.unity
    ```
 
-4. **Press Play** — The Polish profile is pre-configured
+4. **Press Play** : The Polish profile is pre-configured
 
 ---
 
@@ -195,9 +195,9 @@ The visual style is defined in `Assets/UI/Themes/BaseTheme.uss`:
 ```
 
 Custom assets are in `Assets/UI/Textures/`:
-- `Backgrounds/bg_pattern.png` — Tileable background
-- `Buttons/button_square_gradient.png` — 9-slice button/panel frame
-- `Buttons/button_round_gradient.png` — 9-slice rounded frame
+- `Backgrounds/bg_pattern.png` : Tileable background
+- `Buttons/button_square_gradient.png` : 9-slice button/panel frame
+- `Buttons/button_round_gradient.png` : 9-slice rounded frame
 
 ---
 
@@ -260,7 +260,7 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed g
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** : See the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -288,7 +288,7 @@ Licensed under [Creative Commons: By Attribution 4.0](http://creativecommons.org
 ## 📬 Contact
 
 - **itch.io:** [bluebuckgames](https://bluebuckgames.itch.io)
-- **GitHub:** [@qurikuduo](https://github.com/qurikuduo)
+- **GitHub:** [@kerem-sirin](https://github.com/kerem-sirin)
 
 ---
 
