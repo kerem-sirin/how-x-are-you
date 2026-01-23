@@ -12,27 +12,136 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1876d1f63a248ff4e94560d628feca92, type: 3}
   m_Name: Turkish Profile
   m_EditorClassIdentifier: Assembly-CSharp::HowX.Data.QuizProfile
-  countryName: 
-  countryAdjective: 
-  nativeLanguageName: 
-  folderName: 
+  folderName: TR
   backgroundImage: {fileID: 0}
   quizCsvFile: {fileID: 0}
   tierCsvFile: {fileID: 0}
   uiCsvFile: {fileID: 0}
+  quizSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1153893805#gid=1153893805
+  tierSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1739893294#gid=1739893294
+  uiSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1467527898#gid=1467527898
   uiData:
     btnStart:
-      en: 
-      native: 
+      en: Start Game
+      native: "Oyuna Ba\u015Fla"
     btnRestart:
-      en: 
-      native: 
+      en: Try Again
+      native: Tekrar Dene
     btnLang:
-      en: 
-      native: 
+      en: English
+      native: "T\xFCrk\xE7e"
     titleTemplate:
-      en: 
-      native: 
+      en: How Turkish You Are?
+      native: "Ne Kadar T\xFCrks\xFCn?"
     flagIcon: {fileID: 0}
   questions: []
-  tiers: []
+  tiers:
+  - title:
+      en: Greek Spy
+      native: Yunan Casusu
+    maxPercentage: 12
+    subtitle:
+      en: "Nice try kom\u015Fu"
+      native: "Yemezler kom\u015Fu"
+    description:
+      en: "You think Baklava is Greek, call Turkish coffee 'Greek coffee', and you
+        drink tea from a mug (not a tulip glass). M\u0130T has been notified. Remain
+        seated."
+      native: "Baklavan\u0131n Yunan oldu\u011Funu san\u0131yorsun, T\xFCrk kahvesine
+        'Yunan kahvesi' diyorsun ve \xE7ay\u0131 bardaktan de\u011Fil kupadan i\xE7iyorsun.
+        M\u0130T'e haber verildi. Yerinde kal."
+  - title:
+      en: All-Inclusive Tourist
+      native: "Her \u015Eey Dahil Turist"
+    maxPercentage: 25
+    subtitle:
+      en: Very cheap very nice!
+      native: "\xC7ok ucuz \xE7ok g\xFCzel!"
+    description:
+      en: You wear a Fez (nobody has worn one since 1925), you haggle at fixed-price
+        stores, and you paid 500 Euros for a 50 Lira carpet. The Grand Bazaar sends
+        its regards.
+      native: "Fes tak\u0131yorsun (1925'ten beri kimse takm\u0131yor), sabit fiyatl\u0131
+        d\xFCkkanlarda pazarl\u0131k yap\u0131yorsun ve 50 liral\u0131k hal\u0131ya
+        500 Euro \xF6dedin. Kapal\u0131\xE7ar\u015F\u0131 selamlar\u0131n\u0131 iletiyor."
+  - title:
+      en: Erasmus Student
+      native: "Erasmus \xD6\u011Frencisi"
+    maxPercentage: 40
+    subtitle:
+      en: "\u015Eerefe Dostum!"
+      native: "\u015Eerefe Dostum!"
+    description:
+      en: "You survive on 5 Lira d\xF6ner and Efes. You think Tarkan is a soap brand.
+        You tried to pet a street cat and now you're feeding 12 of them."
+      native: "5 liral\u0131k d\xF6ner ve Efes ile hayatta kal\u0131yorsun. Tarkan'\u0131n
+        sabun markas\u0131 oldu\u011Funu san\u0131yorsun. Sokak kedisi sevmeye \xE7al\u0131\u015Ft\u0131n,
+        \u015Fimdi 12 tanesini besliyorsun."
+  - title:
+      en: Average Citizen
+      native: "Ortalama Vatanda\u015F"
+    maxPercentage: 60
+    subtitle:
+      en: "Yapacak bir \u015Fey yok"
+      native: "Yapacak bir \u015Fey yok"
+    description:
+      en: "You drink 15 \xE7ays a day (minimum). You honk 0.1 seconds after green.
+        You can't have enouch of 3 lettered shops.You say 'in\u015Fallah' at least
+        60 times a day."
+      native: "G\xFCnde 15 \xE7ay i\xE7iyorsun (minimum). Ye\u015Filde 0.1 saniyede
+        kornaya bas\u0131yorsun. 3 harfli marketlerden \xE7\u0131km\u0131yorsun.
+        G\xFCnde en az 60 kez 'in\u015Fallah' diyorsun."
+  - title:
+      en: "Mahalle Day\u0131s\u0131"
+      native: "Mahalle Day\u0131s\u0131"
+    maxPercentage: 75
+    subtitle:
+      en: Professional Excavator Watcher
+      native: "Profesyonel Kep\xE7e \u0130zleyicisi"
+    description:
+      en: "You can watch construction for 6 hours with hands behind your back. You
+        know the tomato prices at 4 different pazars. You fix everything with WD-40
+        and \xE7ay."
+      native: "Ellerini arkada ba\u011Flay\u0131p 6 saat in\u015Faat izleyebilirsin.
+        4 farkl\u0131 pazardaki domates fiyat\u0131n\u0131 biliyorsun. Her \u015Feyi
+        WD-40 ve \xE7ayla tamir ediyorsun."
+  - title:
+      en: Teyze
+      native: Teyze
+    maxPercentage: 85
+    subtitle:
+      en: "Sen \xE7ok zay\u0131flam\u0131\u015Fs\u0131n"
+      native: "Sen \xE7ok zay\u0131flam\u0131\u015Fs\u0131n"
+    description:
+      en: "You carry emergency b\xF6rek in your purse. You know everyone's business
+        on the street. You pinch children's cheeks with the force of a hydraulic
+        press."
+      native: "\xC7antanda acil durum b\xF6re\u011Fi var. Sokaktaki herkesin i\u015Fini
+        biliyorsun. \xC7ocuklar\u0131n yanaklar\u0131n\u0131 hidrolik pres g\xFCc\xFCyle
+        s\u0131k\u0131yorsun."
+  - title:
+      en: "\xC7ay Oca\u011F\u0131 Ba\u015Fkan\u0131"
+      native: "\xC7ay Oca\u011F\u0131 Ba\u015Fkan\u0131"
+    maxPercentage: 94
+    subtitle:
+      en: "Koyu mu a\xE7\u0131k m\u0131?"
+      native: "Koyu mu a\xE7\u0131k m\u0131?"
+    description:
+      en: Your blood type is turkish tea. You put yogurt even on pizza. You drive
+        Istanbul to Ankara in 3 hours with hazard lights on the entire way.
+      native: "Kan grubun do\u011Fu\u015F \xE7ay. Pizzaya bile yo\u011Furt koyuyorsun.
+        \u0130stanbul'dan Ankara'ya 3 saatte, yol boyunca d\xF6rtl\xFClerle gidiyorsun."
+  - title:
+      en: Sultan of Simit
+      native: "Simit Sultan\u0131"
+    maxPercentage: 100
+    subtitle:
+      en: Afiyet olsun
+      native: Afiyet olsun
+    description:
+      en: You have transcended Turkey; you ARE Turkey. Street cats follow you like
+        a sultan. You finish every sentence with 'Allah korusun'. Tarkan has a poster
+        of you.
+      native: "T\xFCrkiye'nin \xF6tesine ge\xE7tin; sen T\xFCrkiye'S\u0130N. Sokak
+        kedileri seni sultan gibi takip ediyor. Her c\xFCmleni 'Allah korusun' ile
+        bitiriyorsun. Tarkan'\u0131n duvar\u0131nda senin posterin var."
