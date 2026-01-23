@@ -302,24 +302,24 @@ MonoBehaviour:
     useImageAnswers: 0
   - id: 11
     questionText:
-      en: What is the most Polish topping to put on pizza?
-      native: Jaki jest najbardziej polski dodatek do pizzy?
+      en: How people like to eat pizza in Poland?
+      native: "Jak ludzie lubi\u0105 je\u015B\u0107 pizz\u0119 w Polsce?"
     questionVisual: {fileID: 0}
     answer0:
-      en: Garlic Sauce
-      native: Sos czosnkowy
+      en: Ketchup on top
+      native: Keczup na wierzchu
     answer0_Image: {fileID: 0}
     answer1:
-      en: Pineapple
-      native: Ananas
+      en: With olive oil
+      native: "Z oliw\u0105 z oliwek"
     answer1_Image: {fileID: 0}
     answer2:
-      en: Pepperoni
-      native: Pepperoni
+      en: Extra pineapple
+      native: Dodatkowy ananas
     answer2_Image: {fileID: 0}
     answer3:
-      en: Olive Oil
-      native: Oliwa
+      en: No garlic sauce
+      native: Bez sosu czosnkowego
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 0
     correctIndices: 00000000
