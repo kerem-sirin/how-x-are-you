@@ -141,8 +141,8 @@ MonoBehaviour:
       native: Nosacz Sundajski
     answer0_Image: {fileID: 2800000, guid: f755d253046ae4e41a3216ffeadd2fe9, type: 3}
     answer1:
-      en: Stork
-      native: Bocian
+      en: Squirrel
+      native: "Wiewi\xF3rka"
     answer1_Image: {fileID: 2800000, guid: 25536916639c94149af2fa222c0b8218, type: 3}
     answer2:
       en: White Eagle
@@ -867,8 +867,8 @@ MonoBehaviour:
       native: Skoki Narciarskie
     answer0_Image: {fileID: 0}
     answer1:
-      en: Tennis
-      native: Tenis
+      en: Squba diving
+      native: Nurkowanie
     answer1_Image: {fileID: 0}
     answer2:
       en: Cricket
@@ -979,26 +979,26 @@ MonoBehaviour:
     useImageAnswers: 0
   - id: 39
     questionText:
-      en: What do you do when the bus driver claps?
-      native: Co robisz gdy kierowca autobusu klaszcze?
-    questionVisual: {fileID: 0}
+      en: Who says Na plasterki! (to slices)
+      native: "Kto powiedzia\u0142: Na plasterki!"
+    questionVisual: {fileID: 2800000, guid: 8d4b031ed255f3043b6eef722a747149, type: 3}
     answer0:
-      en: Check if your ticket is valid
-      native: Sprawdzasz bilet
+      en: Kapral
+      native: Kapral
     answer0_Image: {fileID: 0}
     answer1:
-      en: Clap with him
-      native: Klaszczesz z nim
+      en: Hegemon
+      native: Hegemon
     answer1_Image: {fileID: 0}
     answer2:
-      en: Dance
-      native: "Ta\u0144czysz"
+      en: Oferma
+      native: Oferma
     answer2_Image: {fileID: 0}
     answer3:
-      en: Run away
-      native: Uciekasz
+      en: "Mirmi\u0142"
+      native: "Mirmi\u0142"
     answer3_Image: {fileID: 0}
-    useQuestionAnswer: 0
+    useQuestionAnswer: 1
     correctIndices: 00000000
     useImageAnswers: 0
   - id: 40
@@ -1099,26 +1099,26 @@ MonoBehaviour:
     useImageAnswers: 0
   - id: 44
     questionText:
-      en: Why do Polish people clap when the plane lands?
-      native: "Dlaczego Polacy klaszcz\u0105 po wyl\u0105dowaniu samolotu?"
-    questionVisual: {fileID: 2800000, guid: 5c0ae1f17a97b3646b13d59d46097485, type: 3}
+      en: Which one is not created by a Polish artist?
+      native: "Kt\xF3rego z nich nie stworzy\u0142 polski artysta?"
+    questionVisual: {fileID: 0}
     answer0:
-      en: To thank the pilot
-      native: "\u017Beby podzi\u0119kowa\u0107 pilotowi"
+      en: "Wilk i Zaj\u0105c"
+      native: "Wilk i Zaj\u0105c"
     answer0_Image: {fileID: 0}
     answer1:
-      en: They are happy to be alive
-      native: "Ciesz\u0105 si\u0119 \u017Ce \u017Cyj\u0105"
+      en: Thorgal
+      native: Thorgal
     answer1_Image: {fileID: 0}
     answer2:
-      en: It is a rule
-      native: Taka jest zasada
+      en: Bogowie z Kosmosu
+      native: Bogowie z Kosmosu
     answer2_Image: {fileID: 0}
     answer3:
-      en: They saw a bird
-      native: Zobaczyli ptaka
+      en: Vahanara
+      native: Vahanara
     answer3_Image: {fileID: 0}
-    useQuestionAnswer: 1
+    useQuestionAnswer: 0
     correctIndices: 00000000
     useImageAnswers: 0
   - id: 45
@@ -1311,6 +1311,126 @@ MonoBehaviour:
       native: Zapasy z parasolem
     answer3_Image: {fileID: 0}
     useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 53
+    questionText:
+      en: "Stanis\u0142aw Mikulski is best known for his role as..."
+      native: "Stanis\u0142aw Mikulski najbardziej znany jest ze swojej roli..."
+    questionVisual: {fileID: 2800000, guid: 2c9f7ca7b644c24459edb6d69c24e0ea, type: 3}
+    answer0:
+      en: Hans Kloss
+      native: Hans Kloss
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Helmuth Kloss
+      native: Helmuth Kloss
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Martin Bormann
+      native: Martin Bormann
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Herman Brunner
+      native: Herman Brunner
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 54
+    questionText:
+      en: Blurp! Wak! Wak! is the sound of...
+      native: "Blurp! Wak! Wak! to d\u017Awi\u0119k..."
+    questionVisual: {fileID: 2800000, guid: b9c5c18c2109e0343b8cbc852ca096a7, type: 3}
+    answer0:
+      en: "Milu\u015B"
+      native: "Milu\u015B"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Azor
+      native: Azor
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Reksio
+      native: Reksio
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Filemon
+      native: Filemon
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 55
+    questionText:
+      en: But Chief, what are you thinking?..
+      native: "Ale\u017C Wodzu, co W\xF3dz?.."
+    questionVisual: {fileID: 2800000, guid: a87da26556fdfa84f941c826b24365d6, type: 3}
+    answer0:
+      en: ...well, in that case, I apologize.
+      native: ... to ja przepraszam.
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: ...don't overdo it, Chief!
+      native: "...niech W\xF3dz nie przesadza!"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: ...again with the same thing?
+      native: ...znowu o tym samym?
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: ...I'm only joking, after all.
+      native: "... przecie\u017C ja tylko \u017Cartuj\u0119."
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 56
+    questionText:
+      en: Just like people, Funky...
+      native: Tak samo jak ludzie, Funky...
+    questionVisual: {fileID: 0}
+    answer0:
+      en: ...without any difference.
+      native: "...bez \u017Cadnej r\xF3\u017Cnicy"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: ..always lie to your face.
+      native: "...zawsze k\u0142ami\u0105 w oczy."
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: ...know no mercy.
+      native: "...nie znaj\u0105 lito\u015Bci."
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: ...are only looking for profit.
+      native: "...szukaj\u0105 tylko zysku."
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 57
+    questionText:
+      en: Lelum-polelum is the signature catchphrase of..
+      native: "Lelum-polelum to charakterystyczne has\u0142o..."
+    questionVisual: {fileID: 0}
+    answer0:
+      en: "\u0141amignat"
+      native: "\u0141amignat"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Kokosz
+      native: Kokosz
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Kajko
+      native: Kajko
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Oferma
+      native: Oferma
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
     correctIndices: 00000000
     useImageAnswers: 0
   tiers:
