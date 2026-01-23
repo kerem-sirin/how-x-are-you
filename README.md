@@ -1,4 +1,4 @@
-# 🎯 How X Are You?
+# How X Are You?
 
 A data-driven, expandable quiz game framework built in Unity. Test players' knowledge about any country or topic with localized questions, tiered results, and a charming Boho Matte visual style.
 
@@ -8,9 +8,10 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 <!-- Add your screenshots here -->
 <p align="center">
-  <img src="Screenshots/menu.png" alt="Menu Screenshot" width="200">
-  <img src="Screenshots/quiz.png" alt="Quiz Screenshot" width="200">
-  <img src="Screenshots/result.png" alt="Result Screenshot" width="200">
+  <img src="Screenshots/menu.png" alt="Menu Screenshot" width="140">
+  <img src="Screenshots/QuizTabletPortrait.png" alt="Quiz Screenshot" width="200">
+  <img src="Screenshots/result.png" alt="Result Screenshot" width="140">
+  <img src="Screenshots/QuizMobileLandscape.png" alt="Quiz Screenshot" width="240">
 </p>
 
 ---
