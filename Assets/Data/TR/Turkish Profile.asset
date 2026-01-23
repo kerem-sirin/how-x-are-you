@@ -31,10 +31,1373 @@ MonoBehaviour:
       en: English
       native: "T\xFCrk\xE7e"
     titleTemplate:
-      en: How Turkish You Are?
+      en: How Turkish Are You?
       native: "Ne Kadar T\xFCrks\xFCn?"
-    flagIcon: {fileID: 0}
-  questions: []
+    flagIcon: {fileID: 2800000, guid: 7032c8871e85fea4783cd98488993891, type: 3}
+  questions:
+  - id: 00
+    questionText:
+      en: What is the capital of Turkey?
+      native: "T\xFCrkiye'nin ba\u015Fkenti neresidir?"
+    questionVisual: {fileID: 2800000, guid: 6faae286c2628a94eb012753f2766598, type: 3}
+    answer0:
+      en: Ankara
+      native: Ankara
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Istanbul
+      native: "\u0130stanbul"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Yozgat
+      native: Yozgat
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Batman
+      native: Batman
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 01
+    questionText:
+      en: Which one is the national drink?
+      native: "Milli i\xE7ece\u011Fimiz nedir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Tea
+      native: "\xC7ay"
+    answer0_Image: {fileID: 2800000, guid: 79f0f7dd19a0dd840be928d4779b625f, type: 3}
+    answer1:
+      en: Raki
+      native: "Rak\u0131"
+    answer1_Image: {fileID: 2800000, guid: e2fbed5a305a95140b5d4ea5154bb783, type: 3}
+    answer2:
+      en: Water
+      native: Su
+    answer2_Image: {fileID: 2800000, guid: d0bed941770346447b92809f828b18ae, type: 3}
+    answer3:
+      en: Coffee
+      native: Kahve
+    answer3_Image: {fileID: 2800000, guid: 2a237f3de99ef384b9b337d57a4c5b05, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 0000000001000000
+    useImageAnswers: 1
+  - id: 02
+    questionText:
+      en: You are entering a Turkish home. What do you do first?
+      native: "Bir T\xFCrk evine giriyorsun. \u0130lk ne yapars\u0131n?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Take off your shoes
+      native: "Ayakkab\u0131lar\u0131n\u0131 \xE7\u0131kar\u0131rs\u0131n"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Shake hands immediately
+      native: "Hemen el s\u0131k\u0131\u015F\u0131rs\u0131n"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Ask for the WiFi
+      native: "WiFi \u015Fifresini sorars\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Keep your shoes on
+      native: "Ayakkab\u0131lar\u0131nla girersin"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 03
+    questionText:
+      en: What do you offer a guest to refresh them?
+      native: "Misafiri ferahlatmak i\xE7in ne ikram edilir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Lemon Cologne
+      native: "Limon Kolonyas\u0131"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Cold Water
+      native: "So\u011Fuk Su"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Ayran
+      native: Ayran
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Turkish Delight
+      native: Lokum
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 04
+    questionText:
+      en: What is the meaning of the Evil Eye?
+      native: "Nazar Boncu\u011Fu ne i\u015Fe yarar?"
+    questionVisual: {fileID: 2800000, guid: c3a65a30543bf1a4d9a36820642f782c, type: 3}
+    answer0:
+      en: Protects against the bad energy
+      native: Nazardan korur
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: It gives good luck
+      native: "\u015Eans getirir"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: It connects to WiFi
+      native: "WiFi'ye ba\u011Flan\u0131r"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: It is currency
+      native: Para birimidir
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 05
+    questionText:
+      en: When the traffic light turns Yellow what does a Turkish driver do?
+      native: "Trafik \u0131\u015F\u0131\u011F\u0131 Sar\u0131 yand\u0131\u011F\u0131nda
+        T\xFCrk \u015Fof\xF6r\xFC ne yapar?"
+    questionVisual: {fileID: 2800000, guid: 400300861e6237a4aa2aa9d8d9b6d11a, type: 3}
+    answer0:
+      en: Speed up and honk
+      native: "H\u0131zlan\u0131r ve kornaya basar"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Slow down
+      native: "Yava\u015Flar"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Stop immediately
+      native: Hemen durur
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Check the mirror
+      native: "Aynay\u0131 kontrol eder"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 06
+    questionText:
+      en: 'Complete the sentence: Simit and ...'
+      native: "C\xFCmleyi tamamla: Simit ve ..."
+    questionVisual: {fileID: 2800000, guid: d587ca2936c48d741960b5b0e533e8de, type: 3}
+    answer0:
+      en: Tea
+      native: "\xC7ay"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Coffee
+      native: Kahve
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Coke
+      native: Kola
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Ketchup
+      native: "Ket\xE7ap"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 07
+    questionText:
+      en: Which animal is the true owner of Istanbul?
+      native: "\u0130stanbul'un ger\xE7ek sahibi hangi hayvand\u0131r?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Cat
+      native: Kedi
+    answer0_Image: {fileID: 2800000, guid: b2d9e0c045344844697450d2409f2ed8, type: 3}
+    answer1:
+      en: Squirrel
+      native: Sincap
+    answer1_Image: {fileID: 2800000, guid: 677df955413cf5a449fd821dbd8c6b94, type: 3}
+    answer2:
+      en: Seagull
+      native: "Mart\u0131"
+    answer2_Image: {fileID: 2800000, guid: 57080ce4eefd8a743aacf4109b574231, type: 3}
+    answer3:
+      en: Pigeon
+      native: "G\xFCvercin"
+    answer3_Image: {fileID: 2800000, guid: d9cd782957491e04fba04f8f732ecc54, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 08
+    questionText:
+      en: Bill arrived at a restaurant. What do you say?
+      native: Restoranda hesap geldi Ne dersin?
+    questionVisual: {fileID: 2800000, guid: 1833ff47042761247aac7113c4f1c846, type: 3}
+    answer0:
+      en: I will pay! Don't be ridiculous!
+      native: "Ben \xF6deyece\u011Fim! Sa\xE7malama!"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Let's split it.
+      native: "Alman usul\xFC yapal\u0131m."
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: You pay next time.
+      native: "Sen \xF6de sonra ben \xF6derim."
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: I forgot my wallet.
+      native: "C\xFCzdan\u0131m\u0131 unuttum."
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 09
+    questionText:
+      en: "What is Dolmu\u015F?"
+      native: "Dolmu\u015F nedir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Shared Taxi / Minibus
+      native: "Payla\u015F\u0131ml\u0131 Taksi / Minib\xFCs"
+    answer0_Image: {fileID: 2800000, guid: 870a982104b2ee14b864c375fdc5e4f9, type: 3}
+    answer1:
+      en: Stuffed Grape Leaves
+      native: Yaprak Sarma
+    answer1_Image: {fileID: 2800000, guid: 5846bbbc8a9d65f4a88b98c264f5dd23, type: 3}
+    answer2:
+      en: A type of boat
+      native: "Bir tekne t\xFCr\xFC"
+    answer2_Image: {fileID: 2800000, guid: 47eb22e5948ef37438318f087d2f99de, type: 3}
+    answer3:
+      en: Full Moon
+      native: Dolunay
+    answer3_Image: {fileID: 2800000, guid: b0c97341fdc04e448bb0dabdfc31e8e8, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 10
+    questionText:
+      en: If someone spills water behind your car as you leave what does it mean?
+      native: "Sen giderken arkandan su d\xF6k\xFCl\xFCrse bu ne demektir?"
+    questionVisual: {fileID: 2800000, guid: 9511a0a6ee46e244087e5eca2b435944, type: 3}
+    answer0:
+      en: Flow like water and be back soon
+      native: Su gibi git su gibi gel
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The car was dirty
+      native: Araba kirliydi
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: They are cleaning the street
+      native: "Soka\u011F\u0131 temizliyorlar"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: They are angry
+      native: "K\u0131zg\u0131nlar"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 11
+    questionText:
+      en: Who is the Mega Star of Turkish Pop music?
+      native: "T\xFCrk Pop m\xFCzi\u011Finin Mega Star\u0131 kimdir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Tarkan
+      native: Tarkan
+    answer0_Image: {fileID: 2800000, guid: 45a479e5e59a5b847859330a5460aa71, type: 3}
+    answer1:
+      en: "Yal\u0131n"
+      native: "Yal\u0131n"
+    answer1_Image: {fileID: 2800000, guid: acd446bdaea3a664bb61f97d61052faf, type: 3}
+    answer2:
+      en: "M\xFCsl\xFCm G\xFCrses"
+      native: "M\xFCsl\xFCm G\xFCrses"
+    answer2_Image: {fileID: 2800000, guid: 825e508a9e017ae4f83122112e81bb85, type: 3}
+    answer3:
+      en: Sezen Aksu
+      native: Sezen Aksu
+    answer3_Image: {fileID: 2800000, guid: 17a6214973f585947a1167013319fc1a, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 12
+    questionText:
+      en: Which one is a traditional Turkish teacup?
+      native: "Hangisi geleneksel T\xFCrk \xE7ay barda\u011F\u0131dir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Tulip shaped
+      native: "Lale \u015Feklinde"
+    answer0_Image: {fileID: 2800000, guid: 4adcdfdd818e971499c2ec134a039574, type: 3}
+    answer1:
+      en: Mug
+      native: Kupa
+    answer1_Image: {fileID: 2800000, guid: 29e13245c3c617a4587e66ea7426d197, type: 3}
+    answer2:
+      en: Chinese Style
+      native: "\xC7in tipi"
+    answer2_Image: {fileID: 2800000, guid: 675398e0c0f8e684081b905f50a04de1, type: 3}
+    answer3:
+      en: Glass with handle
+      native: Cam kulplu
+    answer3_Image: {fileID: 2800000, guid: 8ec9eed0cc849354f86b0be257e1cd9c, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 13
+    questionText:
+      en: You finished drinking your Turkish Coffee. What do you do immediately?
+      native: "T\xFCrk Kahveni i\xE7tin, bitti. Hemen ne yapars\u0131n?"
+    questionVisual: {fileID: 2800000, guid: 887f1543d90e7e24aa0780e427f6f1ee, type: 3}
+    answer0:
+      en: Turn the cup upside down for fortune
+      native: "Fal bak\u0131ls\u0131n diye taba\u011Fa kapat\u0131r\u0131m"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Eat the grounds
+      native: Telvesini yerim
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Wash the cup
+      native: "Barda\u011F\u0131 y\u0131kar\u0131m"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Order a latte
+      native: "Latte s\xF6ylerim"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 14
+    questionText:
+      en: It is Festive time. You see your elderly relative. What is the move?
+      native: "Bayram sabah ya\u015Fl\u0131 bir akraban\u0131 g\xF6rd\xFCn.Ne yapars\u0131n?"
+    questionVisual: {fileID: 2800000, guid: 9f408af4566421a40bb33eddf2082736, type: 3}
+    answer0:
+      en: Kiss hand and put to forehead
+      native: "Elini \xF6per aln\u0131ma koyar\u0131m"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: High five
+      native: "\xC7ak bir be\u015Flik"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Awkward nod
+      native: "Tuhaf\xE7a kafa sallar\u0131m"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Shake hands firmly
+      native: "S\u0131k\u0131ca el s\u0131k\u0131\u015F\u0131r\u0131m"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 15
+    questionText:
+      en: You see someone working. What do you say?
+      native: "\xC7al\u0131\u015Fan birini g\xF6rd\xFCn. Ne dersin?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: May it be easy
+      native: Kolay Gelsin
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Good Job
+      native: Helal
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Why are you working?
+      native: "Neden \xE7al\u0131\u015F\u0131yorsun?"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Have fun
+      native: "\u0130yi e\u011Flenceler"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 16
+    questionText:
+      en: 'Someone cooked a meal for you. You say:'
+      native: "Biri sana yemek yapt\u0131. Ne dersin?"
+    questionVisual: {fileID: 2800000, guid: 8a43c61361dacc7458f1e66cc3bc1db6, type: 3}
+    answer0:
+      en: Health to your hands
+      native: "Eline Sa\u011Fl\u0131k"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Good soup
+      native: "G\xFCzel \xE7orba"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Mediocre
+      native: Ortalama
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: It was okay
+      native: "\u0130dare eder"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 17
+    questionText:
+      en: 'Your friend just got a haircut or a shower. You say:'
+      native: "Arkada\u015F\u0131n t\u0131ra\u015F oldu veya du\u015F ald\u0131.
+        Ne dersin?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Good health to you
+      native: "S\u0131hhatler Olsun"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Nice Hair
+      native: "G\xFCzel Sa\xE7"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Get Well Soon
+      native: "Ge\xE7mi\u015F Olsun"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Happy Birthday
+      native: "Do\u011Fum G\xFCn\xFCn Kutlu Olsun"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 18
+    questionText:
+      en: Why do people queue at weddings?
+      native: "D\xFC\u011F\xFCn\xFCnlerde insanlar neden s\u0131raya girerler?"
+    questionVisual: {fileID: 2800000, guid: caec07ef8c992f148b6eda88427fbdee, type: 3}
+    answer0:
+      en: To pin gold or money on the bride/groom
+      native: "Geline/Damada alt\u0131n veya para takmak i\xE7in"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: To dance halay
+      native: "Halay \xE7ekmek i\xE7in"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: To eat the dry cake
+      native: "Kuru pasta yemek i\xE7in"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: To leave the hall
+      native: "Salonu terketmek i\xE7in"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 19
+    questionText:
+      en: How do you properly eat Lahmacun?
+      native: "Lahmacun nas\u0131l yenir?"
+    questionVisual: {fileID: 2800000, guid: c16d64833a81a7c45b82d422dac552a9, type: 3}
+    answer0:
+      en: Put parsley/lemon and roll it
+      native: "Maydanoz/limon koyup d\xFCr\xFCm yapars\u0131n"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: With a knife and fork
+      native: "\xC7atal b\u0131\xE7akla"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Fold it like a paper plane
+      native: "Ka\u011F\u0131t u\xE7ak gibi katlars\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Dip it in ketchup
+      native: "Ket\xE7apa bat\u0131r\u0131rs\u0131n"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 20
+    questionText:
+      en: Which one is known as Lion's Milk?
+      native: "Halk aras\u0131nda Aslan S\xFCt\xFC nedir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: "Rak\u0131"
+      native: "Rak\u0131"
+    answer0_Image: {fileID: 2800000, guid: 2c25f028a20f73c4091ba4dcd7bdaa61, type: 3}
+    answer1:
+      en: Ayran
+      native: Ayran
+    answer1_Image: {fileID: 2800000, guid: 90cd828ae375fb446bf67a2115d43918, type: 3}
+    answer2:
+      en: Tea
+      native: Milk
+    answer2_Image: {fileID: 2800000, guid: 12a55bb07272b8542980fd227582af53, type: 3}
+    answer3:
+      en: Kefir
+      native: Kefir
+    answer3_Image: {fileID: 2800000, guid: 0441038cfd8d28840abf09f6a91d26dd, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 21
+    questionText:
+      en: What is the national sport of Turkish aunts on the balcony?
+      native: "Balkondaki T\xFCrk teyzelerinin milli sporu nedir?"
+    questionVisual: {fileID: 2800000, guid: 0b361d9eb52e1594aa22efa84c667355, type: 3}
+    answer0:
+      en: Spying on the entire neighborhood
+      native: "B\xFCt\xFCn mahalleyi g\xF6zetlemek"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Yoga
+      native: Yoga
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Reading books
+      native: Kitap okumak
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Sunbathing
+      native: "G\xFCne\u015Flenmek"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 22
+    questionText:
+      en: How long is an average episode of a Turkish TV series?
+      native: "Bir T\xFCrk dizisinin ortalama b\xF6l\xFCm\xFC ne kadar s\xFCrer?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: 200 Minutes + Commercials
+      native: 200 Dakika + Reklamlar
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: 20 Minutes
+      native: 20 Dakika
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: 45 Minutes
+      native: 45 Dakika
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: 60 Minutes
+      native: 60 Dakika
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 23
+    questionText:
+      en: 'In Izmir they don''t say Simit. They say:'
+      native: "\u0130zmir'de Simit demezler. Ne derler?"
+    questionVisual: {fileID: 2800000, guid: bca8dba70b556d54799bdc15d74f5b5e, type: 3}
+    answer0:
+      en: Gevrek
+      native: Gevrek
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Circle Bread
+      native: Yuvarlak Ekmek
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Kevrek
+      native: Kevrek
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Boyoz
+      native: Boyoz
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 24
+    questionText:
+      en: What did a man in Adana do to the sun because it was too hot?
+      native: "Adanal\u0131 bir adam \xE7ok s\u0131cak diye g\xFCne\u015Fe ne yapm\u0131\u015Ft\u0131r?"
+    questionVisual: {fileID: 2800000, guid: fde2763ee918263429911db5182d7999, type: 3}
+    answer0:
+      en: He shot at it with a gun
+      native: "Silahla ate\u015F etmi\u015Ftir"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: He yelled at it
+      native: "Ba\u011F\u0131rm\u0131\u015Ft\u0131r"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: He threw ice at it
+      native: "Buz atm\u0131\u015Ft\u0131r"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: He sued it
+      native: "Dava etmi\u015Ftir"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 25
+    questionText:
+      en: You bought fresh hot bread. What do you do on the walk home?
+      native: "Taze s\u0131cak ekmek ald\u0131n. Eve y\xFCr\xFCrken ne yapars\u0131n?"
+    questionVisual: {fileID: 2800000, guid: 09dc580841d65d44ca60fbb2ecb245b3, type: 3}
+    answer0:
+      en: You eat the crispy corner
+      native: "K\xF6\u015Fesini kopar\u0131p yersin"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: You hold it gently
+      native: "Nazik\xE7e tutars\u0131n"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: You put it in your bag
+      native: "\xC7antana koyars\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: You don't touch it
+      native: "Dokunmazs\u0131n"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 26
+    questionText:
+      en: How do you protect the TV remote control?
+      native: "Televizyon kumandas\u0131n\u0131 nas\u0131l korursun?"
+    questionVisual: {fileID: 2800000, guid: c0f108dac90292943aa76c1382742e9e, type: 3}
+    answer0:
+      en: Wrap it in plastic
+      native: "Naylonla kaplars\u0131n"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Put it in a safe
+      native: "Kasaya koyars\u0131n"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Buy a case
+      native: "K\u0131l\u0131f al\u0131rs\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: You don't
+      native: Koruman
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 27
+    questionText:
+      en: What is a Turkish mother's guided ballistic missile?
+      native: "T\xFCrk annesinin g\xFCd\xFCml\xFC balistik f\xFCzesi nedir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Slipper
+      native: Terlik
+    answer0_Image: {fileID: 2800000, guid: d298f84e13eeea94d920aa9f142a97c9, type: 3}
+    answer1:
+      en: Rolling Pin
+      native: Oklava
+    answer1_Image: {fileID: 2800000, guid: 3ba3e5a676008af45b2e968fab7f2a1e, type: 3}
+    answer2:
+      en: Remote
+      native: Kumanda
+    answer2_Image: {fileID: 2800000, guid: 07c2517b7252b0642b958ac1af169754, type: 3}
+    answer3:
+      en: Plate
+      native: Tabak
+    answer3_Image: {fileID: 2800000, guid: 1cf825c7f23c57446a288d57b33c189a, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 28
+    questionText:
+      en: You said goodbye to your guests. How long does the Doorway Chat last?
+      native: "Misafirlere ho\u015F\xE7akal dedin. Kap\u0131 \xD6n\xFC Sohbeti ne
+        kadar s\xFCrer?"
+    questionVisual: {fileID: 2800000, guid: bd011dcd39f512c459a24b950e36ccb1, type: 3}
+    answer0:
+      en: At least 20 minutes
+      native: En az 20 dakika
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: 30 seconds
+      native: 30 saniye
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: They leave immediately
+      native: Hemen giderler
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: There is no such thing as Doorway Chat
+      native: "Kap\u0131 \xD6n\xFC Sohbeti diye bir \u015Fey yoktur"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 29
+    questionText:
+      en: You meet someone. What's the first question people ask?
+      native: "Birisiyle tan\u0131\u015Ft\u0131n. \u0130lk sorulan nedir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Where are you from?
+      native: Memleket Neresi?
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: How are you?
+      native: "Nas\u0131ls\u0131n?"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: What do you do?
+      native: "Ne i\u015F yap\u0131yorsun?"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Do you like kebab?
+      native: Kebap sever misin?
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 30
+    questionText:
+      en: The most addictive activity while sitting on grass?
+      native: "\xC7imlerde otururken yap\u0131lan en ba\u011F\u0131ml\u0131l\u0131k
+        yap\u0131c\u0131 aktivite?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Cracking Sunflower Seeds
+      native: "\xC7ekirdek \xC7itlemek"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Reading
+      native: Okumak
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Sleeping
+      native: Uyumak
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Yoga
+      native: Yoga
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 31
+    questionText:
+      en: What feature of the toilet shocks tourists?
+      native: "Tuvaletin hangi \xF6zelli\u011Fi turistleri \u015Fok eder?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: The Bum Gun
+      native: "Taharet Muslu\u011Fu"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: The tiles
+      native: Fayanslar
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: The mirror
+      native: Ayna
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: The soap
+      native: Sabun
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 32
+    questionText:
+      en: 'A car actually stops for you at a crosswalk. You:'
+      native: "Yaya ge\xE7idinde araba durdu ve yol verdi. Sen:"
+    questionVisual: {fileID: 2800000, guid: 10d2de30715851c4baef7fd392ab8425, type: 3}
+    answer0:
+      en: Cars don't stop at pedestrian crossings.
+      native: "Arabalar yaya ge\xE7idinde durmaz"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Walk slowly
+      native: "Yava\u015F\xE7a y\xFCr\xFCrs\xFCn"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Ignore the driver
+      native: "\u015Eof\xF6r\xFC g\xF6rmezden gelirsin"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Dance across
+      native: "Dans ederek ge\xE7ersin"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 33
+    questionText:
+      en: Your ear is ringing. What does it mean?
+      native: "Kula\u011F\u0131n \xE7\u0131nl\u0131yor. Bu ne anlama gelir?"
+    questionVisual: {fileID: 2800000, guid: fd9844adacd024c4691421691647052c, type: 3}
+    answer0:
+      en: Someone is gossiping about you
+      native: "Biri senin dedikodunu yap\u0131yor"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: You have tinnitus
+      native: Tinnitusun var
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: It's raining
+      native: "Ya\u011Fmur ya\u011F\u0131yor"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: You are hungry
+      native: "Karn\u0131n a\xE7"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 34
+    questionText:
+      en: It is 3 AM after a night out. What soup do you drink?
+      native: "Gece e\u011Flencesinden sonra saat 03:00. Hangi \xE7orbay\u0131 i\xE7ersin?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Tripe / Head Soup
+      native: "\u0130\u015Fkembe / Kelle Pa\xE7a"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Tomato Soup
+      native: "Domates \xC7orbas\u0131"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Mushroom Soup
+      native: "Mantar \xC7orbas\u0131"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Cold Soup
+      native: "So\u011Fuk \xC7orba"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 35
+    questionText:
+      en: You are full. Mother offers more food. What happens?
+      native: Toksun. Annen zorla yemek veriyor. Ne olur?
+    questionVisual: {fileID: 0}
+    answer0:
+      en: You eat it. Resistance is futile.
+      native: "Yersin. Bo\u015Funa direnme"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: You say no firmly
+      native: "Kesin bir dille hay\u0131r dersin"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: You leave the table
+      native: "Masadan kalkars\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: You call the police
+      native: "Polisi arars\u0131n"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 36
+    questionText:
+      en: What is hidden under the bed in the Baza?
+      native: "Yata\u011F\u0131n alt\u0131ndaki Bazada ne saklan\u0131r?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Winter clothes and Dowry
+      native: "K\u0131\u015Fl\u0131klar ve \xC7eyiz"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Monsters
+      native: Canavarlar
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Old toys
+      native: Eski oyuncaklar
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Nothing
+      native: "Hi\xE7bir \u015Fey"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 37
+    questionText:
+      en: What object was on top of the TV (in the old days)?
+      native: "Eskiden televizyonun \xFCst\xFCnde ne dururdu?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Lace Doily
+      native: Dantel
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Cat
+      native: Kedi
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Antenna
+      native: Anten
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Flower
+      native: "\xC7i\xE7ek"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 38
+    questionText:
+      en: What is the name of the food chaos on the table?
+      native: "Masadaki yemek karma\u015Fas\u0131n\u0131n ismi nedir?"
+    questionVisual: {fileID: 2800000, guid: 3eedc33c79311c9489241434a268b46d, type: 3}
+    answer0:
+      en: Spread Breakfast
+      native: "Serpme Kahvalt\u0131"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: A buffet for 50 people
+      native: "50 ki\u015Filik b\xFCfe"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Modern Art
+      native: Modern Sanat
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Photoshop
+      native: Photoshop
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 39
+    questionText:
+      en: What happened on November 10th at 09:05?
+      native: "10 Kas\u0131m saat 09:05'te ne oldu?"
+    questionVisual: {fileID: 2800000, guid: 32e8b842a6475d743ab8fb19bec2300d, type: 3}
+    answer0:
+      en: "Atat\xFCrk passed away"
+      native: "Atat\xFCrk vefat etti"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: A national holiday
+      native: Ulusal bayram
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: The first day of the school
+      native: "Okulun ilk g\xFCn\xFC"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Nothing special
+      native: "\xD6zel bir \u015Fey yok"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 40
+    questionText:
+      en: Which vendor carries the tray on the head and sells his goods by wandering
+        from street to street?
+      native: "Hangisinin sat\u0131c\u0131s\u0131, tepsisini ba\u015F\u0131n\u0131n
+        \xFCzerinde ta\u015F\u0131r ve sokak sokak gezerek satar?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Simit
+      native: Simit
+    answer0_Image: {fileID: 2800000, guid: 9093849e19991844dbeaa9c1e4265d2a, type: 3}
+    answer1:
+      en: Bagel
+      native: Bagel
+    answer1_Image: {fileID: 2800000, guid: 1067d4bd3a0c6804aab5474f6ca7e54b, type: 3}
+    answer2:
+      en: Donut
+      native: Donut
+    answer2_Image: {fileID: 2800000, guid: 9a8fa5083fc774a46a13d617a1089ee5, type: 3}
+    answer3:
+      en: Bracelet
+      native: Bilezik
+    answer3_Image: {fileID: 2800000, guid: c47bf5d9e9500754d89df322f2eebe16, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 41
+    questionText:
+      en: "Someone is sick. You say Ge\xE7mi\u015F olsun. What does it mean?"
+      native: "Biri hasta. Ge\xE7mi\u015F olsun dedin. Ne anlama geliyor?"
+    questionVisual: {fileID: 2800000, guid: 65e12df862286e24f94eb88f7c07b94c, type: 3}
+    answer0:
+      en: Get well soon / May it pass
+      native: "Ge\xE7mi\u015F olsun"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Happy Birthday
+      native: "Do\u011Fum g\xFCn\xFCn kutlu olsun"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Congratulations
+      native: Tebrikler
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Good luck
+      native: "\u0130yi \u015Fanslar"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 42
+    questionText:
+      en: What is this traditional toilet called?
+      native: Bu geleneksel tuvalete ne denir?
+    questionVisual: {fileID: 2800000, guid: d9133387cf722e94abaf57473d6d4572, type: 3}
+    answer0:
+      en: Alaturka
+      native: Alaturka
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Alafranga
+      native: Alafranga
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Pit
+      native: "\xC7ukur"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Hole
+      native: Delik
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 43
+    questionText:
+      en: What does it mean when an oncoming car flashes its headlights?
+      native: "Kar\u015F\u0131dan gelen arac\u0131n selekt\xF6r yapmas\u0131 ne anlama
+        gelir?"
+    questionVisual: {fileID: 2800000, guid: 2c235b066d6f8324582a252b6700bd51, type: 3}
+    answer0:
+      en: There's police ahead
+      native: "\u0130leride polis var"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Your car is on fire
+      native: "Araban yan\u0131yor"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: I love your car
+      native: "Arabana bay\u0131ld\u0131m"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Race me
+      native: "Benimle yar\u0131\u015F"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 44
+    questionText:
+      en: Who is this legendary musician who has traveled the world?
+      native: "D\xFCnyay\u0131 gezen resimdeki efsanevi m\xFCzisyen kimdir?"
+    questionVisual: {fileID: 2800000, guid: 20d4831486f95d5418e5f6994c09b479, type: 3}
+    answer0:
+      en: "Bar\u0131\u015F Man\xE7o"
+      native: "Bar\u0131\u015F Man\xE7o"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Tarkan
+      native: Tarkan
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Cem Karaca
+      native: Cem Karaca
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: "M\xFCsl\xFCm G\xFCrses"
+      native: "M\xFCsl\xFCm G\xFCrses"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 45
+    questionText:
+      en: Which Kemal Sunal character is the most legendary?
+      native: En efsanevi Kemal Sunal karakteri hangisidir?
+    questionVisual: {fileID: 2800000, guid: caaed9e958093c342a7e7692d92a6852, type: 3}
+    answer0:
+      en: Cow Shaban
+      native: "\u0130nek \u015Eaban"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Badi Ekrem
+      native: Badi Ekrem
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Omer the Tourist
+      native: "Turist \xD6mer"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: "Erol Ta\u015F"
+      native: "Erol Ta\u015F"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 46
+    questionText:
+      en: Which famous voice in Turkish music is Hakan Altun?
+      native: "T\xFCrk m\xFCzi\u011Finin \xFCnl\xFC sesi Hakan Altun hangisidir?"
+    questionVisual: {fileID: 0}
+    answer0:
+      en: Hakan Altun
+      native: Hakan Altun
+    answer0_Image: {fileID: 2800000, guid: 41149745f2285754981d8645a464125a, type: 3}
+    answer1:
+      en: "Nihat Do\u011Fan"
+      native: "Nihat Do\u011Fan"
+    answer1_Image: {fileID: 2800000, guid: a966fa90326740049b241931d3d84e27, type: 3}
+    answer2:
+      en: LVBEL C5
+      native: LVBEL C5
+    answer2_Image: {fileID: 2800000, guid: 36b8986aecd01ab4b981fb27ed9f0751, type: 3}
+    answer3:
+      en: "Zeki M\xFCren"
+      native: "Zeki M\xFCren"
+    answer3_Image: {fileID: 2800000, guid: 72278e2aeaa509f42ab37cf9aecbcddf, type: 3}
+    useQuestionAnswer: 0
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 47
+    questionText:
+      en: "When Kamer Gen\xE7, then a member of parliament, was filmed leaving a
+        woman's house, what did he tell the cameras about what he did at the house
+        that night?"
+      native: "Milletvekiliyken bir kad\u0131n\u0131n evinden \xE7\u0131karken g\xF6r\xFCnt\xFClenen
+        Kamer Gen\xE7, kameralara gece evde ne yapt\u0131\u011F\u0131n\u0131 s\xF6ylemi\u015Ftir?"
+    questionVisual: {fileID: 2800000, guid: 450c2843868e1ab4085045d7aab64b27, type: 3}
+    answer0:
+      en: Watered the flowers
+      native: "\xC7i\xE7ek sulad\u0131\u011F\u0131n\u0131"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Slept
+      native: "Uyudu\u011Funu"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Played LoL
+      native: "LoL oynad\u0131\u011F\u0131n\u0131"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Watched a movie
+      native: "Film izledi\u011Fini"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 48
+    questionText:
+      en: What is added to the coffee served to the groom when the families meet
+        before the wedding?
+      native: "Evlilik \xF6ncesi, aileler tan\u0131\u015F\u0131rken damada ikram
+        edilen kahveye ne konur?"
+    questionVisual: {fileID: 2800000, guid: b5e1c83b3e4ac404ca86136252b99c8f, type: 3}
+    answer0:
+      en: salt
+      native: tuz
+    answer0_Image: {fileID: 2800000, guid: 55c821ca19a631a4fa866be0330e99c2, type: 3}
+    answer1:
+      en: rose
+      native: "g\xFCl"
+    answer1_Image: {fileID: 2800000, guid: 480727a5a43a1d544ae7f161bc6630f7, type: 3}
+    answer2:
+      en: bleach
+      native: "\xE7ama\u015F\u0131r suyu"
+    answer2_Image: {fileID: 2800000, guid: e650604d4b9388c4aa3da1b97dfa3c9b, type: 3}
+    answer3:
+      en: wd40
+      native: wd40
+    answer3_Image: {fileID: 2800000, guid: ccc81729053c1de4b9e5d87b395667f5, type: 3}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 1
+  - id: 49
+    questionText:
+      en: What do the bride's unmarried friends do before the wedding?
+      native: "D\xFC\u011F\xFCnden \xF6nce, gelinin evli olmayan arkada\u015Flar\u0131
+        ne yapar"
+    questionVisual: {fileID: 2800000, guid: 867c9e45f54f01a48be8bb89e1385375, type: 3}
+    answer0:
+      en: Writes his/her name name under  the bride's shoe
+      native: "Gelinin ayakkab\u0131s\u0131n\u0131n alt\u0131na ismini yazar"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Gives a pigeon as a gift to bring good luck.
+      native: "\u015Eans getirmesi i\xE7in g\xFCvercin hediye eder"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: They take turns dancing
+      native: "S\u0131rayla dans ederler"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Casts spells
+      native: "B\xFCy\xFC yapar"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 50
+    questionText:
+      en: Which city is famous for its success in trade?
+      native: "Ticarette ba\u015Far\u0131l\u0131 olmas\u0131yla \xFCnl\xFC \u015Fehir
+        hangisidir?"
+    questionVisual: {fileID: 2800000, guid: e7b766e1c4b77494394becfe7506e1b9, type: 3}
+    answer0:
+      en: Kayseri
+      native: Kayseri
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: Ordu
+      native: Ordu
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: "Kahramanmara\u015F"
+      native: "Kahramanmara\u015F"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Tepsi
+      native: Tepsi
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 51
+    questionText:
+      en: What name was given to the famous couple in the picture?
+      native: "Resimdeki \xFCnl\xFC \xE7ifte hangi isim verilmi\u015Ftir?"
+    questionVisual: {fileID: 2800000, guid: 84474380c76b6b349a881251dedaec6b, type: 3}
+    answer0:
+      en: "\u015Eeymacun"
+      native: "\u015Eeymacun"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "Il\u0131cal\u0131 \u015Eeyma"
+      native: "Il\u0131cal\u0131 \u015Eeyma"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: "Suba\u015F\u0131l\u0131cal\u0131"
+      native: "Suba\u015F\u0131l\u0131cal\u0131"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Acunma
+      native: Acunma
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 52
+    questionText:
+      en: "Which of Egemen Ba\u011F\u0131\u015F's social media posts received a lot
+        of likes?"
+      native: "Egemen Ba\u011F\u0131\u015F'\u0131n \xE7ok be\u011Fenilen sosyal medya
+        payla\u015F\u0131m\u0131 hangisidir?"
+    questionVisual: {fileID: 2800000, guid: 043a2e3539442aa448387b1991e57b0f, type: 3}
+    answer0:
+      en: ouokl
+      native: ouokl
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "r\xF6"
+      native: "r\xF6"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Hattori Hanzo
+      native: Hattori Hanzo
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Sovereignty belongs unconditionally to the nation.
+      native: "Egemenlik kay\u0131ts\u0131z \u015Farts\u0131z milletindir"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 0000000001000000
+    useImageAnswers: 0
+  - id: 53
+    questionText:
+      en: Who is the singer that Frodo admires?
+      native: "Frodo'nun hayran oldu\u011Fu \u015Fark\u0131c\u0131 kimdir?"
+    questionVisual: {fileID: 2800000, guid: d4e1328648c0ef34b8e8d79a7ce50594, type: 3}
+    answer0:
+      en: "Selda Ba\u011Fcan"
+      native: "Selda Ba\u011Fcan"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "M\xFCzeyyen Senar"
+      native: "M\xFCzeyyen Senar"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Deniz Tekin
+      native: Deniz Tekin
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Manifest
+      native: Manifest
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 54
+    questionText:
+      en: Who is the person in the picture, known for their jokes?
+      native: "F\u0131kralar\u0131yla bilinen resimdeki ki\u015Fi kimdir?"
+    questionVisual: {fileID: 2800000, guid: 3ff95467f9e561c4b9a35b3ee2c7ae9f, type: 3}
+    answer0:
+      en: Nasreddin Hoca
+      native: Nasreddin Hoca
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: "Erol Ta\u015F"
+      native: "Erol Ta\u015F"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: Mevlana
+      native: Mevlana
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: Cem Karaca
+      native: Cem Karaca
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
+  - id: 55
+    questionText:
+      en: "Minister of Transportation Binali Y\u0131ld\u0131r\u0131m told citizens
+        of what will happen if a lot of work is done on cloud technologies?"
+      native: "Ula\u015Ft\u0131rma Bakan\u0131 Binali Y\u0131ld\u0131r\u0131m, bulut
+        teknolojileri \xFCzerine \xE7ok \xE7al\u0131\u015F\u0131l\u0131rsa ne olaca\u011F\u0131
+        konusunda vatanda\u015Flar\u0131 uyarm\u0131\u015Ft\u0131r?"
+    questionVisual: {fileID: 2800000, guid: f2ae4e2865eaff3448eeaee96b404e4f, type: 3}
+    answer0:
+      en: You'll go crazy.
+      native: "Kafay\u0131 s\u0131y\u0131r\u0131rs\u0131n"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: You will be rich
+      native: Zengin olursun
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: You become enlightened
+      native: "Ayd\u0131nlan\u0131rs\u0131n"
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: You improve yourself
+      native: "Kendini geli\u015Ftirirsin"
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
   tiers:
   - title:
       en: Greek Spy
@@ -139,9 +1502,9 @@ MonoBehaviour:
       en: Afiyet olsun
       native: Afiyet olsun
     description:
-      en: You have transcended Turkey; you ARE Turkey. Street cats follow you like
+      en: You have transcended Turkey; you are Turkey. Street cats follow you like
         a sultan. You finish every sentence with 'Allah korusun'. Tarkan has a poster
         of you.
-      native: "T\xFCrkiye'nin \xF6tesine ge\xE7tin; sen T\xFCrkiye'S\u0130N. Sokak
-        kedileri seni sultan gibi takip ediyor. Her c\xFCmleni 'Allah korusun' ile
-        bitiriyorsun. Tarkan'\u0131n duvar\u0131nda senin posterin var."
+      native: "T\xFCrkiye'nin \xF6tesine ge\xE7tin; sen T\xFCrkiye'sin. Sokak kedileri
+        seni sultan gibi takip ediyor. Her c\xFCmleni 'Allah korusun' ile bitiriyorsun.
+        Tarkan'\u0131n duvar\u0131nda senin posterin var."

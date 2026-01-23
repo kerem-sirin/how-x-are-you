@@ -1433,6 +1433,30 @@ MonoBehaviour:
     useQuestionAnswer: 0
     correctIndices: 00000000
     useImageAnswers: 0
+  - id: 58
+    questionText:
+      en: Why do Polish people clap when the plane lands?
+      native: "Dlaczego Polacy klaszcz\u0105 po wyl\u0105dowaniu?"
+    questionVisual: {fileID: 2800000, guid: 5c0ae1f17a97b3646b13d59d46097485, type: 3}
+    answer0:
+      en: To thank the pilot
+      native: "\u017Beby podzi\u0119kowa\u0107 pilotowi"
+    answer0_Image: {fileID: 0}
+    answer1:
+      en: They are happy to be alive
+      native: "Ciesz\u0105 si\u0119, \u017Ce prze\u017Cyli"
+    answer1_Image: {fileID: 0}
+    answer2:
+      en: It is a rule
+      native: Taka jest zasada
+    answer2_Image: {fileID: 0}
+    answer3:
+      en: They saw a bird
+      native: Zobaczyli ptaka
+    answer3_Image: {fileID: 0}
+    useQuestionAnswer: 1
+    correctIndices: 00000000
+    useImageAnswers: 0
   tiers:
   - title:
       en: Russian Spy
