@@ -10,19 +10,22 @@ namespace HowX.Core
     /// </summary>
     public class SettingsController : MonoBehaviour
     {
-        [Header("Reference")]
-        [SerializeField] private UIDocument uiDocument;
+        #region Serialized Fields
 
         [Header("Icons")]
         [SerializeField] private Texture2D iconMusicOn;
         [SerializeField] private Texture2D iconMusicOff;
         [SerializeField] private Texture2D iconSFXOn;
         [SerializeField] private Texture2D iconSFXOff;
-        [SerializeField] private Texture2D iconSettings;
-        [SerializeField] private Texture2D iconClose;
 
-        // UI Elements
+        #endregion
+
+        #region UI References
+
+        private UIDocument uiDocument;
         private VisualElement root;
+
+        // Settings Panel
         private Button btnSettings;
         private VisualElement panelSettings;
         private VisualElement settingsOverlay;
@@ -38,30 +41,41 @@ namespace HowX.Core
         private Button btnConfirmYes;
         private Button btnConfirmNo;
 
-        // Quiz container reference (for disabling during settings)
+        // Game Containers
         private VisualElement quizContainer;
         private VisualElement menuContainer;
         private VisualElement resultContainer;
 
-        // State
+        #endregion
+
+        #region State
+
         private bool isSettingsOpen = false;
         private bool isConfirmOpen = false;
 
-        // Stored Actions for proper unsubscription
+        #endregion
+
+        #region Callback Storage
+
         private Action onSettingsClick;
         private Action onMusicToggleClick;
         private Action onSFXToggleClick;
         private Action onCloseClick;
-        private Action onOverlayClick;
         private Action onReturnToMenuClick;
         private Action onConfirmYesClick;
         private Action onConfirmNoClick;
-        private Action onConfirmOverlayClick;
+
+        #endregion
+
+        #region Unity Lifecycle
 
         private void Awake()
         {
+            uiDocument = GetComponentInChildren<UIDocument>();
             if (uiDocument == null)
-                TryGetComponent(out uiDocument);
+            {
+                Debug.LogError("UIDocument missing in children!");
+            }
         }
 
         private void OnEnable()
@@ -71,16 +85,9 @@ namespace HowX.Core
             root = uiDocument.rootVisualElement;
             if (root == null) return;
 
-            // Find elements
             FindElements();
-
-            // Setup icons
-            SetupIcons();
-
-            // Setup callbacks
+            UpdateMuteIcons();
             SetupCallbacks();
-
-            // Initialize state
             InitializeState();
         }
 
@@ -88,6 +95,10 @@ namespace HowX.Core
         {
             CleanupCallbacks();
         }
+
+        #endregion
+
+        #region UI Setup
 
         private void FindElements()
         {
@@ -113,20 +124,6 @@ namespace HowX.Core
             quizContainer = root.Q<VisualElement>("Container_Quiz");
             menuContainer = root.Q<VisualElement>("Container_Menu");
             resultContainer = root.Q<VisualElement>("Container_Result");
-        }
-
-        private void SetupIcons()
-        {
-            // Settings gear button
-            if (btnSettings != null && iconSettings != null)
-                btnSettings.style.backgroundImage = iconSettings;
-
-            // Close button
-            if (btnCloseSettings != null && iconClose != null)
-                btnCloseSettings.style.backgroundImage = iconClose;
-
-            // Initial mute icons based on AudioController state
-            UpdateMuteIcons();
         }
 
         private void SetupCallbacks()
@@ -241,7 +238,9 @@ namespace HowX.Core
             isConfirmOpen = false;
         }
 
-        // --- Settings Panel ---
+        #endregion
+
+        #region Settings Panel
 
         private void OpenSettings()
         {
@@ -249,13 +248,9 @@ namespace HowX.Core
 
             isSettingsOpen = true;
 
-            // Show/hide return to menu based on current screen
             UpdateReturnToMenuVisibility();
-
-            // Update mute icons
             UpdateMuteIcons();
 
-            // Show panel
             if (panelSettings != null)
             {
                 panelSettings.RemoveFromClassList("panel-settings-hidden");
@@ -275,7 +270,6 @@ namespace HowX.Core
 
             isSettingsOpen = false;
 
-            // Hide panel
             if (panelSettings != null)
             {
                 panelSettings.RemoveFromClassList("panel-settings-visible");
@@ -291,7 +285,6 @@ namespace HowX.Core
 
         private void OnOverlayClicked(ClickEvent evt)
         {
-            // Only close if clicking the overlay itself, not children
             if (evt.target == settingsOverlay)
             {
                 CloseSettings();
@@ -302,9 +295,8 @@ namespace HowX.Core
         {
             if (btnReturnToMenu == null) return;
 
-            // Show return to menu only during quiz (not on menu or result screen)
             bool inQuiz = quizContainer != null && quizContainer.style.display == DisplayStyle.Flex;
-            
+
             if (inQuiz)
             {
                 btnReturnToMenu.RemoveFromClassList("btn-return-menu-hidden");
@@ -317,7 +309,9 @@ namespace HowX.Core
             }
         }
 
-        // --- Mute Toggles ---
+        #endregion
+
+        #region Audio Toggles
 
         private void OnMusicToggle()
         {
@@ -366,11 +360,12 @@ namespace HowX.Core
             }
         }
 
-        // --- Return to Menu ---
+        #endregion
+
+        #region Confirmation Dialog
 
         private void OnReturnToMenuClicked()
         {
-            // Show confirmation dialog
             ShowConfirmDialog();
         }
 
@@ -404,8 +399,6 @@ namespace HowX.Core
         {
             HideConfirmDialog();
             CloseSettings();
-
-            // Return to menu using GameEvents
             GameEvents.OnGameRestart?.Invoke();
         }
 
@@ -421,5 +414,7 @@ namespace HowX.Core
                 HideConfirmDialog();
             }
         }
+
+        #endregion
     }
 }
