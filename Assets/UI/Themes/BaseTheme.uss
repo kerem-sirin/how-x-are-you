@@ -7,6 +7,7 @@
     --text-body: rgb(166, 112, 93);
     --radius-lg: 24px;
     --radius-md: 16px;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
 }
 
 Label {
@@ -64,7 +65,7 @@ Label {
     background-color: rgba(255, 255, 255, 0);
     justify-content: center;
     align-items: center;
-    background-image: url("project://database/Assets/UI/Textures/Buttons/button_round_gradient.png?fileID=2800000&guid=519aad8d8810daa4cae11a23ec56fa19&type=3#button_round_gradient");
+    background-image: url("project://database/Assets/UI/Textures/Frames/frame_round_gradient.png?fileID=2800000&guid=519aad8d8810daa4cae11a23ec56fa19&type=3#frame_round_gradient");
     -unity-slice-left: 60;
     -unity-slice-top: 60;
     -unity-slice-right: 60;
@@ -317,4 +318,244 @@ Button:active Label {
 .quiz-left {
     opacity: 0;
     translate: -100% 0;
+}
+
+/* ============================================
+   SETTINGS GEAR BUTTON
+   ============================================ */
+
+#Btn_Settings {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    padding: 12px;
+    border-radius: 50%;
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: var(--theme-accent);
+    background-color: rgba(255, 255, 255, 0.7);
+    background-image: url("project://database/Assets/UI/Textures/Icons/icon_settings.png?fileID=2800000&guid=a81cd43651f6b13478dca5b65fe61a77&type=3#icon_settings");
+}
+
+#Btn_Settings:hover {
+    scale: 1.1;
+    -unity-background-image-tint-color: var(--text-body);
+}
+
+#Btn_Settings:active {
+    scale: 0.95;
+}
+
+/* ============================================
+   SETTINGS PANEL OVERLAY
+   ============================================ */
+
+.panel-settings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.panel-settings-hidden {
+    opacity: 0;
+    display: none;
+}
+
+.panel-settings-visible {
+    opacity: 1;
+    display: flex;
+}
+
+.settings-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--overlay-bg);
+}
+
+.box-settings {
+    margin-top: 90px;
+    margin-left: 20px;
+    padding: 24px;
+    background-color: rgba(255, 248, 245, 0);
+    flex-direction: column;
+    align-items: center;
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_square_gradient.png?fileID=2800000&guid=0df8b87f855dd1340abd0c59e276c0cd&type=3#button_square_gradient");
+    -unity-slice-left: 30;
+    -unity-slice-top: 30;
+    -unity-slice-right: 30;
+    -unity-slice-bottom: 30;
+    -unity-slice-scale: 2;
+}
+
+.settings-row {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================
+   TOGGLE BUTTONS (Music/SFX)
+   ============================================ */
+
+.btn-toggle {
+    width: 88px;
+    height: 88px;
+    margin: 16px;
+    padding: 50px;
+    border-radius: 30%;
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.btn-toggle:hover {
+    scale: 1.1;
+    translate: 0 0;
+}
+
+.btn-toggle:active {
+    scale: 0.95;
+    translate: 0 0;
+}
+
+#Btn_ToggleMusic {
+    -unity-background-image-tint-color: var(--theme-accent);
+}
+
+#Btn_ToggleMusic.muted {
+    -unity-background-image-tint-color: var(--text-body);
+    opacity: 0.6;
+}
+
+#Btn_ToggleSFX {
+    -unity-background-image-tint-color: var(--theme-accent);
+}
+
+#Btn_ToggleSFX.muted {
+    -unity-background-image-tint-color: var(--text-body);
+    opacity: 0.6;
+}
+
+#Btn_ReturnToMenu {
+    -unity-background-image-tint-color: var(--text-body);
+}
+
+/* ============================================
+   CLOSE BUTTON
+   ============================================ */
+
+.btn-close {
+    width: 68px;
+    height: 68px;
+    margin: 8px;
+    padding: 10px;
+    border-radius: 36%;
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: var(--text-body);
+    background-color: rgba(255, 255, 255, 1);
+    background-image: url("project://database/Assets/UI/Textures/Icons/icon_close.png?fileID=2800000&guid=66c7e6a90704a4b4da8993cb2fff3d63&type=3#icon_close");
+    position: absolute; 
+    right: -36px; 
+    top: -36px;
+}
+
+.btn-close:hover {
+    scale: 1.1;
+    translate: 0 0;
+    -unity-background-image-tint-color: rgb(180, 80, 80);
+}
+
+.btn-close:active {
+    scale: 0.95;
+    translate: 0 0;
+}
+
+/* ============================================
+   RETURN TO MENU BUTTON
+   ============================================ */
+
+.btn-return-menu-hidden {
+    display: none;
+}
+
+/* ============================================
+   CONFIRMATION DIALOG
+   ============================================ */
+
+.panel-confirm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.panel-confirm-hidden {
+    opacity: 0;
+    display: none;
+}
+
+.panel-confirm-visible {
+    opacity: 1;
+    display: flex;
+}
+
+.box-confirm {
+    padding: 40px;
+    background-color: rgba(255, 248, 245, 0.98);
+    border-radius: var(--radius-lg);
+    align-items: center;
+    background-image: url("project://database/Assets/UI/Textures/Buttons/button_square_gradient.png?fileID=2800000&guid=0df8b87f855dd1340abd0c59e276c0cd&type=3#button_square_gradient");
+    -unity-slice-left: 40;
+    -unity-slice-top: 40;
+    -unity-slice-right: 40;
+    -unity-slice-bottom: 40;
+    -unity-slice-scale: 2;
+}
+
+.confirm-text {
+    font-size: 52px;
+    margin-bottom: 30px;
+    color: var(--text-main);
+    -unity-text-align: middle-center;
+}
+
+.confirm-buttons {
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+}
+
+.btn-confirm {
+    margin: 10px;
+    font-size: 48px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+/* ============================================
+   QUIZ DISABLED STATE (when settings open)
+   ============================================ */
+
+.quiz-disabled {
+    opacity: 0.5;
+}
+
+.quiz-disabled Button {
+    pointer-events: none;
 }

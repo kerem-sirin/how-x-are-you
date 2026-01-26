@@ -116,3 +116,8 @@
     height: 120px;
     font-size: 46px;
 }
+
+#Btn_Settings {
+    top: 40px;
+    left: 12px;
+}

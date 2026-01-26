@@ -13,5 +13,9 @@ namespace HowX.Core
         public static Action OnGameStart;    // Start Button Clicked
         public static Action OnGameRestart;  // Restart Button Clicked (Back to Menu)
         public static Action OnGameEnd;      // Quiz Finished (Results shown)
+
+        // Settings Events
+        public static Action OnSettingsOpened;
+        public static Action OnSettingsClosed;
     }
 }

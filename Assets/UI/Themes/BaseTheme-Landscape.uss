@@ -136,3 +136,8 @@
     font-size: 44px;
     margin-top: 25px;
 }
+
+#Btn_Settings {
+    top: 36px;
+    left: 12px;
+}

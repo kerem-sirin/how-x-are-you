@@ -621,7 +621,7 @@ public class QuizProfileEditor : Editor
 
         // Track which keys were found
         HashSet<string> foundKeys = new HashSet<string>();
-        HashSet<string> requiredKeys = new HashSet<string> { "btn_start", "btn_restart", "btn_lang", "title_template" };
+        HashSet<string> requiredKeys = new HashSet<string> { "btn_start", "btn_restart", "btn_lang", "title_template", "confirm_title", "btn_yes", "btn_no" };
 
         // Parse CSV Rows (Format: Key, EN, Native)
         for (int i = 1; i < lines.Count; i++)
@@ -653,6 +653,15 @@ public class QuizProfileEditor : Editor
                     break;
                 case "title_template":
                     profile.uiData.titleTemplate = new LocalizedText { en = en, native = nat };
+                    break;
+                case "confirm_title":
+                    profile.uiData.confirmTitle = new LocalizedText { en = en, native = nat };
+                    break;
+                case "btn_yes":
+                    profile.uiData.btnYes = new LocalizedText { en = en, native = nat };
+                    break;
+                case "btn_no":
+                    profile.uiData.btnNo = new LocalizedText { en = en, native = nat };
                     break;
             }
         }

@@ -47,6 +47,28 @@
             </ui:VisualElement>
             <ui:Button text="Try Again" name="Btn_Restart" />
         </ui:VisualElement>
+        <ui:Button name="Btn_Settings" class="btn-settings" />
+        <ui:VisualElement name="Panel_Settings" class="panel-settings panel-settings-hidden">
+            <ui:VisualElement name="Settings_Overlay" class="settings-overlay" />
+            <ui:VisualElement name="Box_Settings" class="box-settings">
+                <ui:VisualElement name="Settings_Row" class="settings-row">
+                    <ui:Button name="Btn_ToggleMusic" class="btn-toggle" style="background-image: url(&quot;project://database/Assets/UI/Textures/Icons/icon_music_on.png?fileID=2800000&amp;guid=ad3552baaf6ee104e9e30d76550f2671&amp;type=3#icon_music_on&quot;);" />
+                    <ui:Button name="Btn_ToggleSFX" class="btn-toggle" style="background-image: url(&quot;project://database/Assets/UI/Textures/Icons/icon_sfx_on.png?fileID=2800000&amp;guid=dd9bdf73cd79f484e9ecd2545bf835a4&amp;type=3#icon_sfx_on&quot;);" />
+                    <ui:Button name="Btn_ReturnToMenu" class="btn-toggle" style="background-image: url(&quot;project://database/Assets/UI/Textures/Icons/menu_open_icon.png?fileID=2800000&amp;guid=b851747347ea0614e8e8b64c86c188d1&amp;type=3#menu_open_icon&quot;);" />
+                </ui:VisualElement>
+                <ui:Button name="Btn_CloseSettings" class="btn-close" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Panel_Confirm" class="panel-confirm panel-confirm-hidden">
+            <ui:VisualElement name="Confirm_Overlay" class="settings-overlay" />
+            <ui:VisualElement name="Box_Confirm" class="box-confirm">
+                <ui:Label name="Lbl_ConfirmText" text="Return to Main Menu?" class="confirm-text" />
+                <ui:VisualElement name="Confirm_Buttons" class="confirm-buttons">
+                    <ui:Button name="Btn_ConfirmYes" text="Yes" class="btn-confirm" />
+                    <ui:Button name="Btn_ConfirmNo" text="No" class="btn-confirm" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="Panel_Transition" picking-mode="Ignore" class="curtain-hidden" style="display: flex;" />
     </ui:VisualElement>
 </ui:UXML>
