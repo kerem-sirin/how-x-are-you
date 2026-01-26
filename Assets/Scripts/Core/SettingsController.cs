@@ -22,6 +22,8 @@ namespace HowX.Core
 
         #region UI References
 
+        private GameController gameController;
+        private Label lblConfirmText;
         private UIDocument uiDocument;
         private VisualElement root;
 
@@ -71,6 +73,7 @@ namespace HowX.Core
 
         private void Awake()
         {
+            gameController = GetComponent<GameController>();
             uiDocument = GetComponentInChildren<UIDocument>();
             if (uiDocument == null)
             {
@@ -119,6 +122,7 @@ namespace HowX.Core
             confirmOverlay = root.Q<VisualElement>("Confirm_Overlay");
             btnConfirmYes = root.Q<Button>("Btn_ConfirmYes");
             btnConfirmNo = root.Q<Button>("Btn_ConfirmNo");
+            lblConfirmText = root.Q<Label>("Lbl_ConfirmText");
 
             // Game containers
             quizContainer = root.Q<VisualElement>("Container_Quiz");
@@ -372,6 +376,7 @@ namespace HowX.Core
         private void ShowConfirmDialog()
         {
             if (isConfirmOpen) return;
+            UpdateConfirmText();
 
             isConfirmOpen = true;
 
@@ -413,6 +418,23 @@ namespace HowX.Core
             {
                 HideConfirmDialog();
             }
+        }
+
+        private void UpdateConfirmText()
+        {
+            if (gameController?.CurrentProfile?.uiData == null) return;
+
+            var ui = gameController.CurrentProfile.uiData;
+            bool native = gameController.IsNativeLanguage;
+
+            if (lblConfirmText != null)
+                lblConfirmText.text = ui.confirmTitle?.Get(native);
+
+            if (btnConfirmYes != null)
+                btnConfirmYes.text = ui.btnYes?.Get(native);
+
+            if (btnConfirmNo != null)
+                btnConfirmNo.text = ui.btnNo?.Get(native);
         }
 
         #endregion

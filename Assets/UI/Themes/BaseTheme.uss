@@ -540,11 +540,12 @@ Button:active Label {
 }
 
 .btn-confirm {
-    width: 142px;
-    height: 100px;
     margin: 10px;
     font-size: 48px;
-    padding: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 36px;
+    padding-right: 36px;
 }
 
 /* ============================================

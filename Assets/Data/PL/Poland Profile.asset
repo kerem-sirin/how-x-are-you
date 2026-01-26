@@ -21,6 +21,9 @@ MonoBehaviour:
   tierSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=2099088389#gid=2099088389
   uiSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1316458360#gid=1316458360
   uiData:
+    titleTemplate:
+      en: How Polish Are You?
+      native: "Jak bardzo jeste\u015B Polakiem?"
     btnStart:
       en: Start Game
       native: "Zacznij Gr\u0119"
@@ -30,9 +33,15 @@ MonoBehaviour:
     btnLang:
       en: English
       native: Polski
-    titleTemplate:
-      en: How Polish Are You?
-      native: "Jak bardzo jeste\u015B Polakiem?"
+    confirmTitle:
+      en: Return to Main Menu?
+      native: "Wr\xF3ci\u0107 do menu g\u0142\xF3wnego?"
+    btnYes:
+      en: Yes
+      native: Tak
+    btnNo:
+      en: No
+      native: Nie
     flagIcon: {fileID: 2800000, guid: faac1c0fb68fbd346850e7a2dd9d8301, type: 3}
   questions:
   - id: 00

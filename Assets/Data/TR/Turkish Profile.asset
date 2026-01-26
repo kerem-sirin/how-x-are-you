@@ -21,6 +21,9 @@ MonoBehaviour:
   tierSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1739893294#gid=1739893294
   uiSheetUrl: https://docs.google.com/spreadsheets/d/1ct-ShL0a72dP0yXP25wbkmHo9trunVviVYG2tVhin0E/edit?gid=1467527898#gid=1467527898
   uiData:
+    titleTemplate:
+      en: How Turkish Are You?
+      native: "Ne Kadar T\xFCrks\xFCn?"
     btnStart:
       en: Start Game
       native: "Oyuna Ba\u015Fla"
@@ -30,9 +33,15 @@ MonoBehaviour:
     btnLang:
       en: English
       native: "T\xFCrk\xE7e"
-    titleTemplate:
-      en: How Turkish Are You?
-      native: "Ne Kadar T\xFCrks\xFCn?"
+    confirmTitle:
+      en: Return to Main Menu?
+      native: "Ana Men\xFCye D\xF6n?"
+    btnYes:
+      en: Yes
+      native: Evet
+    btnNo:
+      en: No
+      native: "Hay\u0131r"
     flagIcon: {fileID: 2800000, guid: 7032c8871e85fea4783cd98488993891, type: 3}
   questions:
   - id: 00

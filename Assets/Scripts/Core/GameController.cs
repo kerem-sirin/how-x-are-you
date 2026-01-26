@@ -50,6 +50,9 @@ namespace HowX.Core
 
         #region State
 
+        public bool IsNativeLanguage => isNativeLanguage;
+        public QuizProfile CurrentProfile => currentProfile;
+
         private List<QuestionData> activeQuestions;
         private int currentQuestionIndex = 0;
         private int currentScore = 0;
