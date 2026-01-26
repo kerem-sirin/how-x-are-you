@@ -95,7 +95,9 @@ namespace HowX.Core
                 langButton.clicked += ToggleLanguage;
 
             if (restartButton != null)
-                restartButton.clicked += RestartGame;
+                restartButton.clicked += RestartButtonPressed;
+
+            GameEvents.OnGameRestart += RestartGame;
 
             // Register audio for all buttons
             RegisterAllButtonAudio();
@@ -116,7 +118,9 @@ namespace HowX.Core
                 langButton.clicked -= ToggleLanguage;
 
             if (restartButton != null)
-                restartButton.clicked -= RestartGame;
+                restartButton.clicked -= RestartButtonPressed;
+            
+            GameEvents.OnGameRestart -= RestartGame;
 
             // Cleanup audio callbacks
             UnregisterAllButtonAudio();
@@ -520,19 +524,18 @@ namespace HowX.Core
             }
         }
 
-        private void ShowMenu()
+        private void RestartButtonPressed()
         {
             if (isTransitioning) return;
-            UpdateUIText();
             GameEvents.OnGameRestart?.Invoke();
-            VisualElement currentActive = resultContainer?.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
-            StartCoroutine(SwitchPanels(currentActive, menuContainer));
         }
 
         private void RestartGame()
         {
             if (isTransitioning) return;
-            ShowMenu();
+            UpdateUIText();
+            VisualElement currentActive = resultContainer?.style.display == DisplayStyle.Flex ? resultContainer : quizContainer;
+            StartCoroutine(SwitchPanels(currentActive, menuContainer));
         }
 
         private void ToggleLanguage()

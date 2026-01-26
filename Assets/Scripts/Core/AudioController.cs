@@ -5,6 +5,9 @@ namespace HowX.Core
 {
     public class AudioController : MonoBehaviour
     {
+        private const string PREF_MUSIC_MUTED = "HowX_MusicMuted";
+        private const string PREF_SFX_MUTED = "HowX_SFXMuted";
+
         [Header("Sources")]
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource sfxSource;
@@ -23,14 +26,34 @@ namespace HowX.Core
         private float defaultPitch = 1f;
         private float defaultVolume = 1f;
 
+        // Mute state
+        private bool isMusicMuted = false;
+        private bool isSFXMuted = false;
+
+        // Public accessors
+        public bool IsMusicMuted => isMusicMuted;
+        public bool IsSFXMuted => isSFXMuted;
+
+        // Singleton for easy access from SettingsController
+        public static AudioController Instance { get; private set; }
+
         private void Awake()
         {
+            // Simple singleton
+            if (Instance == null)
+                Instance = this;
+            else if (Instance != this)
+                Destroy(gameObject);
+
             // Cache default values from the AudioSource
             if (sfxSource != null)
             {
                 defaultPitch = sfxSource.pitch;
                 defaultVolume = sfxSource.volume;
             }
+
+            // Load saved mute preferences
+            LoadMutePreferences();
         }
 
         private void OnEnable()
@@ -59,8 +82,86 @@ namespace HowX.Core
 
         private void Start()
         {
+            // Apply mute states to audio sources
+            ApplyMuteStates();
+
             // Play menu music automatically on start
             PlayMenuMusic();
+        }
+
+        // --- Mute Controls ---
+
+        /// <summary>
+        /// Toggle music mute state.
+        /// </summary>
+        public void ToggleMusic()
+        {
+            isMusicMuted = !isMusicMuted;
+            ApplyMusicMute();
+            SaveMutePreferences();
+        }
+
+        /// <summary>
+        /// Toggle SFX mute state.
+        /// </summary>
+        public void ToggleSFX()
+        {
+            isSFXMuted = !isSFXMuted;
+            ApplySFXMute();
+            SaveMutePreferences();
+        }
+
+        /// <summary>
+        /// Set music mute state directly.
+        /// </summary>
+        public void SetMusicMuted(bool muted)
+        {
+            if (isMusicMuted == muted) return;
+            isMusicMuted = muted;
+            ApplyMusicMute();
+            SaveMutePreferences();
+        }
+
+        /// <summary>
+        /// Set SFX mute state directly.
+        /// </summary>
+        public void SetSFXMuted(bool muted)
+        {
+            if (isSFXMuted == muted) return;
+            isSFXMuted = muted;
+            ApplySFXMute();
+            SaveMutePreferences();
+        }
+
+        private void ApplyMuteStates()
+        {
+            ApplyMusicMute();
+            ApplySFXMute();
+        }
+
+        private void ApplyMusicMute()
+        {
+            if (musicSource != null)
+                musicSource.mute = isMusicMuted;
+        }
+
+        private void ApplySFXMute()
+        {
+            if (sfxSource != null)
+                sfxSource.mute = isSFXMuted;
+        }
+
+        private void LoadMutePreferences()
+        {
+            isMusicMuted = PlayerPrefs.GetInt(PREF_MUSIC_MUTED, 0) == 1;
+            isSFXMuted = PlayerPrefs.GetInt(PREF_SFX_MUTED, 0) == 1;
+        }
+
+        private void SaveMutePreferences()
+        {
+            PlayerPrefs.SetInt(PREF_MUSIC_MUTED, isMusicMuted ? 1 : 0);
+            PlayerPrefs.SetInt(PREF_SFX_MUTED, isSFXMuted ? 1 : 0);
+            PlayerPrefs.Save();
         }
 
         // --- Event Handlers ---
@@ -75,7 +176,7 @@ namespace HowX.Core
         // --- Internal Helpers ---
         private void PlaySFX(AudioClip clip)
         {
-            if (clip != null && sfxSource != null)
+            if (clip != null && sfxSource != null && !isSFXMuted)
             {
                 // Ensure default pitch/volume for non-randomized SFX
                 sfxSource.pitch = defaultPitch;
@@ -86,7 +187,7 @@ namespace HowX.Core
 
         private void PlayRandomizedSFX(AudioClip clip)
         {
-            if (clip != null && sfxSource != null)
+            if (clip != null && sfxSource != null && !isSFXMuted)
             {
                 // Apply random variation
                 sfxSource.pitch = Random.Range(0.9f, 1.1f);
