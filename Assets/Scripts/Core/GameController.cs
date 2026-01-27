@@ -12,7 +12,8 @@ namespace HowX.Core
         #region Constants
 
         private const float QUESTION_SLIDE_DURATION = 0.225f;
-        private const float ANSWER_FEEDBACK_DURATION = 0.6f;
+        private const float RIGHT_ANSWER_FEEDBACK_DURATION = 0.8f; 
+        private const float WRONG_ANSWER_FEEDBACK_DURATION = 1.4f;
         private const string MISSING_TEXT = "TEXT MISSING";
 
         #endregion
@@ -528,7 +529,8 @@ namespace HowX.Core
             }
 
             // Wait for feedback duration
-            yield return new WaitForSeconds(ANSWER_FEEDBACK_DURATION);
+            float duration = wasCorrect ? RIGHT_ANSWER_FEEDBACK_DURATION : WRONG_ANSWER_FEEDBACK_DURATION;
+            yield return new WaitForSeconds(duration);
 
             // Move to next question or end game
             currentQuestionIndex++;

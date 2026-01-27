@@ -19,7 +19,7 @@ Label {
 
 #Root {
     background-image: url("project://database/Assets/UI/Textures/Backgrounds/bg_pattern.png?fileID=2800000&guid=757476d2bd7ed7247b2f0bb5f3e6ac60&type=3#bg_pattern");
-    -unity-background-scale-mode: none;
+    -unity-background-scale-mode: stretch-to-fill;
     background-repeat: repeat;
     background-size: contain;
     -unity-background-image-tint-color: rgb(231, 158, 133);
@@ -149,7 +149,6 @@ Button {
     font-size: 48px;
     padding-left: 24px;
     padding-right: 24px;
-    text-shadow: none;
     color: var(--text-body);
     -unity-font-style: bold;
     -unity-text-align: middle-center;
@@ -238,7 +237,6 @@ Button:active Label {
     white-space: normal;
     -unity-text-align: middle-center;
     color: var(--text-body);
-    line-height: 1.4;
 }
 
 #Btn_Restart {
@@ -281,7 +279,6 @@ Button:active Label {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-content: space-between;
 }
 
 .layout-grid Button {
@@ -363,7 +360,11 @@ Button:active Label {
 }
 
 .answer-disabled {
-    pointer-events: none;
+    opacity: 0.9;
+}
+
+.layout-grid .answer-disabled {
+    opacity: 0.6;
 }
 
 /* ============================================
@@ -439,7 +440,7 @@ Button:active Label {
     -unity-slice-top: 30;
     -unity-slice-right: 30;
     -unity-slice-bottom: 30;
-    -unity-slice-scale: 2;
+    -unity-slice-scale: 2px;
 }
 
 .settings-row {
@@ -569,7 +570,7 @@ Button:active Label {
     -unity-slice-top: 40;
     -unity-slice-right: 40;
     -unity-slice-bottom: 40;
-    -unity-slice-scale: 2;
+    -unity-slice-scale: 2px;
 }
 
 .confirm-text {
@@ -600,8 +601,4 @@ Button:active Label {
 
 .quiz-disabled {
     opacity: 0.5;
-}
-
-.quiz-disabled Button {
-    pointer-events: none;
 }
