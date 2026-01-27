@@ -659,9 +659,8 @@ namespace HowX.Core
             if (quizContainer != null)
             {
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
-                quizContainer.RemoveFromClassList("quiz-right");
-                yield return null;
                 quizContainer.AddToClassList("quiz-left");
+                quizContainer.RemoveFromClassList("quiz-right");
                 yield return null;
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
             }
