@@ -702,6 +702,8 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: 791d234a17719b848b18fc97bba0424a, type: 3}
   hoverSound: {fileID: 8300000, guid: b34e623a0613c764aaf018e4b0cb613e, type: 3}
   whooshSound: {fileID: 8300000, guid: 6024e7972d8768d4b8094b686173903e, type: 3}
+  correctSound: {fileID: 8300000, guid: db17b651b02e64b42a0cbc2fff196bae, type: 3}
+  wrongSound: {fileID: 8300000, guid: 26371ceaffa1d074b905e2d83df6fa5e, type: 3}
 --- !u!4 &1995532133
 Transform:
   m_ObjectHideFlags: 0

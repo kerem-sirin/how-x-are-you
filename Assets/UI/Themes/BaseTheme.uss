@@ -321,6 +321,52 @@ Button:active Label {
 }
 
 /* ============================================
+   ANSWER FEEDBACK
+   ============================================ */
+
+.answer-correct {
+    -unity-background-image-tint-color: rgb(76, 175, 80);
+    scale: 1.05;
+    translate: 0 0;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out-back;
+}
+
+.answer-correct:hover {
+    -unity-background-image-tint-color: rgb(76, 175, 80);
+    scale: 1.05;
+    translate: 0 0;
+}
+
+.answer-correct Label,
+.answer-correct:hover Label {
+    color: rgb(255, 255, 255);
+}
+
+.answer-wrong {
+    -unity-background-image-tint-color: rgb(231, 76, 60);
+    scale: 1.05;
+    translate: 0 0;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out-back;
+}
+
+.answer-wrong:hover {
+    -unity-background-image-tint-color: rgb(231, 76, 60);
+    scale: 1.05;
+    translate: 0 0;
+}
+
+.answer-wrong Label,
+.answer-wrong:hover Label {
+    color: rgb(255, 255, 255);
+}
+
+.answer-disabled {
+    pointer-events: none;
+}
+
+/* ============================================
    SETTINGS GEAR BUTTON
    ============================================ */
 

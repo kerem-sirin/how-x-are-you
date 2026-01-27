@@ -21,6 +21,8 @@ namespace HowX.Core
         [SerializeField] private AudioClip clickSound;
         [SerializeField] private AudioClip hoverSound;
         [SerializeField] private AudioClip whooshSound;
+        [SerializeField] private AudioClip correctSound;
+        [SerializeField] private AudioClip wrongSound;
 
         // Store default values for reset
         private float defaultPitch = 1f;
@@ -62,6 +64,8 @@ namespace HowX.Core
             GameEvents.OnSubmit += PlayClick;
             GameEvents.OnHover += PlayHover;
             GameEvents.OnNextQuestion += PlayWhoosh;
+            GameEvents.OnAnswerCorrect += PlayCorrect;
+            GameEvents.OnAnswerWrong += PlayWrong;
 
             GameEvents.OnGameStart += PlayQuizMusic;
             GameEvents.OnGameRestart += PlayMenuMusic;
@@ -74,6 +78,8 @@ namespace HowX.Core
             GameEvents.OnSubmit -= PlayClick;
             GameEvents.OnHover -= PlayHover;
             GameEvents.OnNextQuestion -= PlayWhoosh;
+            GameEvents.OnAnswerCorrect -= PlayCorrect;
+            GameEvents.OnAnswerWrong -= PlayWrong;
 
             GameEvents.OnGameStart -= PlayQuizMusic;
             GameEvents.OnGameRestart -= PlayMenuMusic;
@@ -172,6 +178,8 @@ namespace HowX.Core
         private void PlayClick() => PlayRandomizedSFX(clickSound);
         private void PlayHover() => PlayRandomizedSFX(hoverSound);
         private void PlayWhoosh() => PlaySFX(whooshSound);
+        private void PlayCorrect() => PlaySFX(correctSound);
+        private void PlayWrong() => PlaySFX(wrongSound);
 
         // --- Internal Helpers ---
         private void PlaySFX(AudioClip clip)
