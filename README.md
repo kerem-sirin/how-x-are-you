@@ -8,32 +8,33 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 <!-- Add your screenshots here -->
 <p align="center">
-  <img src="Screenshots/menu.png" alt="Menu Screenshot" width="140">
-  <img src="Screenshots/QuizTabletPortrait.png" alt="Quiz Screenshot" width="200">
-  <img src="Screenshots/result.png" alt="Result Screenshot" width="140">
-  <img src="Screenshots/QuizMobileLandscape.png" alt="Quiz Screenshot" width="240">
+  <img src="Screenshots/PL/menu.png" alt="Menu Screenshot" width="140">
+  <img src="Screenshots/PL/QuizTabletPortrait.png" alt="Quiz Screenshot" width="200">
+  <img src="Screenshots/PL/result.png" alt="Result Screenshot" width="140">
+  <img src="Screenshots/PL/QuizMobileLandscape.png" alt="Quiz Screenshot" width="240">
 </p>
 
 ---
 
 ## ✨ Features
 
-- **🌐 Multi-Country Support** — Create unlimited country profiles with unique questions, tiers, and localization
-- **🔀 Randomized Gameplay** — Questions and answers shuffle every playthrough
-- **🌍 Bilingual** — Toggle between English and native language instantly
-- **📊 Tiered Results** — 8 result tiers with unique titles, subtitles, and descriptions
-- **📱 Responsive Design** — Supports both Portrait and Landscape orientations
-- **🎨 Boho Matte Theme** — Warm, inviting visual style with custom assets
-- **📊 Google Sheets Integration** — Import data directly from Google Sheets URLs
-- **📁 CSV Support** — Alternative local CSV import for offline workflows
-- **🔊 Dynamic Audio** — Randomized SFX pitch for satisfying feedback
+- **Multi-Country Support** — Create unlimited country profiles with unique questions, tiers, and localization
+- **Randomized Gameplay** — Questions and answers shuffle every playthrough
+- **Bilingual** — Toggle between English and native language instantly
+- **Tiered Results** — 8 result tiers with unique titles, subtitles, and descriptions
+- **Responsive Design** — Supports both Portrait and Landscape orientations
+- **Boho Matte Theme** — Warm, inviting visual style with custom assets
+- **Google Sheets Integration** — Import data directly from Google Sheets URLs
+- **CSV Support** — Alternative local CSV import for offline workflows
+- **Dynamic Audio** — Randomized SFX pitch for satisfying feedback
 
 ---
 
 ## 🎮 Play Now
 
-> 🔗 **[Play on itch.io](https://bluebuckgames.itch.io/how-polish-are-you)**
-
+| Polish 🇵🇱 | Turkish 🇹🇷 |
+|:----------:|:----------:|
+| [How Polish Are You?](https://bluebuckgames.itch.io/how-polish-are-you) | [How Turkish Are You?](https://bluebuckgames.itch.io/how-turkish-are-you) |
 ---
 
 ## 🚀 Quick Start
@@ -275,14 +276,25 @@ This project is licensed under the **MIT License** : See the [LICENSE](LICENSE) 
 
 ## 🎵 Music Credits
 
-Music by [Kevin MacLeod](https://incompetech.com)  
-Licensed under [Creative Commons: By Attribution 4.0](http://creativecommons.org/licenses/by/4.0/)
+- Music by [Kevin MacLeod](https://incompetech.com)  
+- Licensed under [Creative Commons: By Attribution 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 | Track | Usage |
 |-------|-------|
 | "Cloud Dancer" | Menu Music |
 | "Journey To Ascend" | Quiz Music |
 | "Sergio's Magic Dustbin" | Result Music |
+
+---
+
+🔊 SFX Credits
+- Sound effects by  [Universfield](https://pixabay.com/users/universfield-28281460/) on Pixabay
+- Licensed under [Pixabay Content License](https://pixabay.com/service/license-summary/) Content License
+
+| SFX | Usage |
+|-------|-------|
+| New Notification 07 | Correct Answer |
+| Error 04 | Wrong Answer |
 
 ---
 
