@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 7fac10d4881658748bf3b7bb932c561d, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: 3259b92742ac88741b8f864578a095fb, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: fd6482db2966a4545af2bab4b9947f90, type: 3}
   m_SortingOrder: 0
@@ -702,6 +702,8 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: 791d234a17719b848b18fc97bba0424a, type: 3}
   hoverSound: {fileID: 8300000, guid: b34e623a0613c764aaf018e4b0cb613e, type: 3}
   whooshSound: {fileID: 8300000, guid: 6024e7972d8768d4b8094b686173903e, type: 3}
+  correctSound: {fileID: 8300000, guid: db17b651b02e64b42a0cbc2fff196bae, type: 3}
+  wrongSound: {fileID: 8300000, guid: 26371ceaffa1d074b905e2d83df6fa5e, type: 3}
 --- !u!4 &1995532133
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ namespace HowX.Core
         #region Constants
 
         private const float QUESTION_SLIDE_DURATION = 0.225f;
+        private const float RIGHT_ANSWER_FEEDBACK_DURATION = 0.8f; 
+        private const float WRONG_ANSWER_FEEDBACK_DURATION = 1.4f;
         private const string MISSING_TEXT = "TEXT MISSING";
 
         #endregion
@@ -215,13 +217,13 @@ namespace HowX.Core
                 quizContainer.style.display = DisplayStyle.None;
             }
 
-            if (progressBarFill != null) 
+            if (progressBarFill != null)
                 progressBarFill.style.width = Length.Percent(0);
 
-            if (resultContainer != null) 
+            if (resultContainer != null)
                 resultContainer.style.display = DisplayStyle.None;
 
-            if (menuContainer != null) 
+            if (menuContainer != null)
                 menuContainer.style.display = DisplayStyle.Flex;
 
             UpdateUIText();
@@ -368,7 +370,7 @@ namespace HowX.Core
             currentQuestionIndex = 0;
             currentScore = 0;
 
-            if (progressBarFill != null) 
+            if (progressBarFill != null)
                 progressBarFill.style.width = Length.Percent(0);
 
             GameEvents.OnGameStart?.Invoke();
@@ -380,6 +382,9 @@ namespace HowX.Core
         private void LoadQuestion()
         {
             if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
+
+            // Reset any feedback styles from previous question
+            ResetAnswerButtonStyles();
 
             QuestionData q = activeQuestions[currentQuestionIndex];
 
@@ -473,32 +478,96 @@ namespace HowX.Core
             if (isTransitioning) return;
             if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
 
+            // Block further input immediately
+            isTransitioning = true;
+            if (transitionPanel != null) transitionPanel.pickingMode = PickingMode.Position;
+
             QuestionData q = activeQuestions[currentQuestionIndex];
             int realDataIndex = currentShuffleIndices[btnIndex];
 
             bool correct = q.correctIndices != null && q.correctIndices.Contains(realDataIndex);
             if (correct) currentScore++;
 
+            // Start feedback sequence
+            StartCoroutine(AnswerFeedbackSequence(btnIndex, correct, q));
+        }
+
+        private IEnumerator AnswerFeedbackSequence(int selectedBtnIndex, bool wasCorrect, QuestionData q)
+        {
+            // Disable all answer interactions
+            for (int i = 0; i < answerButtons.Length; i++)
+            {
+                if (answerButtons[i] != null)
+                    answerButtons[i].AddToClassList("answer-disabled");
+            }
+
+            // Apply feedback to selected button
+            Button selectedBtn = answerButtons[selectedBtnIndex];
+            if (selectedBtn != null)
+            {
+                if (wasCorrect)
+                {
+                    selectedBtn.AddToClassList("answer-correct");
+                    GameEvents.OnAnswerCorrect?.Invoke();
+                }
+                else
+                {
+                    selectedBtn.AddToClassList("answer-wrong");
+                    GameEvents.OnAnswerWrong?.Invoke();
+
+                    // Show correct answer(s)
+                    for (int i = 0; i < answerButtons.Length; i++)
+                    {
+                        int realIndex = currentShuffleIndices[i];
+                        if (q.correctIndices != null && q.correctIndices.Contains(realIndex))
+                        {
+                            if (answerButtons[i] != null)
+                                answerButtons[i].AddToClassList("answer-correct");
+                        }
+                    }
+                }
+            }
+
+            // Wait for feedback duration
+            float duration = wasCorrect ? RIGHT_ANSWER_FEEDBACK_DURATION : WRONG_ANSWER_FEEDBACK_DURATION;
+            yield return new WaitForSeconds(duration);
+
+            // Move to next question or end game
             currentQuestionIndex++;
 
             if (currentQuestionIndex >= activeQuestions.Count)
             {
+                isTransitioning = false;
                 EndGame();
-                return;
+                yield break;
             }
 
-            StartCoroutine(NextQuestionSequence());
+            // Continue with slide animation (resets isTransitioning at the end)
+            yield return StartCoroutine(NextQuestionSequence());
+        }
+
+        private void ResetAnswerButtonStyles()
+        {
+            for (int i = 0; i < answerButtons.Length; i++)
+            {
+                if (answerButtons[i] != null)
+                {
+                    answerButtons[i].RemoveFromClassList("answer-correct");
+                    answerButtons[i].RemoveFromClassList("answer-wrong");
+                    answerButtons[i].RemoveFromClassList("answer-disabled");
+                }
+            }
         }
 
         private void EndGame()
         {
-            if (progressBarFill != null) 
+            if (progressBarFill != null)
                 progressBarFill.style.width = Length.Percent(100);
 
             float totalQs = activeQuestions != null ? activeQuestions.Count : 1;
             float percentage = (float)currentScore / totalQs * 100f;
 
-            if (resultScore != null) 
+            if (resultScore != null)
                 resultScore.text = $"{percentage:F0}%";
 
             // Find earned tier
@@ -590,9 +659,8 @@ namespace HowX.Core
             if (quizContainer != null)
             {
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(0, TimeUnit.Second) };
-                quizContainer.RemoveFromClassList("quiz-right");
-                yield return null;
                 quizContainer.AddToClassList("quiz-left");
+                quizContainer.RemoveFromClassList("quiz-right");
                 yield return null;
                 quizContainer.style.transitionDuration = new List<TimeValue> { new TimeValue(QUESTION_SLIDE_DURATION, TimeUnit.Second) };
             }
@@ -603,6 +671,11 @@ namespace HowX.Core
                 quizContainer.AddToClassList("quiz-center");
                 yield return new WaitForSeconds(QUESTION_SLIDE_DURATION);
                 quizContainer.pickingMode = PickingMode.Position;
+            }
+
+            if (transitionPanel != null)
+            {
+                transitionPanel.pickingMode = PickingMode.Ignore;
             }
 
             isTransitioning = false;
