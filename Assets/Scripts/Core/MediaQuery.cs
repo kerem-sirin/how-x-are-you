@@ -89,7 +89,7 @@ namespace HowX.Core
             if (newAspectRatio != currentAspectRatio)
             {
                 currentAspectRatio = newAspectRatio;
-                MediaQueryEvents.AspectRatioUpdated?.Invoke(newAspectRatio);
+                MediaQueryEvents.RaiseAspectRatioUpdated(newAspectRatio);
 
                 #if UNITY_EDITOR
                 Debug.Log($"[MediaQuery] Aspect ratio changed: {newAspectRatio} ({newResolution.x}x{newResolution.y})");
@@ -107,7 +107,7 @@ namespace HowX.Core
             currentAspectRatio = CalculateAspectRatio(newResolution);
 
             MediaQueryEvents.ResolutionUpdated?.Invoke(currentResolution);
-            MediaQueryEvents.AspectRatioUpdated?.Invoke(currentAspectRatio);
+            MediaQueryEvents.RaiseAspectRatioUpdated(currentAspectRatio);
         }
 
         /// <summary>

@@ -29,5 +29,21 @@ namespace HowX.Core
         /// This is the primary event for responsive layout switching.
         /// </summary>
         public static Action<MediaAspectRatio> AspectRatioUpdated;
+
+        /// <summary>
+        /// The last aspect ratio MediaQuery raised (Undefined until its first query).
+        /// Read this on enable instead of classifying the screen yourself, so
+        /// MediaQuery.landscapeThreshold stays the single source of truth.
+        /// </summary>
+        public static MediaAspectRatio CurrentAspectRatio { get; private set; } = MediaAspectRatio.Undefined;
+
+        /// <summary>
+        /// Stores the new aspect ratio and notifies subscribers. Called by MediaQuery.
+        /// </summary>
+        public static void RaiseAspectRatioUpdated(MediaAspectRatio aspectRatio)
+        {
+            CurrentAspectRatio = aspectRatio;
+            AspectRatioUpdated?.Invoke(aspectRatio);
+        }
     }
 }
