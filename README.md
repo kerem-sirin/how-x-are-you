@@ -20,7 +20,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 - **Multi-Country Support** — Create unlimited country profiles with unique questions, tiers, and localization
 - **Randomized Gameplay** — Questions and answers shuffle every playthrough
-- **Bilingual** — Toggle between English and native language instantly
+- **Bilingual** — Toggle between English and native language instantly, from the menu or mid-quiz via Settings
 - **Tiered Results** — 8 result tiers with unique titles, subtitles, and descriptions
 - **Responsive Design** — Supports both Portrait and Landscape orientations
 - **Boho Matte Theme** — Warm, inviting visual style with custom assets
@@ -89,7 +89,7 @@ Assets/
 │   ├── Core/
 │   │   ├── GameController.cs    # Main game loop, UI & language toggle
 │   │   ├── AudioController.cs   # Music & SFX management
-│   │   ├── SettingsController.cs # Settings panel: mute toggles, return to menu
+│   │   ├── SettingsController.cs # Settings panel: mute & language toggles, return to menu
 │   │   ├── GameEvents.cs        # Event system
 │   │   ├── MediaQuery.cs        # Orientation detection
 │   │   ├── MediaQueryEvents.cs  # Orientation events

@@ -6,7 +6,8 @@ namespace HowX.Core
 {
     /// <summary>
     /// Controls the Settings Panel UI.
-    /// Handles mute toggles, return to menu, and confirmation dialog.
+    /// Handles mute toggles, language toggle requests, return to menu, and confirmation dialog.
+    /// Localized text (language button, confirm dialog) is set by GameController.
     /// </summary>
     public class SettingsController : MonoBehaviour
     {
@@ -22,8 +23,6 @@ namespace HowX.Core
 
         #region UI References
 
-        private GameController gameController;
-        private Label lblConfirmText;
         private UIDocument uiDocument;
         private VisualElement root;
 
@@ -34,6 +33,7 @@ namespace HowX.Core
         private VisualElement boxSettings;
         private Button btnToggleMusic;
         private Button btnToggleSFX;
+        private Button btnToggleLanguage;
         private Button btnCloseSettings;
         private Button btnReturnToMenu;
 
@@ -62,6 +62,7 @@ namespace HowX.Core
         private Action onSettingsClick;
         private Action onMusicToggleClick;
         private Action onSFXToggleClick;
+        private Action onLanguageToggleClick;
         private Action onCloseClick;
         private Action onReturnToMenuClick;
         private Action onConfirmYesClick;
@@ -73,7 +74,6 @@ namespace HowX.Core
 
         private void Awake()
         {
-            gameController = GetComponent<GameController>();
             uiDocument = GetComponentInChildren<UIDocument>();
             if (uiDocument == null)
             {
@@ -114,6 +114,7 @@ namespace HowX.Core
             boxSettings = root.Q<VisualElement>("Box_Settings");
             btnToggleMusic = root.Q<Button>("Btn_ToggleMusic");
             btnToggleSFX = root.Q<Button>("Btn_ToggleSFX");
+            btnToggleLanguage = root.Q<Button>("Btn_ToggleLanguage");
             btnCloseSettings = root.Q<Button>("Btn_CloseSettings");
             btnReturnToMenu = root.Q<Button>("Btn_ReturnToMenu");
 
@@ -122,7 +123,6 @@ namespace HowX.Core
             confirmOverlay = root.Q<VisualElement>("Confirm_Overlay");
             btnConfirmYes = root.Q<Button>("Btn_ConfirmYes");
             btnConfirmNo = root.Q<Button>("Btn_ConfirmNo");
-            lblConfirmText = root.Q<Label>("Lbl_ConfirmText");
 
             // Game containers
             quizContainer = root.Q<VisualElement>("Container_Quiz");
@@ -151,6 +151,13 @@ namespace HowX.Core
             {
                 onSFXToggleClick = OnSFXToggle;
                 btnToggleSFX.clicked += onSFXToggleClick;
+            }
+
+            // Language toggle
+            if (btnToggleLanguage != null)
+            {
+                onLanguageToggleClick = OnLanguageToggle;
+                btnToggleLanguage.clicked += onLanguageToggleClick;
             }
 
             // Close button
@@ -203,6 +210,9 @@ namespace HowX.Core
             if (btnToggleSFX != null && onSFXToggleClick != null)
                 btnToggleSFX.clicked -= onSFXToggleClick;
 
+            if (btnToggleLanguage != null && onLanguageToggleClick != null)
+                btnToggleLanguage.clicked -= onLanguageToggleClick;
+
             if (btnCloseSettings != null && onCloseClick != null)
                 btnCloseSettings.clicked -= onCloseClick;
 
@@ -253,6 +263,7 @@ namespace HowX.Core
             isSettingsOpen = true;
 
             UpdateReturnToMenuVisibility();
+            UpdateLanguageButtonVisibility();
             UpdateMuteIcons();
 
             if (panelSettings != null)
@@ -366,6 +377,24 @@ namespace HowX.Core
 
         #endregion
 
+        #region Language Toggle
+
+        private void UpdateLanguageButtonVisibility()
+        {
+            if (btnToggleLanguage == null) return;
+
+            // The menu already has its own language button (Btn_LangToggle)
+            bool inMenu = menuContainer != null && menuContainer.style.display == DisplayStyle.Flex;
+            btnToggleLanguage.EnableInClassList("btn-language-hidden", inMenu);
+        }
+
+        private void OnLanguageToggle()
+        {
+            GameEvents.OnLanguageToggleRequested?.Invoke();
+        }
+
+        #endregion
+
         #region Confirmation Dialog
 
         private void OnReturnToMenuClicked()
@@ -376,7 +405,6 @@ namespace HowX.Core
         private void ShowConfirmDialog()
         {
             if (isConfirmOpen) return;
-            UpdateConfirmText();
 
             isConfirmOpen = true;
 
@@ -418,23 +446,6 @@ namespace HowX.Core
             {
                 HideConfirmDialog();
             }
-        }
-
-        private void UpdateConfirmText()
-        {
-            if (gameController?.CurrentProfile?.uiData == null) return;
-
-            var ui = gameController.CurrentProfile.uiData;
-            bool native = gameController.IsNativeLanguage;
-
-            if (lblConfirmText != null)
-                lblConfirmText.text = ui.confirmTitle?.Get(native);
-
-            if (btnConfirmYes != null)
-                btnConfirmYes.text = ui.btnYes?.Get(native);
-
-            if (btnConfirmNo != null)
-                btnConfirmNo.text = ui.btnNo?.Get(native);
         }
 
         #endregion

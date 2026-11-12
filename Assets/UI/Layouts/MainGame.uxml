@@ -56,6 +56,7 @@
                     <ui:Button name="Btn_ToggleSFX" class="btn-toggle" style="background-image: url(&quot;project://database/Assets/UI/Textures/Icons/icon_sfx_on.png?fileID=2800000&amp;guid=dd9bdf73cd79f484e9ecd2545bf835a4&amp;type=3#icon_sfx_on&quot;);" />
                     <ui:Button name="Btn_ReturnToMenu" class="btn-toggle" style="background-image: url(&quot;project://database/Assets/UI/Textures/Icons/menu_open_icon.png?fileID=2800000&amp;guid=b851747347ea0614e8e8b64c86c188d1&amp;type=3#menu_open_icon&quot;);" />
                 </ui:VisualElement>
+                <ui:Button text="EN / X" name="Btn_ToggleLanguage" class="btn-language" />
                 <ui:Button name="Btn_CloseSettings" class="btn-close" />
             </ui:VisualElement>
         </ui:VisualElement>
