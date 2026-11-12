@@ -184,6 +184,8 @@ namespace HowX.Core
 
             GameEvents.OnGameRestart += RestartGame;
             GameEvents.OnLanguageToggleRequested += ToggleLanguage;
+            GameEvents.OnSettingsOpened += DimQuiz;
+            GameEvents.OnSettingsClosed += UndimQuiz;
         }
 
         private void CleanupAnswerButtons()
@@ -212,6 +214,8 @@ namespace HowX.Core
 
             GameEvents.OnGameRestart -= RestartGame;
             GameEvents.OnLanguageToggleRequested -= ToggleLanguage;
+            GameEvents.OnSettingsOpened -= DimQuiz;
+            GameEvents.OnSettingsClosed -= UndimQuiz;
         }
 
         private void InitializeUIState()
@@ -345,6 +349,22 @@ namespace HowX.Core
 
             if (resultContainer?.style.display == DisplayStyle.Flex)
                 RenderResult();
+        }
+
+        #endregion
+
+        #region Settings Panel
+
+        // The Settings overlay covers the quiz; dim it while open.
+        private void DimQuiz()
+        {
+            if (quizContainer != null && quizContainer.style.display == DisplayStyle.Flex)
+                quizContainer.AddToClassList("quiz-disabled");
+        }
+
+        private void UndimQuiz()
+        {
+            quizContainer?.RemoveFromClassList("quiz-disabled");
         }
 
         #endregion

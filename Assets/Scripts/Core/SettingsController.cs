@@ -7,7 +7,8 @@ namespace HowX.Core
     /// <summary>
     /// Controls the Settings Panel UI.
     /// Handles mute toggles, language toggle requests, return to menu, and confirmation dialog.
-    /// Localized text (language button, confirm dialog) is set by GameController.
+    /// Talks to other systems only through GameEvents: it raises requests and reacts to
+    /// state events. Localized text (language button, confirm dialog) is set by GameController.
     /// </summary>
     public class SettingsController : MonoBehaviour
     {
@@ -43,14 +44,17 @@ namespace HowX.Core
         private Button btnConfirmYes;
         private Button btnConfirmNo;
 
-        // Game Containers
-        private VisualElement quizContainer;
-        private VisualElement menuContainer;
-        private VisualElement resultContainer;
-
         #endregion
 
         #region State
+
+        // Which screen the game is on, tracked from GameEvents
+        private enum GameScreen { Menu, Quiz, Results }
+        private GameScreen currentScreen = GameScreen.Menu;
+
+        // Last mute state reported by AudioController
+        private bool isMusicMuted = false;
+        private bool isSFXMuted = false;
 
         private bool isSettingsOpen = false;
         private bool isConfirmOpen = false;
@@ -123,11 +127,6 @@ namespace HowX.Core
             confirmOverlay = root.Q<VisualElement>("Confirm_Overlay");
             btnConfirmYes = root.Q<Button>("Btn_ConfirmYes");
             btnConfirmNo = root.Q<Button>("Btn_ConfirmNo");
-
-            // Game containers
-            quizContainer = root.Q<VisualElement>("Container_Quiz");
-            menuContainer = root.Q<VisualElement>("Container_Menu");
-            resultContainer = root.Q<VisualElement>("Container_Result");
         }
 
         private void SetupCallbacks()
@@ -197,6 +196,12 @@ namespace HowX.Core
             {
                 confirmOverlay.RegisterCallback<ClickEvent>(OnConfirmOverlayClicked);
             }
+
+            // Game state
+            GameEvents.OnGameStart += OnQuizShown;
+            GameEvents.OnGameEnd += OnResultsShown;
+            GameEvents.OnGameRestart += OnMenuShown;
+            GameEvents.OnMuteStateChanged += ApplyMuteState;
         }
 
         private void CleanupCallbacks()
@@ -230,6 +235,11 @@ namespace HowX.Core
 
             if (confirmOverlay != null)
                 confirmOverlay.UnregisterCallback<ClickEvent>(OnConfirmOverlayClicked);
+
+            GameEvents.OnGameStart -= OnQuizShown;
+            GameEvents.OnGameEnd -= OnResultsShown;
+            GameEvents.OnGameRestart -= OnMenuShown;
+            GameEvents.OnMuteStateChanged -= ApplyMuteState;
         }
 
         private void InitializeState()
@@ -254,6 +264,14 @@ namespace HowX.Core
 
         #endregion
 
+        #region Game State
+
+        private void OnMenuShown() => currentScreen = GameScreen.Menu;
+        private void OnQuizShown() => currentScreen = GameScreen.Quiz;
+        private void OnResultsShown() => currentScreen = GameScreen.Results;
+
+        #endregion
+
         #region Settings Panel
 
         private void OpenSettings()
@@ -272,11 +290,7 @@ namespace HowX.Core
                 panelSettings.AddToClassList("panel-settings-visible");
             }
 
-            // Disable quiz interaction
-            if (quizContainer != null && quizContainer.style.display == DisplayStyle.Flex)
-            {
-                quizContainer.AddToClassList("quiz-disabled");
-            }
+            GameEvents.OnSettingsOpened?.Invoke();
         }
 
         private void CloseSettings()
@@ -291,11 +305,7 @@ namespace HowX.Core
                 panelSettings.AddToClassList("panel-settings-hidden");
             }
 
-            // Re-enable quiz interaction
-            if (quizContainer != null)
-            {
-                quizContainer.RemoveFromClassList("quiz-disabled");
-            }
+            GameEvents.OnSettingsClosed?.Invoke();
         }
 
         private void OnOverlayClicked(ClickEvent evt)
@@ -310,18 +320,8 @@ namespace HowX.Core
         {
             if (btnReturnToMenu == null) return;
 
-            bool inQuiz = quizContainer != null && quizContainer.style.display == DisplayStyle.Flex;
-
-            if (inQuiz)
-            {
-                btnReturnToMenu.RemoveFromClassList("btn-return-menu-hidden");
-                btnReturnToMenu.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                btnReturnToMenu.AddToClassList("btn-return-menu-hidden");
-                btnReturnToMenu.style.display = DisplayStyle.None;
-            }
+            // Only offered mid-quiz; menu and results have their own way back
+            btnReturnToMenu.EnableInClassList("btn-return-menu-hidden", currentScreen != GameScreen.Quiz);
         }
 
         #endregion
@@ -330,33 +330,29 @@ namespace HowX.Core
 
         private void OnMusicToggle()
         {
-            if (AudioController.Instance != null)
-            {
-                AudioController.Instance.ToggleMusic();
-                UpdateMuteIcons();
-            }
+            GameEvents.OnMusicToggleRequested?.Invoke();
         }
 
         private void OnSFXToggle()
         {
-            if (AudioController.Instance != null)
-            {
-                AudioController.Instance.ToggleSFX();
-                UpdateMuteIcons();
-            }
+            GameEvents.OnSFXToggleRequested?.Invoke();
+        }
+
+        private void ApplyMuteState(bool musicMuted, bool sfxMuted)
+        {
+            isMusicMuted = musicMuted;
+            isSFXMuted = sfxMuted;
+            UpdateMuteIcons();
         }
 
         private void UpdateMuteIcons()
         {
-            if (AudioController.Instance == null) return;
-
             // Music icon
             if (btnToggleMusic != null)
             {
-                bool musicMuted = AudioController.Instance.IsMusicMuted;
-                btnToggleMusic.style.backgroundImage = musicMuted ? iconMusicOff : iconMusicOn;
+                btnToggleMusic.style.backgroundImage = isMusicMuted ? iconMusicOff : iconMusicOn;
 
-                if (musicMuted)
+                if (isMusicMuted)
                     btnToggleMusic.AddToClassList("muted");
                 else
                     btnToggleMusic.RemoveFromClassList("muted");
@@ -365,10 +361,9 @@ namespace HowX.Core
             // SFX icon
             if (btnToggleSFX != null)
             {
-                bool sfxMuted = AudioController.Instance.IsSFXMuted;
-                btnToggleSFX.style.backgroundImage = sfxMuted ? iconSFXOff : iconSFXOn;
+                btnToggleSFX.style.backgroundImage = isSFXMuted ? iconSFXOff : iconSFXOn;
 
-                if (sfxMuted)
+                if (isSFXMuted)
                     btnToggleSFX.AddToClassList("muted");
                 else
                     btnToggleSFX.RemoveFromClassList("muted");
@@ -384,8 +379,7 @@ namespace HowX.Core
             if (btnToggleLanguage == null) return;
 
             // The menu already has its own language button (Btn_LangToggle)
-            bool inMenu = menuContainer != null && menuContainer.style.display == DisplayStyle.Flex;
-            btnToggleLanguage.EnableInClassList("btn-language-hidden", inMenu);
+            btnToggleLanguage.EnableInClassList("btn-language-hidden", currentScreen == GameScreen.Menu);
         }
 
         private void OnLanguageToggle()

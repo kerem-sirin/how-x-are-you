@@ -36,17 +36,8 @@ namespace HowX.Core
         public bool IsMusicMuted => isMusicMuted;
         public bool IsSFXMuted => isSFXMuted;
 
-        // Singleton for easy access from SettingsController
-        public static AudioController Instance { get; private set; }
-
         private void Awake()
         {
-            // Simple singleton
-            if (Instance == null)
-                Instance = this;
-            else if (Instance != this)
-                Destroy(gameObject);
-
             // Cache default values from the AudioSource
             if (sfxSource != null)
             {
@@ -70,6 +61,9 @@ namespace HowX.Core
             GameEvents.OnGameStart += PlayQuizMusic;
             GameEvents.OnGameRestart += PlayMenuMusic;
             GameEvents.OnGameEnd += PlayGameEnd;
+
+            GameEvents.OnMusicToggleRequested += ToggleMusic;
+            GameEvents.OnSFXToggleRequested += ToggleSFX;
         }
 
         private void OnDisable()
@@ -84,12 +78,19 @@ namespace HowX.Core
             GameEvents.OnGameStart -= PlayQuizMusic;
             GameEvents.OnGameRestart -= PlayMenuMusic;
             GameEvents.OnGameEnd -= PlayGameEnd;
+
+            GameEvents.OnMusicToggleRequested -= ToggleMusic;
+            GameEvents.OnSFXToggleRequested -= ToggleSFX;
         }
 
         private void Start()
         {
             // Apply mute states to audio sources
             ApplyMuteStates();
+
+            // Report the saved state. Start runs after every OnEnable,
+            // so listeners such as SettingsController are already subscribed.
+            RaiseMuteStateChanged();
 
             // Play menu music automatically on start
             PlayMenuMusic();
@@ -105,6 +106,7 @@ namespace HowX.Core
             isMusicMuted = !isMusicMuted;
             ApplyMusicMute();
             SaveMutePreferences();
+            RaiseMuteStateChanged();
         }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace HowX.Core
             isSFXMuted = !isSFXMuted;
             ApplySFXMute();
             SaveMutePreferences();
+            RaiseMuteStateChanged();
         }
 
         /// <summary>
@@ -126,6 +129,7 @@ namespace HowX.Core
             isMusicMuted = muted;
             ApplyMusicMute();
             SaveMutePreferences();
+            RaiseMuteStateChanged();
         }
 
         /// <summary>
@@ -137,6 +141,12 @@ namespace HowX.Core
             isSFXMuted = muted;
             ApplySFXMute();
             SaveMutePreferences();
+            RaiseMuteStateChanged();
+        }
+
+        private void RaiseMuteStateChanged()
+        {
+            GameEvents.OnMuteStateChanged?.Invoke(isMusicMuted, isSFXMuted);
         }
 
         private void ApplyMuteStates()
