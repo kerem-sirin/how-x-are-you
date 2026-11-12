@@ -22,5 +22,10 @@ namespace HowX.Core
         public static Action OnSettingsOpened;
         public static Action OnSettingsClosed;
         public static Action OnLanguageToggleRequested; // Language button in Settings clicked
+
+        // Audio Events
+        public static Action OnMusicToggleRequested;      // Music button in Settings clicked
+        public static Action OnSFXToggleRequested;        // SFX button in Settings clicked
+        public static Action<bool, bool> OnMuteStateChanged; // (musicMuted, sfxMuted), raised by AudioController on Start and after every change
     }
 }
