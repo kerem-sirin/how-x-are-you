@@ -1,4 +1,6 @@
-@import url("/Assets/UI Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss");
+@import url("unity-theme://default");
+
+@import url("BaseTheme.uss");
 
 @import url("BaseTheme-Portrait.uss");
 

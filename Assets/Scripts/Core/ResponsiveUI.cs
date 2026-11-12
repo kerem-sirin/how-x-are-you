@@ -55,23 +55,16 @@ namespace HowX.Core
         }
 
         /// <summary>
-        /// Apply settings based on current screen dimensions.
+        /// Apply the aspect ratio MediaQuery last reported. If MediaQuery hasn't
+        /// queried yet, OnAspectRatioUpdated applies it as soon as it does.
         /// </summary>
         private void ApplyInitialSettings()
         {
             if (document == null) return;
 
-            // Calculate current aspect ratio
-            Vector2 resolution = new Vector2(Screen.width, Screen.height);
-            MediaAspectRatio initialRatio = MediaAspectRatio.Portrait;
+            MediaAspectRatio initialRatio = MediaQueryEvents.CurrentAspectRatio;
+            if (initialRatio == MediaAspectRatio.Undefined) return;
 
-            if (resolution.y > float.Epsilon)
-            {
-                float aspect = resolution.x / resolution.y;
-                initialRatio = aspect >= 1.2f ? MediaAspectRatio.Landscape : MediaAspectRatio.Portrait;
-            }
-
-            // Apply the appropriate settings
             ApplySettings(initialRatio);
         }
 
