@@ -2,7 +2,7 @@
 
 A data-driven, expandable quiz game framework built in Unity. Test players' knowledge about any country or topic with localized questions, tiered results, and a charming Boho Matte visual style.
 
-![Unity](https://img.shields.io/badge/Unity-6.2+-black?logo=unity)
+![Unity](https://img.shields.io/badge/Unity-6.3_LTS-black?logo=unity)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-WebGL-blue)
 
@@ -41,7 +41,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 ### Requirements
 
-- Unity **6.2+** (LTS recommended)
+- Unity **6.3 LTS** (project uses `6000.3.10f1`)
 - UI Toolkit (included in Unity)
 
 ### Setup
@@ -54,7 +54,7 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 2. **Open in Unity**
    - Open Unity Hub
    - Click "Add" → Navigate to cloned folder
-   - Open project with Unity 6.2+
+   - Open project with Unity 6.3 LTS
 
 3. **Open the main scene**
    ```
@@ -63,30 +63,37 @@ A data-driven, expandable quiz game framework built in Unity. Test players' know
 
 4. **Press Play** : The Polish profile is pre-configured
 
+5. **Switch country (optional)** : Select the `GameController` object in the scene and drag another profile (e.g. `Assets/Data/TR/Turkish Profile.asset`) into **Current Profile**
+
 ---
 
 ## 📁 Project Structure
 
 ```
 Assets/
+├── Audio/                       # Music & sound effects
+│
 ├── Data/
-│   └── PL/                      # Country profile folder
-│       ├── How X Are You - PL Quiz.csv
-│       ├── How X Are You - PL Tier.csv
-│       ├── How X Are You - PL UI.csv
-│       └── Images/              # Question & answer images
-│           ├── Q_00.png         # Question image (ID: 00)
-│           ├── Q_01_00.png      # Answer image (Q01, Answer 0)
-│           └── Flag.png         # Country flag
+│   ├── PL/                      # Country profile folder
+│   │   ├── Poland Profile.asset # QuizProfile ScriptableObject
+│   │   ├── How X Are You - PL Quiz.csv   # Optional local CSVs
+│   │   ├── How X Are You - PL Tier.csv
+│   │   ├── How X Are You - PL UI.csv
+│   │   └── Images/              # Question & answer images
+│   │       ├── Q_00.png         # Question image (ID: 00)
+│   │       ├── Q_01_00.png      # Answer image (Q01, Answer 0)
+│   │       └── Flag.png         # Country flag
+│   └── TR/                      # Turkish profile (imported from Google Sheets)
 │
 ├── Scripts/
 │   ├── Core/
-│   │   ├── GameController.cs    # Main game loop & UI
+│   │   ├── GameController.cs    # Main game loop, UI & language toggle
 │   │   ├── AudioController.cs   # Music & SFX management
+│   │   ├── SettingsController.cs # Settings panel: mute toggles, return to menu
 │   │   ├── GameEvents.cs        # Event system
 │   │   ├── MediaQuery.cs        # Orientation detection
 │   │   ├── MediaQueryEvents.cs  # Orientation events
-│   │   └── ResponsiveUI.cs      # Panel/stylesheet swapping
+│   │   └── ResponsiveUI.cs      # PanelSettings swapping
 │   ├── Data/
 │   │   ├── QuizProfile.cs       # ScriptableObject definition
 │   │   ├── QuestionData.cs      # Question structure
@@ -100,10 +107,14 @@ Assets/
 │   ├── Themes/
 │   │   ├── BaseTheme.uss        # Main stylesheet
 │   │   ├── BaseTheme-Portrait.uss   # Portrait overrides
-│   │   └── BaseTheme-Landscape.uss  # Landscape overrides
+│   │   ├── BaseTheme-Landscape.uss  # Landscape overrides
+│   │   ├── RuntimeTheme-Portrait.tss   # Portrait theme
+│   │   └── RuntimeTheme-Landscape.tss  # Landscape theme
 │   ├── Layouts/
 │   │   └── MainGame.uxml        # UI structure
-│   └── Textures/                # UI assets (buttons, frames, backgrounds)
+│   ├── PanelSettings-Portrait.asset   # 1080x1920 reference resolution
+│   ├── PanelSettings-Landscape.asset  # 1920x1080 reference resolution
+│   └── Textures/                # UI assets (backgrounds, buttons, frames, icons)
 │
 └── Scenes/
     └── MainGame.unity           # Main scene
@@ -153,7 +164,12 @@ You can import data from **Google Sheets** (recommended) or **local CSV files**.
 
 ### Step 5: Validate
 
-Click **VALIDATE PROFILE** to check for errors.
+Click **VALIDATE PROFILE** and check the Console. It reports:
+
+- **Errors:** duplicate question IDs, no questions, no tiers
+- **Warnings:** missing question/answer images, no 100% tier, missing English UI text, missing flag
+
+It does **not** check question count, tier count or native-language text. Check those against the [requirements checklist](CONTRIBUTING.md#requirements-checklist) yourself.
 
 ---
 
@@ -193,13 +209,17 @@ The visual style is defined in `Assets/UI/Themes/BaseTheme.uss`:
     --hover-bg: rgb(240, 213, 154);       /* Maize Yellow */
     --text-main: rgb(56, 115, 115);       /* Deep Teal */
     --text-body: rgb(166, 112, 93);       /* Muted Clay */
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
 }
 ```
 
 Custom assets are in `Assets/UI/Textures/`:
 - `Backgrounds/bg_pattern.png` : Tileable background
 - `Buttons/button_square_gradient.png` : 9-slice button/panel frame
-- `Buttons/button_round_gradient.png` : 9-slice rounded frame
+- `Frames/frame_round_gradient.png` : 9-slice rounded frame
+- `Icons/` : Settings, close, music and SFX on/off icons
 
 ---
 
@@ -212,21 +232,22 @@ The game supports both **Portrait** and **Landscape** orientations:
 | Portrait | Question on top, answers on bottom |
 | Landscape | Question on left, answers on right |
 
-Orientation is detected automatically and the UI adapts via stylesheet swapping.
+Orientation is detected automatically: a screen counts as landscape when width ÷ height ≥ 1.2. The UI adapts by swapping PanelSettings. Each orientation has its own PanelSettings and theme (`RuntimeTheme-*.tss`), which loads `BaseTheme.uss` plus the matching `BaseTheme-Portrait.uss` / `BaseTheme-Landscape.uss` overrides.
 
 ---
 
 ## 🏗️ Building for WebGL
 
-1. **File → Build Settings**
-2. Select **WebGL** platform
-3. Click **Switch Platform**
-4. **Player Settings:**
+1. Assign the country you want to build to **Current Profile** on the `GameController` object in `MainGame` (one build per country)
+2. **File → Build Profiles**
+3. Select **Web** platform
+4. Click **Switch Platform**
+5. **Player Settings:**
    - Resolution: **960 x 540**
    - Compression Format: **Brotli** (for itch.io)
    - Memory Size: **256 MB** (adjust if needed)
    - Enable **Decompression Fallback**
-5. Click **Build**
+6. Click **Build**
 
 ### Deploying to itch.io
 
@@ -287,9 +308,10 @@ This project is licensed under the **MIT License** : See the [LICENSE](LICENSE) 
 
 ---
 
-🔊 SFX Credits
-- Sound effects by  [Universfield](https://pixabay.com/users/universfield-28281460/) on Pixabay
-- Licensed under [Pixabay Content License](https://pixabay.com/service/license-summary/) Content License
+## 🔊 SFX Credits
+
+- Sound effects by [Universfield](https://pixabay.com/users/universfield-28281460/) on Pixabay
+- Licensed under the [Pixabay Content License](https://pixabay.com/service/license-summary/)
 
 | SFX | Usage |
 |-------|-------|
