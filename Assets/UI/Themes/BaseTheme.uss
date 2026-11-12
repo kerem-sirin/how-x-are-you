@@ -496,6 +496,20 @@ Button:active Label {
 }
 
 /* ============================================
+   LANGUAGE BUTTON (Settings)
+   ============================================ */
+
+.btn-language {
+    align-self: stretch;
+    height: 88px;
+    margin: 0 16px 16px;
+}
+
+.btn-language-hidden {
+    display: none;
+}
+
+/* ============================================
    CLOSE BUTTON
    ============================================ */
 

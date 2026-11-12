@@ -48,6 +48,12 @@ namespace HowX.Core
         private Label resultScore;
         private Button restartButton;
 
+        // Settings & confirm dialog: text only, SettingsController handles behaviour
+        private Button settingsLangButton;
+        private Label confirmText;
+        private Button confirmYesButton;
+        private Button confirmNoButton;
+
         #endregion
 
         #region State
@@ -131,6 +137,12 @@ namespace HowX.Core
             resultDesc = root.Q<Label>("Lbl_ResultDesc");
             resultScore = root.Q<Label>("Lbl_Score");
             restartButton = root.Q<Button>("Btn_Restart");
+
+            // Settings & Confirm Elements (localized here)
+            settingsLangButton = root.Q<Button>("Btn_ToggleLanguage");
+            confirmText = root.Q<Label>("Lbl_ConfirmText");
+            confirmYesButton = root.Q<Button>("Btn_ConfirmYes");
+            confirmNoButton = root.Q<Button>("Btn_ConfirmNo");
         }
 
         private void SetupAnswerButtons()
@@ -171,6 +183,7 @@ namespace HowX.Core
                 restartButton.clicked += RestartButtonPressed;
 
             GameEvents.OnGameRestart += RestartGame;
+            GameEvents.OnLanguageToggleRequested += ToggleLanguage;
         }
 
         private void CleanupAnswerButtons()
@@ -198,6 +211,7 @@ namespace HowX.Core
                 restartButton.clicked -= RestartButtonPressed;
 
             GameEvents.OnGameRestart -= RestartGame;
+            GameEvents.OnLanguageToggleRequested -= ToggleLanguage;
         }
 
         private void InitializeUIState()
@@ -283,52 +297,54 @@ namespace HowX.Core
         {
             if (currentProfile == null || currentProfile.uiData == null) return;
 
-            // Title
-            if (titleLabel != null)
-            {
-                string text = currentProfile.uiData.titleTemplate?.Get(isNativeLanguage);
-                titleLabel.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
-            }
+            UIData ui = currentProfile.uiData;
 
-            // Start Button
-            if (startButton != null)
-            {
-                string text = currentProfile.uiData.btnStart?.Get(isNativeLanguage);
-                startButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
-            }
+            // Menu & Result
+            SetLocalizedText(titleLabel, ui.titleTemplate);
+            SetLocalizedText(startButton, ui.btnStart);
+            SetLocalizedText(restartButton, ui.btnRestart);
 
-            // Restart Button
-            if (restartButton != null)
-            {
-                string text = currentProfile.uiData.btnRestart?.Get(isNativeLanguage);
-                restartButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
-            }
+            // Language Buttons (Menu + Settings)
+            SetLocalizedText(langButton, ui.btnLang);
+            SetLocalizedText(settingsLangButton, ui.btnLang);
 
-            // Language Button
-            if (langButton != null)
-            {
-                string text = currentProfile.uiData.btnLang?.Get(isNativeLanguage);
-                langButton.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
-            }
+            // Confirm Dialog
+            SetLocalizedText(confirmText, ui.confirmTitle);
+            SetLocalizedText(confirmYesButton, ui.btnYes);
+            SetLocalizedText(confirmNoButton, ui.btnNo);
 
             // Flag Icon
-            if (flagIcon != null && currentProfile.uiData.flagIcon != null)
+            if (flagIcon != null && ui.flagIcon != null)
             {
-                flagIcon.style.backgroundImage = currentProfile.uiData.flagIcon;
+                flagIcon.style.backgroundImage = ui.flagIcon;
                 flagIcon.style.display = DisplayStyle.Flex;
             }
         }
 
+        private void SetLocalizedText(TextElement element, LocalizedText localized)
+        {
+            if (element == null) return;
+
+            string text = localized?.Get(isNativeLanguage);
+            element.text = string.IsNullOrEmpty(text) ? MISSING_TEXT : text;
+        }
+
+        /// <summary>
+        /// Switches language from the menu button or the Settings panel (any screen).
+        /// Re-renders the visible question/result in place: no reshuffle, no transition.
+        /// </summary>
         private void ToggleLanguage()
         {
+            if (isTransitioning) return;
+
             isNativeLanguage = !isNativeLanguage;
             UpdateUIText();
 
             if (quizContainer?.style.display == DisplayStyle.Flex)
-                LoadQuestion();
+                RenderQuestion();
 
             if (resultContainer?.style.display == DisplayStyle.Flex)
-                EndGame();
+                RenderResult();
         }
 
         #endregion
@@ -383,11 +399,6 @@ namespace HowX.Core
         {
             if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
 
-            // Reset any feedback styles from previous question
-            ResetAnswerButtonStyles();
-
-            QuestionData q = activeQuestions[currentQuestionIndex];
-
             // Shuffle answer indices (Fisher-Yates)
             currentShuffleIndices = new int[] { 0, 1, 2, 3 };
             for (int i = 0; i < currentShuffleIndices.Length; i++)
@@ -397,6 +408,22 @@ namespace HowX.Core
                 currentShuffleIndices[i] = currentShuffleIndices[rnd];
                 currentShuffleIndices[rnd] = temp;
             }
+
+            RenderQuestion();
+        }
+
+        /// <summary>
+        /// Shows the current question in the current language, keeping the answer order.
+        /// </summary>
+        private void RenderQuestion()
+        {
+            if (activeQuestions == null || currentQuestionIndex >= activeQuestions.Count) return;
+            if (currentShuffleIndices == null) return;
+
+            // Reset any feedback styles from previous question
+            ResetAnswerButtonStyles();
+
+            QuestionData q = activeQuestions[currentQuestionIndex];
 
             // Set question text
             if (questionLabel != null)
@@ -564,6 +591,17 @@ namespace HowX.Core
             if (progressBarFill != null)
                 progressBarFill.style.width = Length.Percent(100);
 
+            RenderResult();
+
+            GameEvents.OnGameEnd?.Invoke();
+            StartCoroutine(SwitchPanels(quizContainer, resultContainer));
+        }
+
+        /// <summary>
+        /// Shows the score and earned tier in the current language.
+        /// </summary>
+        private void RenderResult()
+        {
             float totalQs = activeQuestions != null ? activeQuestions.Count : 1;
             float percentage = (float)currentScore / totalQs * 100f;
 
@@ -585,9 +623,6 @@ namespace HowX.Core
                     resultDesc.text = $"<b>{subtitle}</b>\n\n{desc}";
                 }
             }
-
-            GameEvents.OnGameEnd?.Invoke();
-            StartCoroutine(SwitchPanels(quizContainer, resultContainer));
         }
 
         private void RestartButtonPressed()

@@ -217,7 +217,7 @@ Before submitting, verify:
 
 - [ ] Play full game in English
 - [ ] Play full game in Native language
-- [ ] Toggle language mid-game
+- [ ] Toggle language mid-game (⚙ Settings → language button) on a question and on the results screen
 - [ ] Verify all images load
 - [ ] Check all tier results display correctly
 - [ ] Test in **Portrait** orientation

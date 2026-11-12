@@ -21,5 +21,6 @@ namespace HowX.Core
         // Settings Events
         public static Action OnSettingsOpened;
         public static Action OnSettingsClosed;
+        public static Action OnLanguageToggleRequested; // Language button in Settings clicked
     }
 }
