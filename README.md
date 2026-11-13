@@ -166,10 +166,10 @@ You can import data from **Google Sheets** (recommended) or **local CSV files**.
 
 Click **VALIDATE PROFILE** and check the Console. It reports:
 
-- **Errors:** duplicate question IDs, no questions, no tiers
-- **Warnings:** missing question/answer images, no 100% tier, missing English UI text, missing flag
+- **Errors:** duplicate question IDs, no questions, no tiers, missing English or native text (questions, answers, tiers, UI)
+- **Warnings:** fewer than 50 questions, not 8 tiers, no 100% tier, missing question/answer images, missing flag
 
-It does **not** check question count, tier count or native-language text. Check those against the [requirements checklist](CONTRIBUTING.md#requirements-checklist) yourself.
+Fix every error before submitting. Validation can't judge the content itself, so still playtest both languages (see the [requirements checklist](CONTRIBUTING.md#requirements-checklist)).
 
 ---
 

@@ -9,6 +9,10 @@ using UnityEngine.Networking;
 [CustomEditor(typeof(QuizProfile))]
 public class QuizProfileEditor : Editor
 {
+    // Content requirements (CONTRIBUTING.md → Requirements Checklist)
+    private const int MIN_QUESTIONS = 50;
+    private const int EXPECTED_TIERS = 8;
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -319,7 +323,37 @@ public class QuizProfileEditor : Editor
         }
         else
         {
+            if (profile.questions.Count < MIN_QUESTIONS)
+            {
+                Debug.LogWarning($"⚠️ ONLY {profile.questions.Count} QUESTIONS. At least {MIN_QUESTIONS} are required so each session draws a different mix.");
+                warningCount++;
+            }
             Debug.Log($"   ✓ Questions: {profile.questions.Count}");
+
+            // Missing text shows "TEXT MISSING" (or nothing) in that language
+            List<string> missingQuestionText = new List<string>();
+
+            foreach (var q in profile.questions)
+            {
+                string label = $"Q_{q.id}";
+                CollectMissingText(q.questionText, label, missingQuestionText);
+
+                // Image answers hide their text. An answer empty in BOTH languages
+                // is a hidden slot (fewer than 4 answers), so only flag half-translated ones.
+                if (!q.useImageAnswers)
+                {
+                    CollectHalfTranslatedText(q.answer0, $"{label} A0", missingQuestionText);
+                    CollectHalfTranslatedText(q.answer1, $"{label} A1", missingQuestionText);
+                    CollectHalfTranslatedText(q.answer2, $"{label} A2", missingQuestionText);
+                    CollectHalfTranslatedText(q.answer3, $"{label} A3", missingQuestionText);
+                }
+            }
+
+            if (missingQuestionText.Count > 0)
+            {
+                Debug.LogError($"❌ MISSING QUESTION TEXT ({missingQuestionText.Count}): {string.Join(", ", missingQuestionText)}");
+                errorCount++;
+            }
         }
 
         // 4. Check for empty/missing tiers
@@ -337,7 +371,29 @@ public class QuizProfileEditor : Editor
                 Debug.LogWarning($"⚠️ Highest tier is {maxTier}%. Consider adding a 100% tier for perfect scores.");
                 warningCount++;
             }
+            if (profile.tiers.Count != EXPECTED_TIERS)
+            {
+                Debug.LogWarning($"⚠️ {profile.tiers.Count} TIERS. Expected {EXPECTED_TIERS} covering 0–100%.");
+                warningCount++;
+            }
             Debug.Log($"   ✓ Tiers: {profile.tiers.Count} (max: {maxTier}%)");
+
+            List<string> missingTierText = new List<string>();
+
+            for (int i = 0; i < profile.tiers.Count; i++)
+            {
+                TierData tier = profile.tiers[i];
+                string label = $"Tier {i + 1} ({tier.maxPercentage}%)";
+                CollectMissingText(tier.title, $"{label} title", missingTierText);
+                CollectMissingText(tier.subtitle, $"{label} subtitle", missingTierText);
+                CollectMissingText(tier.description, $"{label} description", missingTierText);
+            }
+
+            if (missingTierText.Count > 0)
+            {
+                Debug.LogError($"❌ MISSING TIER TEXT ({missingTierText.Count}): {string.Join(", ", missingTierText)}");
+                errorCount++;
+            }
         }
 
         // 5. Check UI Data
@@ -348,25 +404,31 @@ public class QuizProfileEditor : Editor
         }
         else
         {
-            List<string> missingUI = new List<string>();
+            UIData ui = profile.uiData;
+            List<string> missingUIText = new List<string>();
 
-            if (profile.uiData.btnStart == null || string.IsNullOrEmpty(profile.uiData.btnStart.en))
-                missingUI.Add("btnStart");
-            if (profile.uiData.btnRestart == null || string.IsNullOrEmpty(profile.uiData.btnRestart.en))
-                missingUI.Add("btnRestart");
-            if (profile.uiData.btnLang == null || string.IsNullOrEmpty(profile.uiData.btnLang.en))
-                missingUI.Add("btnLang");
-            if (profile.uiData.titleTemplate == null || string.IsNullOrEmpty(profile.uiData.titleTemplate.en))
-                missingUI.Add("titleTemplate");
-            if (profile.uiData.flagIcon == null)
-                missingUI.Add("flagIcon");
+            // Labels are the UI sheet keys, so they can be found in the sheet directly
+            CollectMissingText(ui.btnStart, "btn_start", missingUIText);
+            CollectMissingText(ui.btnRestart, "btn_restart", missingUIText);
+            CollectMissingText(ui.btnLang, "btn_lang", missingUIText);
+            CollectMissingText(ui.titleTemplate, "title_template", missingUIText);
+            CollectMissingText(ui.confirmTitle, "confirm_title", missingUIText);
+            CollectMissingText(ui.btnYes, "btn_yes", missingUIText);
+            CollectMissingText(ui.btnNo, "btn_no", missingUIText);
 
-            if (missingUI.Count > 0)
+            if (missingUIText.Count > 0)
             {
-                Debug.LogWarning($"⚠️ MISSING UI DATA: {string.Join(", ", missingUI)}");
+                Debug.LogError($"❌ MISSING UI TEXT ({missingUIText.Count}): {string.Join(", ", missingUIText)}");
+                errorCount++;
+            }
+
+            if (ui.flagIcon == null)
+            {
+                Debug.LogWarning("⚠️ MISSING FLAG: UI Data has no flag image (expected Images/Flag.png).");
                 warningCount++;
             }
-            else
+
+            if (missingUIText.Count == 0 && ui.flagIcon != null)
             {
                 Debug.Log("   ✓ UI Data: Complete");
             }
@@ -382,6 +444,23 @@ public class QuizProfileEditor : Editor
         {
             Debug.Log($"📊 VALIDATION COMPLETE: {errorCount} errors, {warningCount} warnings");
         }
+    }
+
+    // Adds "{label} (EN)" / "{label} (Native)" for each empty language
+    private static void CollectMissingText(LocalizedText text, string label, List<string> missing)
+    {
+        if (text == null || string.IsNullOrWhiteSpace(text.en)) missing.Add($"{label} (EN)");
+        if (text == null || string.IsNullOrWhiteSpace(text.native)) missing.Add($"{label} (Native)");
+    }
+
+    // Like CollectMissingText, but empty in both languages is allowed
+    private static void CollectHalfTranslatedText(LocalizedText text, string label, List<string> missing)
+    {
+        bool hasEn = text != null && !string.IsNullOrWhiteSpace(text.en);
+        bool hasNative = text != null && !string.IsNullOrWhiteSpace(text.native);
+
+        if (hasEn && !hasNative) missing.Add($"{label} (Native)");
+        else if (!hasEn && hasNative) missing.Add($"{label} (EN)");
     }
 
     // =========================================================================
