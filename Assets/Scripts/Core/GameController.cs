@@ -14,6 +14,7 @@ namespace HowX.Core
         private const float QUESTION_SLIDE_DURATION = 0.225f;
         private const float RIGHT_ANSWER_FEEDBACK_DURATION = 0.8f; 
         private const float WRONG_ANSWER_FEEDBACK_DURATION = 1.4f;
+        private const float PANEL_TRANSITION_DURATION = 0.5f; // must match #Panel_Transition transition-duration in BaseTheme.uss
         private const string MISSING_TEXT = "TEXT MISSING";
 
         #endregion
@@ -674,7 +675,7 @@ namespace HowX.Core
                 float ignored = transitionPanel.resolvedStyle.opacity;
                 if (transitionPanel.ClassListContains("curtain-hidden"))
                     transitionPanel.RemoveFromClassList("curtain-hidden");
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(PANEL_TRANSITION_DURATION);
             }
 
             if (outPanel != null) outPanel.style.display = DisplayStyle.None;
@@ -685,7 +686,7 @@ namespace HowX.Core
             if (transitionPanel != null)
             {
                 transitionPanel.AddToClassList("curtain-hidden");
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(PANEL_TRANSITION_DURATION);
                 transitionPanel.pickingMode = PickingMode.Ignore;
             }
 
