@@ -285,6 +285,8 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed g
 
 This project is licensed under the **MIT License** : See the [LICENSE](LICENSE) file for details.
 
+Music and sound effects are not covered by the MIT License; each is under its own licence, listed in [Music Credits](#-music-credits) and [SFX Credits](#-sfx-credits).
+
 ---
 
 ## 🙏 Acknowledgments
@@ -309,6 +311,15 @@ This project is licensed under the **MIT License** : See the [LICENSE](LICENSE) 
 ---
 
 ## 🔊 SFX Credits
+
+- UI sound effects from [Mega UI SFX Pack](https://assetstore.unity.com/packages/audio/sound-fx/mega-ui-sfx-pack-318841) by Bluebuck Studio (this project's author) on the Unity Asset Store
+- © Bluebuck Studio. Included for this project only and **not** covered by the MIT License. To use them elsewhere, get the pack from the Asset Store.
+
+| SFX | Usage |
+|-------|-------|
+| Click_Tap_07 | Button Click |
+| Click_Tap_08 | Button Hover |
+| Swoosh_13 | Next Question |
 
 - Sound effects by [Universfield](https://pixabay.com/users/universfield-28281460/) on Pixabay
 - Licensed under the [Pixabay Content License](https://pixabay.com/service/license-summary/)
