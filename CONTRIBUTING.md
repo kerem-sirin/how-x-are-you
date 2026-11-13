@@ -120,18 +120,22 @@ If you prefer working with local files:
 
 ## 📋 Data Format Reference
 
+Every tab starts with a header row, which the importer skips. Columns are read by position, so keep them in the order shown below.
+
 ### Questions (Quiz Tab)
+
+14 columns, in this order: `ID, CorrectIndex, Q_EN, Q_Native, Use Question Image, Use Answer Image, A0_EN, A0_Native, A1_EN, A1_Native, A2_EN, A2_Native, A3_EN, A3_Native`
 
 | Column | Required | Notes |
 |--------|----------|-------|
-| ID | ✅ | Sequential integers starting from 0 |
+| ID | ✅ | Whole number, unique per question (duplicates fail VALIDATE PROFILE). Zero-padded to 2 digits on import, so `5` becomes `05` |
 | CorrectIndex | ✅ | `0`, `1`, `2`, `3`, or comma-separated like `0,1` |
 | Q_EN | ✅ | English question |
 | Q_Native | ✅ | Native language question |
 | Use Question Image | ✅ | `TRUE` or `FALSE` |
 | Use Answer Image | ✅ | `TRUE` or `FALSE` |
-| A0-A3_EN | ✅ | English answers |
-| A0-A3_Native | ✅ | Native answers |
+| A0_EN … A3_EN | ✅ | English answers, each followed by its native column |
+| A0_Native … A3_Native | ✅ | Native answers |
 
 **Tips for Great Questions:**
 
@@ -142,6 +146,17 @@ If you prefer working with local files:
 - Use images for visual variety
 
 ### Tiers (Tier Tab)
+
+7 columns, in this order: `MaxPercent, Title_EN, Title_Native, Subtitle_EN, Subtitle_Native, Desc_EN, Desc_Native`
+
+| Column | Required | Notes |
+|--------|----------|-------|
+| MaxPercent | ✅ | Number from 0 to 100. The highest tier should be `100` |
+| Title_EN / Title_Native | ✅ | Tier title |
+| Subtitle_EN / Subtitle_Native | ✅ | Short catchphrase |
+| Desc_EN / Desc_Native | ✅ | Longer description |
+
+Tiers are sorted lowest first on import. The player gets the first tier whose `MaxPercent` is at or above their score.
 
 Create 8 tiers with increasing `MaxPercent` values:
 
@@ -163,14 +178,21 @@ Create 8 tiers with increasing `MaxPercent` values:
 
 ### UI Strings (UI Tab)
 
+3 columns: `Key, EN, Native`. All 7 keys are required.
+
 | Key | EN | Native |
 |-----|-----|--------|
 | btn_start | Start Game | [Native translation] |
 | btn_restart | Try Again | [Native translation] |
 | btn_lang | English | [Native language name] |
 | title_template | How Polish Are You? | [Full title in native language] |
+| confirm_title | Return to Main Menu? | [Native translation] |
+| btn_yes | Yes | [Native translation] |
+| btn_no | No | [Native translation] |
 
-> 💡 **Note:** The `title_template` should be the complete title, not a template with placeholders.
+> 💡 **Note:** The `title_template` should be the complete title, not a template with placeholders. Nothing replaces a `{0}` in it.
+
+> ⚠️ VALIDATE PROFILE doesn't check `confirm_title`, `btn_yes` or `btn_no`, or any native text. Missing text doesn't fall back to English: the game shows `TEXT MISSING` instead, so playtest both languages.
 
 ---
 
