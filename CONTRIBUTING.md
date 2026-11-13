@@ -192,7 +192,7 @@ Create 8 tiers with increasing `MaxPercent` values:
 
 > 💡 **Note:** The `title_template` should be the complete title, not a template with placeholders. Nothing replaces a `{0}` in it.
 
-> ⚠️ VALIDATE PROFILE doesn't check `confirm_title`, `btn_yes` or `btn_no`, or any native text. Missing text doesn't fall back to English: the game shows `TEXT MISSING` instead, so playtest both languages.
+> ⚠️ Missing text doesn't fall back to English: the game shows `TEXT MISSING` instead. VALIDATE PROFILE reports any empty English or native text as an error, but still playtest both languages.
 
 ---
 
